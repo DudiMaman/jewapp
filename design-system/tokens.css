@@ -1,0 +1,79 @@
+/* ==========================================================================
+   Neshama (נשמה) — Design Tokens
+   Jewish blue & white palette with delicate, light gold accents.
+   Replaces the legacy cream/peach + terracotta-orange theme.
+   ========================================================================== */
+
+:root {
+  /* ---- Brand blues (tekhelet → navy) ---- */
+  --blue-900: #0B1F33; /* deepest ink */
+  --blue-800: #102A43; /* primary text / dark cards */
+  --blue-700: #1E3A5F; /* primary */
+  --blue-600: #2C5F8A; /* accent / interactive */
+  --blue-500: #3E7CB1; /* bright accent */
+  --blue-300: #9FC3E0; /* soft accent */
+  --blue-100: #DCEAF6; /* tint surface */
+  --blue-050: #EEF5FB; /* lightest tint background */
+
+  /* ---- White / surfaces ---- */
+  --white:    #FFFFFF;
+  --paper:    #F7FAFC; /* off-white app background */
+  --paper-2:  #EFF4F9;
+
+  /* ---- Gold (used lightly & sparingly) ---- */
+  --gold-600: #B8902F; /* deepest gold, for small strokes */
+  --gold-500: #C8A24B; /* primary gold accent */
+  --gold-400: #D8B968; /* soft gold */
+  --gold-200: #E9D6A0; /* faint gold wash */
+  --gold-glow: rgba(200, 162, 75, 0.16);
+
+  /* ---- Neutrals / semantic ---- */
+  --ink:        #102A43;
+  --ink-soft:   #4A6079;
+  --ink-muted:  #8A9BB0;
+  --line:       #E3EAF1;
+  --locked:     #B9C6D4;
+  --success:    #2E8B6F;
+  --flame:      #C8A24B; /* streak flame restyled to gold */
+
+  /* ---- Gradients & decoration ---- */
+  --grad-sky:  linear-gradient(180deg, #EEF5FB 0%, #F7FAFC 60%, #FFFFFF 100%);
+  --grad-navy: linear-gradient(135deg, #1E3A5F 0%, #102A43 100%);
+  --grad-gold: linear-gradient(90deg, transparent, var(--gold-400), transparent);
+
+  /* ---- Elevation ---- */
+  --shadow-sm: 0 1px 3px rgba(16, 42, 67, 0.06);
+  --shadow-md: 0 6px 20px rgba(16, 42, 67, 0.08);
+  --shadow-lg: 0 16px 40px rgba(16, 42, 67, 0.12);
+
+  /* ---- Radii & spacing ---- */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-pill: 999px;
+  --space: 8px;
+
+  /* ---- Type ---- */
+  --font-ui:   "Heebo", "Assistant", "Rubik", system-ui, -apple-system, sans-serif;
+  --font-serif:"Frank Ruhl Libre", "David Libre", "Noto Serif Hebrew", serif;
+}
+
+/* Light-gold hairline divider used between sections */
+.gold-rule {
+  height: 1px;
+  border: 0;
+  background: var(--grad-gold);
+  opacity: 0.7;
+}
+
+/* Delicate gold corner flourish (very subtle). Apply to a positioned box. */
+.flourish::before,
+.flourish::after {
+  content: "";
+  position: absolute;
+  width: 22px; height: 22px;
+  border: 1.5px solid var(--gold-400);
+  opacity: 0.55;
+}
+.flourish::before { top: 10px; inset-inline-end: 10px; border-bottom: 0; border-inline-start: 0; border-top-right-radius: 6px; }
+.flourish::after  { bottom: 10px; inset-inline-start: 10px; border-top: 0; border-inline-end: 0; border-bottom-left-radius: 6px; }
