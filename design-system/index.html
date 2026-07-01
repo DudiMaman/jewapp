@@ -1,393 +1,260 @@
 <!doctype html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>נשמה · Design System</title>
+<title>Neshama · Design System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&family=Frank+Ruhl+Libre:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --blue-900:#0B1F33;--blue-800:#102A43;--blue-700:#1E3A5F;--blue-600:#2C5F8A;
-  --blue-500:#3E7CB1;--blue-300:#9FC3E0;--blue-100:#DCEAF6;--blue-050:#EEF5FB;
-  --white:#fff;--paper:#F7FAFC;--paper-2:#EFF4F9;
-  --gold-600:#B8902F;--gold-500:#C8A24B;--gold-400:#D8B968;--gold-200:#E9D6A0;
-  --ink:#102A43;--ink-soft:#4A6079;--ink-muted:#8A9BB0;--line:#E3EAF1;--locked:#B9C6D4;--success:#2E8B6F;
-  --grad-sky:linear-gradient(180deg,#EEF5FB 0%,#F7FAFC 60%,#fff 100%);
-  --grad-navy:linear-gradient(135deg,#1E3A5F 0%,#102A43 100%);
-  --grad-gold:linear-gradient(90deg,transparent,var(--gold-400),transparent);
-  --shadow-sm:0 1px 3px rgba(16,42,67,.06);--shadow-md:0 6px 20px rgba(16,42,67,.08);--shadow-lg:0 16px 40px rgba(16,42,67,.12);
-  --r-md:16px;--r-lg:22px;--r-pill:999px;
-  --font-ui:"Heebo",system-ui,sans-serif;--font-serif:"Frank Ruhl Libre",serif;
+  --navy-900:#0B1F33;--navy-800:#102A43;--navy-700:#1E3A5F;--navy-600:#2C5F8A;--blue-500:#3E7CB1;
+  --blue-300:#9FC3E0;--blue-100:#DCEAF6;--blue-050:#EEF5FB;--ivory:#FBF8F1;--paper:#F6F8FB;--white:#fff;
+  --gold-700:#9A6E22;--gold-600:#B4863A;--gold-500:#CBA24E;--gold-400:#DDBE74;--gold-200:#E9D6A0;
+  --ink:#12283C;--soft:#46617A;--mute:#8AA0B4;--line:#E6EDF4;
+  --grad-navy:linear-gradient(160deg,#173B5C,#0B1F33 70%);
+  --grad-gold:linear-gradient(120deg,#B4863A,#ECD9A6 45%,#CBA24E 60%,#F6ECD2 80%,#CBA24E);
+  --sh-sm:0 1px 3px rgba(11,31,51,.06);--sh-md:0 10px 30px rgba(11,31,51,.10);--sh-lg:0 22px 50px rgba(11,31,51,.16);
+  --serif:"Cormorant Garamond",serif;--serif-he:"Frank Ruhl Libre",serif;--ui:"Inter",system-ui,sans-serif;
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:var(--font-ui);color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1180px;margin:0 auto;padding:48px 24px 96px}
-header.hero{text-align:center;padding:64px 24px 40px;background:var(--grad-sky);border-radius:28px;position:relative;overflow:hidden;margin-bottom:48px}
-.brand-mark{width:76px;height:76px;border-radius:20px;background:var(--white);box-shadow:var(--shadow-md);display:grid;place-items:center;margin:0 auto 18px;border:1px solid var(--line)}
-.brand-mark svg{width:42px;height:42px}
-.hero h1{font-size:44px;margin:.1em 0;letter-spacing:.01em;color:var(--blue-800)}
-.hero p{color:var(--ink-soft);max-width:540px;margin:8px auto 0;font-size:18px}
-.kicker{font-size:13px;letter-spacing:.18em;color:var(--gold-600);font-weight:700;text-transform:uppercase}
-h2.section{font-size:13px;letter-spacing:.16em;color:var(--gold-600);text-transform:uppercase;font-weight:800;margin:56px 0 6px}
-h2.section + .sub{color:var(--ink-muted);margin:0 0 24px;font-size:15px}
-hr.gold{height:1px;border:0;background:var(--grad-gold);opacity:.8;margin:8px 0 0}
-.grid{display:grid;gap:20px}
-.cards-3{grid-template-columns:repeat(3,1fr)}
-.cards-2{grid-template-columns:repeat(2,1fr)}
-.cards-4{grid-template-columns:repeat(4,1fr)}
-@media(max-width:900px){.cards-3,.cards-4{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:620px){.cards-2,.cards-3,.cards-4{grid-template-columns:1fr}}
-.panel{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;box-shadow:var(--shadow-sm)}
-.panel h3{margin:0 0 4px;font-size:17px;color:var(--blue-800)}
-.panel .muted{color:var(--ink-muted);font-size:13px;margin:0}
-
+body{margin:0;font-family:var(--ui);color:var(--ink);background:var(--paper);line-height:1.6}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px 100px}
+header.hero{text-align:center;padding:76px 24px 48px;background:var(--grad-navy);color:#fff;border-radius:0 0 34px 34px;margin-bottom:20px;position:relative;overflow:hidden}
+header.hero .mk{width:76px;height:76px;border-radius:20px;background:linear-gradient(180deg,#12304c,#0b1f33);box-shadow:var(--sh-lg),inset 0 0 0 1px rgba(221,190,116,.35);display:grid;place-items:center;margin:0 auto 16px}
+header.hero h1{font-family:var(--serif);font-size:52px;margin:.05em 0;letter-spacing:.03em}
+header.hero .k{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-400);font-weight:700}
+header.hero p{color:rgba(226,236,246,.8);max-width:560px;margin:10px auto 0}
+h2.sec{font-family:var(--serif);font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-700);font-weight:700;margin:52px 0 4px}
+.sub{color:var(--mute);margin:0 0 20px;font-size:14px}
+hr.g{height:1px;border:0;background:linear-gradient(90deg,transparent,var(--gold-400),transparent);opacity:.75;margin:6px 0 22px}
+.grid{display:grid;gap:18px}.c3{grid-template-columns:repeat(3,1fr)}.c2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:820px){.c3{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.c2,.c3{grid-template-columns:1fr}}
+.panel{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--sh-sm)}
+.panel h3{margin:0 0 4px;color:var(--navy-800);font-size:16px}.panel .m{color:var(--mute);font-size:13px;margin:0}
 /* swatches */
-.swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
-@media(max-width:760px){.swatches{grid-template-columns:repeat(3,1fr)}}
-.sw{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow-sm)}
-.sw .chip{height:74px}
-.sw .meta{padding:8px 10px;font-size:12px}
-.sw .meta b{display:block;color:var(--blue-800)}
-.sw .meta span{color:var(--ink-muted);font-family:ui-monospace,monospace}
-
+.sw{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}@media(max-width:700px){.sw{grid-template-columns:repeat(3,1fr)}}
+.chip{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:var(--sh-sm)}
+.chip .c{height:70px}.chip .l{padding:8px 10px;font-size:11.5px}.chip .l b{display:block;color:var(--navy-800)}.chip .l span{color:var(--mute);font-family:ui-monospace,monospace}
 /* type */
-.type-row{display:flex;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px dashed var(--line)}
-.type-row:last-child{border:0}
-.type-row .lbl{width:130px;color:var(--ink-muted);font-size:12px}
-.serif{font-family:var(--font-serif)}
-
+.tr{display:flex;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px dashed var(--line)}.tr:last-child{border:0}
+.tr .lbl{width:150px;color:var(--mute);font-size:12px;flex:none}
+.serif{font-family:var(--serif)}.hebs{font-family:var(--serif-he);direction:rtl}
 /* buttons */
-.btn{font-family:inherit;font-weight:700;border:0;border-radius:var(--r-pill);padding:15px 28px;font-size:16px;cursor:pointer}
-.btn-primary{background:var(--grad-navy);color:#fff;box-shadow:var(--shadow-md)}
-.btn-secondary{background:var(--blue-050);color:var(--blue-700);border:1px solid var(--blue-100)}
-.btn-ghost{background:transparent;color:var(--blue-600)}
-.btn-gold{background:var(--white);color:var(--gold-600);border:1px solid var(--gold-400)}
-.btn-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-
-/* option rows */
-.opt{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:16px 18px;margin-bottom:12px;box-shadow:var(--shadow-sm)}
-.opt .ic{width:40px;height:40px;border-radius:12px;background:var(--blue-050);display:grid;place-items:center;color:var(--blue-600)}
-.opt .txt{flex:1}
-.opt .txt b{display:block;color:var(--blue-800)}
-.opt .txt small{color:var(--ink-muted)}
-.opt .radio{width:24px;height:24px;border-radius:50%;border:2px solid var(--locked)}
-.opt.sel{border-color:var(--gold-400);background:linear-gradient(0deg,var(--gold-glow,rgba(200,162,75,.10)),rgba(200,162,75,.10)),#fff}
-.opt.sel .radio{border-color:var(--gold-500);background:var(--gold-500);display:grid;place-items:center}
-.opt.sel .radio::after{content:"";width:9px;height:9px;border-radius:50%;background:#fff}
-
-/* progress bar */
-.progress{height:8px;background:var(--blue-100);border-radius:99px;overflow:hidden}
-.progress > i{display:block;height:100%;width:62%;background:linear-gradient(90deg,var(--blue-500),var(--gold-400));border-radius:99px}
-
-/* day circles */
-.days{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.day{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;font-weight:700;background:var(--blue-050);color:var(--ink-muted);position:relative;border:2px solid transparent}
-.day.done{background:var(--white);color:var(--blue-700);border-color:var(--blue-200,#cfe0ef)}
-.day.today{border-color:var(--gold-500);color:var(--blue-800);background:#fff;box-shadow:0 0 0 4px var(--gold-glow,rgba(200,162,75,.15))}
-.day .lock{position:absolute;bottom:-6px;inset-inline-start:50%;transform:translateX(50%);width:22px;height:22px;border-radius:50%;background:var(--blue-600);color:#fff;display:grid;place-items:center;font-size:11px}
-
-/* streak badge */
-.streak{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--gold-400);color:var(--gold-600);padding:8px 16px;border-radius:99px;font-weight:800;box-shadow:var(--shadow-sm)}
-
-/* prayer card */
-.pcard{position:relative;border-radius:var(--r-lg);padding:20px 22px;color:#fff;overflow:hidden;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:14px}
-.pcard .pi{width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,.18);display:grid;place-items:center;backdrop-filter:blur(2px)}
-.pcard h4{margin:0;font-size:19px}
-.pcard small{opacity:.85}
-.pcard.navy{background:var(--grad-navy)}
-.pcard.sky{background:linear-gradient(135deg,#3E7CB1,#2C5F8A)}
-.pcard.dawn{background:linear-gradient(135deg,#2C5F8A,#1E3A5F)}
-.pcard.gold-edge{box-shadow:var(--shadow-md),inset 0 0 0 1px var(--gold-400)}
-.lcard{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:16px 18px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow-sm)}
-.lcard .pi{width:40px;height:40px;border-radius:11px;background:var(--blue-050);color:var(--blue-600);display:grid;place-items:center}
-.lcard b{color:var(--blue-800)}
-.lcard .cta{margin-inline-start:auto;color:var(--gold-600);font-weight:700;font-size:14px}
-
-/* chat */
-.chat{display:flex;flex-direction:column;gap:12px}
-.bub{max-width:78%;padding:14px 18px;border-radius:18px;font-size:15px}
-.bub.me{align-self:flex-start;background:var(--grad-navy);color:#fff;border-bottom-left-radius:6px}
-.bub.ai{align-self:flex-end;background:#fff;border:1px solid var(--line);border-bottom-right-radius:6px;box-shadow:var(--shadow-sm)}
-.bub.ai a{color:var(--gold-600);font-weight:700;text-decoration:underline}
-.typing{align-self:flex-end;background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px 18px;display:flex;gap:5px}
-.typing i{width:7px;height:7px;border-radius:50%;background:var(--blue-300);display:inline-block}
-
-/* reader */
-.reader{background:var(--grad-sky);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px 22px}
-.reader .chap{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--gold-400);color:var(--blue-800);padding:8px 18px;border-radius:99px;font-weight:700;margin-bottom:18px}
-.verse{font-family:var(--font-serif);font-size:23px;line-height:2;color:var(--blue-900);margin:0 0 14px;text-align:center}
-.verse .vn{color:var(--gold-600);font-size:15px;font-weight:700;margin-inline-start:6px}
-.hl{background:linear-gradient(180deg,transparent 55%,var(--gold-200) 55%)}
-.seltool{display:inline-flex;gap:8px;background:var(--blue-800);padding:8px;border-radius:14px;box-shadow:var(--shadow-lg)}
-.seltool button{width:40px;height:40px;border-radius:10px;border:0;background:rgba(255,255,255,.10);color:#fff;display:grid;place-items:center;cursor:pointer}
-.seltool button.spark{background:var(--gold-500);color:var(--blue-900)}
-
-/* tab bar */
-.tabbar{display:flex;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:24px;padding:10px 14px;box-shadow:var(--shadow-md)}
-.tab{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--ink-muted);font-size:12px;font-weight:600;flex:1}
-.tab.active{color:var(--gold-600)}
-.tab .tb{width:26px;height:26px;display:grid;place-items:center}
-.tab.active .tb{filter:none}
-
-/* paywall plan */
-.plan{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-md);padding:16px 18px;margin-bottom:12px;position:relative}
-.plan.sel{border-color:var(--gold-500);box-shadow:0 0 0 3px var(--gold-glow,rgba(200,162,75,.15))}
-.plan b{color:var(--blue-800);font-size:18px}
-.plan small{color:var(--ink-muted);display:block}
-.badge{position:absolute;inset-inline-start:14px;top:-12px;background:var(--grad-navy);color:#fff;font-size:12px;font-weight:700;padding:5px 12px;border-radius:99px}
-.feat{display:flex;gap:10px;align-items:flex-start;margin:10px 0;color:var(--ink-soft)}
-.feat .ck{color:var(--gold-500);flex:none}
-
-/* phone */
-.phones{display:flex;gap:26px;flex-wrap:wrap;justify-content:center}
-.phone{width:300px;background:#fff;border-radius:38px;box-shadow:var(--shadow-lg);border:1px solid var(--line);overflow:hidden}
-.phone .scr{height:600px;overflow:hidden;background:var(--grad-sky);padding:18px 16px;position:relative}
-.phone .statusbar{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-soft);font-weight:600;margin-bottom:10px}
-.phone h5{margin:0;font-size:26px;color:var(--blue-800);text-align:start}
-.cap{text-align:center;color:var(--ink-muted);font-size:13px;margin-top:12px}
-.note{background:var(--blue-050);border:1px solid var(--blue-100);border-radius:14px;padding:14px 16px;color:var(--blue-700);font-size:14px}
-.illus{height:150px;border-radius:18px;background:
-  radial-gradient(120px 90px at 50% 30%, rgba(216,185,104,.30), transparent 70%),
-  linear-gradient(180deg,#DCEAF6,#EEF5FB);display:grid;place-items:center;border:1px solid var(--line)}
-.illus svg{width:90px;height:90px;opacity:.9}
-.small{font-size:13px;color:var(--ink-muted)}
+.btn{font-family:inherit;font-weight:600;border:0;border-radius:999px;padding:15px 26px;font-size:15px;cursor:pointer}
+.b-primary{background:var(--grad-navy);color:#fff;box-shadow:var(--sh-md)}
+.b-gold{background:var(--grad-gold);background-size:200% auto;color:#3c2c0e;box-shadow:0 6px 22px rgba(180,134,58,.22)}
+.b-ghost{background:rgba(16,42,67,.05);color:var(--navy-700);border:1px solid var(--line)}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+/* icons + illustrations */
+.iconset{display:flex;flex-wrap:wrap;gap:14px}
+.iconset .it{width:64px;height:64px;border-radius:16px;background:linear-gradient(180deg,#eef5fb,#dfeaf6);display:grid;place-items:center;color:var(--navy-700);border:1px solid var(--line)}
+.iconset .it svg{width:28px;height:28px}
+.illus{display:flex;flex-wrap:wrap;gap:16px}
+.illus .il{width:120px;height:120px;border-radius:18px;display:grid;place-items:center;position:relative;overflow:hidden;border:1px solid var(--line);
+  background:radial-gradient(80px 60px at 50% 40%,rgba(221,190,116,.28),transparent 70%),linear-gradient(180deg,#DCEAF6,#EEF5FB)}
+.illus .il svg{width:78px;height:78px}
+.illus .cap{position:absolute;bottom:6px;left:0;right:0;text-align:center;font-size:10px;color:var(--soft)}
+/* components */
+.opt{display:flex;align-items:center;gap:13px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:10px;box-shadow:var(--sh-sm)}
+.opt .ic{width:42px;height:42px;border-radius:12px;background:linear-gradient(180deg,#eaf2fa,#dbe9f6);display:grid;place-items:center;color:var(--navy-700)}.opt .ic svg{width:22px;height:22px}
+.opt .t{flex:1}.opt .t b{display:block;color:var(--navy-800)}.opt .t small{color:var(--mute)}
+.opt .r{width:22px;height:22px;border-radius:50%;border:2px solid #C4D3E0}
+.opt.sel{border-color:var(--gold-400);background:linear-gradient(180deg,#fffdf7,#fff)}
+.opt.sel .ic{background:linear-gradient(180deg,#f6ecd2,#e9d3a0);color:var(--gold-700)}
+.opt.sel .r{border-color:var(--gold-500);background:var(--gold-500);box-shadow:0 0 0 4px rgba(203,162,78,.16)}
+.days{display:flex;gap:8px;flex-wrap:wrap}
+.day{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-weight:700;background:#EEF5FB;color:var(--mute);font-family:var(--serif-he);position:relative;border:1.5px solid transparent}
+.day.done{background:#fff;color:var(--navy-700);border-color:var(--blue-100)}
+.day.today{border-color:var(--gold-500);color:var(--navy-800);background:#fff;box-shadow:0 0 0 3px rgba(203,162,78,.16)}
+.streak{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--gold-400);color:var(--gold-700);padding:7px 14px;border-radius:999px;font-weight:700;box-shadow:var(--sh-sm)}.streak svg{width:16px;height:16px}
+.card{position:relative;border-radius:20px;padding:15px;overflow:hidden;display:flex;align-items:center;gap:12px;margin-bottom:10px;box-shadow:var(--sh-sm)}
+.card .th{width:50px;height:50px;border-radius:13px;display:grid;place-items:center}.card .th svg{width:32px;height:32px}
+.card h4{margin:0;font-size:15px}.card small{opacity:.85;font-size:12px}
+.card.hero{background:var(--grad-navy);color:#EAF1F8;box-shadow:var(--sh-md),inset 0 0 0 1px rgba(221,190,116,.35)}.card.hero .th{background:rgba(221,190,116,.16);color:var(--gold-400)}
+.card.light{background:#fff;color:var(--navy-800)}.card.light .th{background:#eef5fb;color:var(--navy-700)}
+.card.tint{background:linear-gradient(135deg,#dcebf8,#eaf3fb);color:#0f2a40}.card.tint .th{background:#fff;color:var(--navy-700);box-shadow:var(--sh-sm)}
+.card .deco{position:absolute;right:-8px;bottom:-12px;width:88px;height:88px;opacity:.16}.card.hero .deco{opacity:.24;color:var(--gold-400)}
+.tabbar{display:flex;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:22px;padding:10px 12px;box-shadow:var(--sh-md);max-width:420px}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--mute);font-size:10.5px;font-weight:600;flex:1}.tab svg{width:23px;height:23px}
+.tab.active{color:var(--gold-700)}.tab.active svg .fill{fill:var(--gold-500)}
+.bub{max-width:78%;padding:12px 15px;border-radius:18px;font-size:14px;margin-bottom:10px}
+.bub.me{margin-left:auto;background:var(--grad-navy);color:#fff;border-bottom-right-radius:5px}
+.bub.ai{background:#fff;border:1px solid var(--line);border-bottom-left-radius:5px;box-shadow:var(--sh-sm)}.bub.ai a{color:var(--gold-700);font-weight:700}
+.paper{background:linear-gradient(180deg,#fffdf8,#fbf8f1);border:1px solid #efe6d2;border-radius:20px;padding:18px 18px 4px;box-shadow:var(--sh-sm)}
+.verse{font-family:var(--serif-he);direction:rtl;font-size:21px;line-height:2.05;color:var(--navy-900);margin:0 0 12px;text-align:justify}.verse .vn{color:var(--gold-600);font-size:13px;font-weight:700;margin-left:6px;font-family:var(--serif)}
+.plan{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:10px;position:relative}
+.plan.sel{border-color:var(--gold-500);box-shadow:0 8px 22px rgba(180,134,58,.16)}.plan b{color:var(--navy-800);font-size:16px}.plan small{color:var(--mute);display:block;font-size:12.5px}
+.badge{position:absolute;right:14px;top:-11px;background:var(--grad-gold);color:#3c2c0e;font-size:11px;font-weight:700;padding:4px 11px;border-radius:999px;box-shadow:0 6px 22px rgba(180,134,58,.22)}
+.orn{width:150px;height:18px;color:var(--gold-500);display:block;margin:6px auto}
+.cta{margin-top:14px;text-align:center}
+.link{color:var(--navy-600);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(203,162,78,.5)}
+.footer{margin-top:60px;text-align:center;color:var(--mute);font-size:13px}
 </style>
 </head>
 <body>
+<!-- symbol library (shared with the prototype) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ECD9A6"/><stop offset=".5" stop-color="#CBA24E"/><stop offset="1" stop-color="#9A6E22"/></linearGradient>
+  <linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CFE6F8"/><stop offset="1" stop-color="#8FB9DC"/></linearGradient>
+  <radialGradient id="gFlame" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#FBE9BE"/><stop offset="1" stop-color="#D9A441"/></radialGradient>
+  <symbol id="s-window" viewBox="0 0 100 130"><path d="M20 60a30 30 0 0 1 60 0v58a4 4 0 0 1-4 4H24a4 4 0 0 1-4-4z" fill="url(#gSky)" opacity=".55"/><path d="M20 60a30 30 0 0 1 60 0v58a4 4 0 0 1-4 4H24a4 4 0 0 1-4-4z" fill="none" stroke="url(#gGold)" stroke-width="2.5"/><path d="M50 30v92M20 74h60" stroke="url(#gGold)" stroke-width="2"/><circle cx="50" cy="20" r="3.4" fill="url(#gGold)"/></symbol>
+  <symbol id="s-tefillin" viewBox="0 0 120 120"><path d="M38 44h20v20H38z" fill="#1c3a57"/><path d="M38 44h20v20H38z" fill="none" stroke="url(#gGold)" stroke-width="2"/><path d="M40 64c-6 12-14 20-26 24M56 64c6 10 12 15 22 17" fill="none" stroke="url(#gGold)" stroke-width="2.4" stroke-linecap="round"/><path d="M70 40h22v22H70z" fill="#1c3a57"/><path d="M70 40h22v22H70z" fill="none" stroke="url(#gGold)" stroke-width="2"/><path d="M74 62c-2 14-2 26 2 38M88 62c3 12 4 22 2 34" fill="none" stroke="url(#gGold)" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="s-tallit" viewBox="0 0 120 120"><path d="M24 30h72l-8 62a6 6 0 0 1-6 5H38a6 6 0 0 1-6-5z" fill="#fff" stroke="url(#gGold)" stroke-width="2"/><path d="M34 40h52M35 50h50" stroke="#22557F" stroke-width="3" opacity=".5"/><path d="M32 92l-4 18M44 97l-2 16M76 97l2 16M88 92l4 18" stroke="url(#gGold)" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="s-book" viewBox="0 0 120 120"><path d="M60 34c-10-7-24-8-36-4v58c12-4 26-3 36 4 10-7 24-8 36-4V30c-12-4-26-3-36 4z" fill="#fff" stroke="url(#gGold)" stroke-width="2.2"/><path d="M60 38v58" stroke="url(#gGold)" stroke-width="2"/><path d="M30 44c8-2 16-2 22 1M68 45c8-3 16-3 22-1" stroke="#22557F" stroke-width="1.6" opacity=".5"/></symbol>
+  <symbol id="s-candle" viewBox="0 0 100 130"><ellipse cx="50" cy="40" rx="9" ry="15" fill="url(#gFlame)"/><rect x="43" y="54" width="14" height="52" rx="4" fill="#F4ECDA" stroke="url(#gGold)" stroke-width="1.6"/><path d="M34 106h32l-4 10H38z" fill="url(#gGold)"/></symbol>
+  <symbol id="s-olive" viewBox="0 0 130 90"><path d="M12 70C40 66 74 54 118 26" fill="none" stroke="#6f8f5a" stroke-width="2.4" stroke-linecap="round"/><g fill="#8FB56B" stroke="#5f7d49" stroke-width="1"><ellipse cx="40" cy="60" rx="8" ry="5" transform="rotate(-24 40 60)"/><ellipse cx="66" cy="48" rx="8" ry="5" transform="rotate(-24 66 48)"/><ellipse cx="92" cy="36" rx="8" ry="5" transform="rotate(-24 92 36)"/></g><circle cx="54" cy="66" r="4.5" fill="url(#gGold)"/><circle cx="80" cy="52" r="4.5" fill="url(#gGold)"/></symbol>
+  <symbol id="s-kotel" viewBox="0 0 130 120"><g fill="#EadFc6" stroke="url(#gGold)" stroke-width="1.4"><rect x="18" y="60" width="30" height="16"/><rect x="50" y="60" width="34" height="16"/><rect x="86" y="60" width="26" height="16"/><rect x="26" y="78" width="34" height="16"/><rect x="62" y="78" width="30" height="16"/><rect x="94" y="78" width="20" height="16"/></g><path d="M64 40c8-6 18-4 24 2-8 0-10 6-18 4 6 4 4 12-2 12-4-6-12-4-14-10 4 0 6-6 10-8z" fill="#fff" stroke="url(#gGold)" stroke-width="1.4"/></symbol>
+  <symbol id="s-star" viewBox="0 0 100 100"><path d="M50 12l14 24h-28zM50 88l-14-24h28zM22 32l28 0 14 24-28 0zM78 32l-28 0-14 24 28 0z" fill="none" stroke="url(#gGold)" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="s-scroll" viewBox="0 0 120 120"><rect x="34" y="26" width="52" height="68" rx="4" fill="#fff" stroke="url(#gGold)" stroke-width="2"/><path d="M44 40h32M44 52h32M44 64h24" stroke="#22557F" stroke-width="1.6" opacity=".5"/><rect x="26" y="20" width="10" height="80" rx="5" fill="#12304c"/><rect x="84" y="20" width="10" height="80" rx="5" fill="#12304c"/><circle cx="31" cy="20" r="5" fill="url(#gGold)"/><circle cx="89" cy="20" r="5" fill="url(#gGold)"/></symbol>
+  <symbol id="s-sun" viewBox="0 0 120 90"><path d="M20 66h80" stroke="url(#gGold)" stroke-width="2"/><circle cx="60" cy="66" r="18" fill="url(#gFlame)"/><g stroke="url(#gGold)" stroke-width="2" stroke-linecap="round"><path d="M60 30v-10M38 44l-7-7M82 44l7-7M28 60H18M102 60h-8"/></g></symbol>
+  <symbol id="s-hand" viewBox="0 0 100 100"><path d="M36 54V32a5 5 0 0 1 10 0v18m0-2V26a5 5 0 0 1 10 0v24m0-4V32a5 5 0 0 1 10 0v26c0 16-8 28-24 28-10 0-16-6-22-16l-8-14a5 5 0 0 1 8-6l6 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="s-plate" viewBox="0 0 100 100"><circle cx="50" cy="50" r="26" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="1.6" opacity=".6"/><path d="M24 30v20m0 0a6 6 0 0 0 6-6V30M78 30c-5 0-8 6-8 14 0 4 3 6 8 6v20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="s-orn" viewBox="0 0 150 20"><path d="M10 10h50M90 10h50" stroke="currentColor" stroke-width="1.2"/><path d="M75 3l6 7-6 7-6-7z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="63" cy="10" r="1.6" fill="currentColor"/><circle cx="87" cy="10" r="1.6" fill="currentColor"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path class="fill" d="M4 5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-siddur" viewBox="0 0 24 24"><path class="fill" d="M12 6c-2-1.4-5-1.6-7-1v12c2-.6 5-.4 7 1 2-1.4 5-1.6 7-1V5c-2-.6-5-.4-7 1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 6v12" stroke="currentColor" stroke-width="1.4"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path class="fill" d="M12 3c2 3.5-1.5 5-.5 8 .5 2 2.5 2.5 2.5 5a4 4 0 1 1-8 0c0-3 3-4 3-7 0-2 .5-4.5 3-6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-psalms" viewBox="0 0 24 24"><path class="fill" d="M6 3h10a2 2 0 0 1 2 2v16l-7-3-7 3V5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-tanakh" viewBox="0 0 24 24"><rect x="7" y="4" width="10" height="14" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="4" y="3" width="3" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="17" y="3" width="3" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.5 5.5l2 2M16.5 16.5l2 2M18.5 5.5l-2 2M7.5 16.5l-2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="currentColor"/></symbol>
+  <symbol id="i-mark" viewBox="0 0 24 24"><path d="M12 4c3 5-2 7-1 11 .5 2 3 2.5 3 5a3 3 0 1 1-6 0c0-3 3-3.5 3-7 0-2-2-6-2-9z" fill="url(#gGold)"/><path d="M17 4l1 2.4 2.4 1-2.4 1L17 11l-1-2.6L13.6 7.4 16 6.8z" fill="url(#gGold)"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<header class="hero">
+  <div class="mk"><svg width="42" height="42"><use href="#i-mark"/></svg></div>
+  <div class="k">Design System · R3</div>
+  <h1>Neshama</h1>
+  <p>A refined, spiritual visual language — deep blue & white with delicate, metallic-gold detail, crafted illustration, and calm motion.</p>
+</header>
+
 <div class="wrap">
 
-  <header class="hero">
-    <div class="brand-mark">
-      <!-- flame + sparkle mark, gold on white -->
-      <svg viewBox="0 0 48 48" fill="none">
-        <path d="M24 5c4 7-3 10-1 16 1 4 5 5 5 10a9 9 0 1 1-18 0c0-6 6-8 6-14 0-4 1-9 8-12Z" fill="#C8A24B"/>
-        <path d="M30 7l1.4 3.2L34.6 11l-3.2 1.4L30 15l-1.4-3.2L25.4 11l3.2-.8L30 7Z" fill="#1E3A5F"/>
-      </svg>
-    </div>
-    <div class="kicker">Design System</div>
-    <h1>נשמה</h1>
-    <p>שפת עיצוב חדשה — כחול ולבן בצבעי היהדות, עם עיטורי זהב עדינים ומאופקים. רגוע, יוקרתי, ונקי.</p>
-  </header>
-
-  <!-- FOUNDATIONS: COLOR -->
-  <h2 class="section">Foundations · צבעים</h2>
-  <p class="sub">כחול תכלת ונייבי כצבע מוביל, לבן ואוף-ווייט כמשטחים, וזהב רך בשימוש מינימלי בלבד.</p>
-  <hr class="gold">
-  <div class="swatches" style="margin-top:20px">
-    <div class="sw"><div class="chip" style="background:#102A43"></div><div class="meta"><b>Navy 800</b><span>#102A43</span></div></div>
-    <div class="sw"><div class="chip" style="background:#1E3A5F"></div><div class="meta"><b>Blue 700</b><span>#1E3A5F</span></div></div>
-    <div class="sw"><div class="chip" style="background:#2C5F8A"></div><div class="meta"><b>Blue 600</b><span>#2C5F8A</span></div></div>
-    <div class="sw"><div class="chip" style="background:#9FC3E0"></div><div class="meta"><b>Blue 300</b><span>#9FC3E0</span></div></div>
-    <div class="sw"><div class="chip" style="background:#EEF5FB"></div><div class="meta"><b>Blue 050</b><span>#EEF5FB</span></div></div>
-    <div class="sw"><div class="chip" style="background:#FFFFFF;box-shadow:inset 0 0 0 1px #E3EAF1"></div><div class="meta"><b>White</b><span>#FFFFFF</span></div></div>
-    <div class="sw"><div class="chip" style="background:#C8A24B"></div><div class="meta"><b>Gold 500</b><span>#C8A24B</span></div></div>
-    <div class="sw"><div class="chip" style="background:#D8B968"></div><div class="meta"><b>Gold 400</b><span>#D8B968</span></div></div>
-    <div class="sw"><div class="chip" style="background:#E9D6A0"></div><div class="meta"><b>Gold 200</b><span>#E9D6A0</span></div></div>
-    <div class="sw"><div class="chip" style="background:#F7FAFC;box-shadow:inset 0 0 0 1px #E3EAF1"></div><div class="meta"><b>Paper</b><span>#F7FAFC</span></div></div>
-    <div class="sw"><div class="chip" style="background:#4A6079"></div><div class="meta"><b>Ink soft</b><span>#4A6079</span></div></div>
-    <div class="sw"><div class="chip" style="background:#B9C6D4"></div><div class="meta"><b>Locked</b><span>#B9C6D4</span></div></div>
+  <h2 class="sec">Palette</h2>
+  <p class="sub">Deep tekhelet-to-navy leads; ivory & white surfaces; gold reserved for accents and ornament.</p><hr class="g">
+  <div class="sw">
+    <div class="chip"><div class="c" style="background:#0B1F33"></div><div class="l"><b>Navy 900</b><span>#0B1F33</span></div></div>
+    <div class="chip"><div class="c" style="background:#102A43"></div><div class="l"><b>Navy 800</b><span>#102A43</span></div></div>
+    <div class="chip"><div class="c" style="background:#1E3A5F"></div><div class="l"><b>Blue 700</b><span>#1E3A5F</span></div></div>
+    <div class="chip"><div class="c" style="background:#3E7CB1"></div><div class="l"><b>Blue 500</b><span>#3E7CB1</span></div></div>
+    <div class="chip"><div class="c" style="background:#DCEAF6"></div><div class="l"><b>Blue 100</b><span>#DCEAF6</span></div></div>
+    <div class="chip"><div class="c" style="background:#FBF8F1;box-shadow:inset 0 0 0 1px #eee"></div><div class="l"><b>Ivory</b><span>#FBF8F1</span></div></div>
+    <div class="chip"><div class="c" style="background:#9A6E22"></div><div class="l"><b>Gold 700</b><span>#9A6E22</span></div></div>
+    <div class="chip"><div class="c" style="background:#B4863A"></div><div class="l"><b>Gold 600</b><span>#B4863A</span></div></div>
+    <div class="chip"><div class="c" style="background:#CBA24E"></div><div class="l"><b>Gold 500</b><span>#CBA24E</span></div></div>
+    <div class="chip"><div class="c" style="background:#DDBE74"></div><div class="l"><b>Gold 400</b><span>#DDBE74</span></div></div>
+    <div class="chip"><div class="c" style="background:linear-gradient(120deg,#B4863A,#ECD9A6 45%,#CBA24E 60%,#F6ECD2 80%,#CBA24E)"></div><div class="l"><b>Gold (metallic)</b><span>gradient</span></div></div>
+    <div class="chip"><div class="c" style="background:#F6F8FB;box-shadow:inset 0 0 0 1px #eee"></div><div class="l"><b>Paper</b><span>#F6F8FB</span></div></div>
   </div>
 
-  <!-- FOUNDATIONS: TYPE -->
-  <h2 class="section">Foundations · טיפוגרפיה</h2>
-  <p class="sub">סריף עברי מעודן לפסוקים ולתפילה (עם ניקוד), וסאנס נקי לממשק. RTL מלא.</p>
-  <hr class="gold">
-  <div class="panel" style="margin-top:20px">
-    <div class="type-row"><span class="lbl">Display / 44</span><span style="font-size:44px;font-weight:800;color:var(--blue-800)">המסע של היום</span></div>
-    <div class="type-row"><span class="lbl">Title / 26</span><span style="font-size:26px;font-weight:700;color:var(--blue-800)">שאל את נשמה כל דבר</span></div>
-    <div class="type-row"><span class="lbl">Body / 16</span><span style="font-size:16px;color:var(--ink-soft)">כמה דקות שקטות ביום. תהילים, תפילה ומעשים קטנים של אמונה.</span></div>
-    <div class="type-row"><span class="lbl">Verse serif / 24</span><span class="serif" style="font-size:24px;color:var(--blue-900)">בְּרֵאשִׁ֖ית בָּרָ֣א אֱלֹהִ֑ים אֵ֥ת הַשָּׁמַ֖יִם וְאֵ֥ת הָאָֽרֶץ</span></div>
-    <div class="type-row"><span class="lbl">Caption / 13</span><span class="small">פתיחת העמידה</span></div>
+  <h2 class="sec">Typography</h2>
+  <p class="sub">Cormorant Garamond for display (EN) · Frank Ruhl Libre for verse & prayer (HE, with nikud) · Inter for UI.</p><hr class="g">
+  <div class="panel">
+    <div class="tr"><span class="lbl">Display · serif 48</span><span class="serif" style="font-size:48px;color:var(--navy-800)">A quieter kind of day</span></div>
+    <div class="tr"><span class="lbl">Title · serif 26</span><span class="serif" style="font-size:26px;color:var(--navy-800)">The simple path to a daily connection</span></div>
+    <div class="tr"><span class="lbl">Body · Inter 15</span><span style="font-size:15px;color:var(--soft)">A few still minutes for Psalms, prayer, and small acts of faith.</span></div>
+    <div class="tr"><span class="lbl">Verse · serif-he 22</span><span class="hebs" style="font-size:22px;color:var(--navy-900)">בְּרֵאשִׁ֖ית בָּרָ֣א אֱלֹהִ֑ים אֵ֥ת הַשָּׁמַ֖יִם וְאֵ֥ת הָאָֽרֶץ</span></div>
+    <div class="tr"><span class="lbl">Eyebrow · Inter 12</span><span style="font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-700);font-weight:700">Your companion</span></div>
   </div>
 
-  <!-- BUTTONS -->
-  <h2 class="section">Components · כפתורים</h2>
-  <hr class="gold">
-  <div class="panel" style="margin-top:20px">
-    <div class="btn-row">
-      <button class="btn btn-primary">המשך</button>
-      <button class="btn btn-secondary">דלג</button>
-      <button class="btn btn-gold">להתחיל קבלה חדשה</button>
-      <button class="btn btn-ghost">שחזר רכישות</button>
-    </div>
-    <div style="margin-top:18px"><div class="progress"><i></i></div><p class="small" style="margin-top:8px">סרגל התקדמות Onboarding</p></div>
+  <h2 class="sec">Iconography</h2>
+  <p class="sub">Line icons, 1.7px stroke, gold on active.</p><hr class="g">
+  <div class="iconset">
+    <div class="it"><svg><use href="#i-chat"/></svg></div><div class="it"><svg><use href="#i-siddur"/></svg></div>
+    <div class="it"><svg><use href="#i-flame"/></svg></div><div class="it"><svg><use href="#i-psalms"/></svg></div>
+    <div class="it"><svg><use href="#i-tanakh"/></svg></div><div class="it"><svg><use href="#i-gear"/></svg></div>
+    <div class="it"><svg><use href="#i-spark"/></svg></div><div class="it"><svg><use href="#i-check"/></svg></div>
+    <div class="it"><svg><use href="#i-heart"/></svg></div><div class="it"><svg><use href="#i-shield"/></svg></div>
   </div>
 
-  <!-- OPTION ROWS -->
-  <h2 class="section">Components · שורות בחירה</h2>
-  <hr class="gold">
-  <div class="cards-2 grid" style="margin-top:20px">
+  <h2 class="sec">Illustration</h2>
+  <p class="sub">Crafted SVG motifs used to fill screens and set tone.</p><hr class="g">
+  <div class="illus">
+    <div class="il"><svg><use href="#s-window"/></svg><span class="cap">Sanctuary window</span></div>
+    <div class="il"><svg><use href="#s-tefillin"/></svg><span class="cap">Tefillin</span></div>
+    <div class="il"><svg><use href="#s-tallit"/></svg><span class="cap">Tallit</span></div>
+    <div class="il"><svg><use href="#s-book"/></svg><span class="cap">Siddur</span></div>
+    <div class="il"><svg><use href="#s-scroll"/></svg><span class="cap">Torah scroll</span></div>
+    <div class="il"><svg><use href="#s-candle"/></svg><span class="cap">Candle</span></div>
+    <div class="il"><svg><use href="#s-olive"/></svg><span class="cap">Olive branch</span></div>
+    <div class="il"><svg><use href="#s-kotel"/></svg><span class="cap">Kotel</span></div>
+    <div class="il"><svg><use href="#s-star"/></svg><span class="cap">Magen David</span></div>
+    <div class="il"><svg><use href="#s-sun"/></svg><span class="cap">Dawn</span></div>
+  </div>
+
+  <h2 class="sec">Buttons & ornament</h2><hr class="g">
+  <div class="panel">
+    <div class="row"><button class="btn b-gold">Start 7 days free</button><button class="btn b-primary">Continue</button><button class="btn b-ghost">Stay in English</button></div>
+    <svg class="orn" style="margin-top:20px"><use href="#s-orn"/></svg>
+  </div>
+
+  <h2 class="sec">Components</h2><hr class="g">
+  <div class="grid c2">
     <div class="panel">
-      <h3>בחירה יחידה / רב-בחירה</h3>
-      <div style="margin-top:14px">
-        <div class="opt sel"><span class="radio"></span><div class="txt"><b>רפואה לי או ליקירים</b></div><span class="ic">❤</span></div>
-        <div class="opt"><span class="radio"></span><div class="txt"><b>רגע יומי של הודיה</b></div><span class="ic">✦</span></div>
-        <div class="opt"><span class="radio"></span><div class="txt"><b>שמירה ושקט נפשי</b></div><span class="ic">☾</span></div>
+      <h3>Option rows</h3>
+      <div style="margin-top:12px">
+        <div class="opt sel"><span class="ic"><svg><use href="#i-heart"/></svg></span><div class="t"><b>Healing — for me or those I love</b></div><span class="r"></span></div>
+        <div class="opt"><span class="ic"><svg><use href="#i-shield"/></svg></span><div class="t"><b>Strength for hard days</b></div><span class="r"></span></div>
+        <div class="opt"><span class="ic"><svg><use href="#i-spark"/></svg></span><div class="t"><b>A daily moment of gratitude</b></div><span class="r"></span></div>
       </div>
     </div>
     <div class="panel">
-      <h3>נוסח התפילה</h3>
-      <div style="margin-top:14px">
-        <div class="opt sel"><span class="radio"></span><div class="txt"><b>אשכנז</b><small>מסורת מרכז ומזרח אירופה</small></div></div>
-        <div class="opt"><span class="radio"></span><div class="txt"><b>ספרד</b><small>נוסח חסידי מבוסס על האר"י</small></div></div>
-        <div class="opt"><span class="radio"></span><div class="txt"><b>עדות המזרח</b><small>מסורות ספרד והמזרח</small></div></div>
+      <h3>Daily journey & streak</h3>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin:12px 0 14px"><span class="streak"><svg><use href="#i-flame"/></svg> 7</span><span style="font-size:12.5px;color:var(--soft)">Shabbat never breaks the streak</span></div>
+      <div class="days"><div class="day done">י״ג</div><div class="day done">י״ד</div><div class="day today">ט״ו</div><div class="day">ט״ז</div><div class="day">י״ז</div></div>
+    </div>
+  </div>
+
+  <div class="grid c2" style="margin-top:18px">
+    <div class="panel">
+      <h3>Cards</h3>
+      <div style="margin-top:12px">
+        <div class="card hero"><span class="th"><svg><use href="#s-hand"/></svg></span><div><h4>I'll take this on</h4><small>Begin a new commitment</small></div><svg class="deco"><use href="#s-star"/></svg></div>
+        <div class="card light"><span class="th"><svg><use href="#s-plate"/></svg></span><div><h4>Waiting between meat & milk</h4><small>Today's practice</small></div></div>
+        <div class="card tint"><span class="th"><svg><use href="#s-sun"/></svg></span><div><h4>Modeh Ani</h4><small>Open the day in gratitude</small></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>Companion (chat)</h3>
+      <div style="margin-top:12px">
+        <div class="bub me">Which psalm helps with anxiety?</div>
+        <div class="bub ai">When the days feel heavy, <a>Psalm 23</a> has quieted hearts for generations. For deeper fear, many turn to <a>Psalm 91</a>. Shall we open one?</div>
       </div>
     </div>
   </div>
 
-  <!-- JOURNEY + STREAK -->
-  <h2 class="section">Components · מסע יומי ורצף</h2>
-  <hr class="gold">
-  <div class="panel" style="margin-top:20px">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
-      <span class="streak">🔥 7</span>
-      <span class="note" style="padding:8px 14px">שבת מטופלת · הרצף לא נשבר בשישי ובשבת</span>
-    </div>
-    <div class="days">
-      <div class="day done">י"ג</div>
-      <div class="day done">י"ד</div>
-      <div class="day today">ט"ו</div>
-      <div class="day">ט"ז<span class="lock">🔒</span></div>
-      <div class="day">י"ז<span class="lock">🔒</span></div>
-      <div class="day">י"ח<span class="lock">🔒</span></div>
-      <div class="day">י"ט<span class="lock">🔒</span></div>
-    </div>
-  </div>
-
-  <!-- CARDS -->
-  <h2 class="section">Components · כרטיסים</h2>
-  <hr class="gold">
-  <div class="grid" style="margin-top:20px;gap:14px">
-    <div class="pcard navy gold-edge"><div class="pi">✋</div><div><h4>אני לוקח על עצמי</h4><small>להתחיל קבלה חדשה</small></div><div style="margin-inline-start:auto;font-size:22px">＋</div></div>
-    <div class="lcard"><div class="pi">🍽</div><b>המתנה בין בשר לחלב</b><span class="cta">התחילי ›</span></div>
-    <div class="pcard sky"><div class="pi">☀</div><div><h4>מודה אני</h4><small>פתיחת היום בהודיה</small></div></div>
-    <div class="pcard dawn"><div class="pi">▤</div><div><h4>תפילין</h4><small>הדרכה להנחה, צעד אחר צעד</small></div></div>
-  </div>
-
-  <!-- CHAT + READER -->
-  <div class="cards-2 grid" style="margin-top:20px">
-    <div>
-      <h2 class="section" style="margin-top:0">Components · צ'אט</h2><hr class="gold">
-      <div class="panel" style="margin-top:16px">
-        <div class="chat">
-          <div class="bub me">איזה פרק תהילים עוזר לחרדה?</div>
-          <div class="bub ai">כשאתה מרגיש חרדה, <a>תהילים כ"ג</a> הוא הקלאסי שמרגיע. לפחד עמוק יותר רבים פונים אל <a>תהילים צ"א</a>. תרצה לפתוח אחד עכשיו?</div>
-          <div class="typing"><i></i><i></i><i></i></div>
-        </div>
+  <div class="grid c2" style="margin-top:18px">
+    <div class="panel">
+      <h3>Reader</h3>
+      <svg class="orn"><use href="#s-orn"/></svg>
+      <div class="paper">
+        <p class="verse"><span class="vn">1</span> מִזְמ֥וֹר לְדָוִ֑ד יְהוָ֥ה רֹ֝עִ֗י לֹ֣א אֶחְסָֽר׃</p>
+        <p class="verse"><span class="vn">2</span> בִּנְא֣וֹת דֶּ֭שֶׁא יַרְבִּיצֵ֑נִי עַל־מֵ֖י מְנֻח֣וֹת יְנַהֲלֵֽנִי׃</p>
       </div>
     </div>
-    <div>
-      <h2 class="section" style="margin-top:0">Components · קורא טקסט</h2><hr class="gold">
-      <div class="reader" style="margin-top:16px">
-        <span class="chap">בראשית א ▾</span>
-        <p class="verse"><span class="vn">א</span> בְּרֵאשִׁ֖ית בָּרָ֣א אֱלֹהִ֑ים אֵ֥ת הַשָּׁמַ֖יִם וְאֵ֥ת הָאָֽרֶץ׃</p>
-        <p class="verse"><span class="vn">ב</span> וְהָאָ֗רֶץ הָיְתָ֥ה <span class="hl">תֹ֙הוּ֙ וָבֹ֔הוּ</span> וְחֹ֖שֶׁךְ עַל־פְּנֵ֣י תְה֑וֹם׃</p>
-        <div style="text-align:center;margin-top:8px">
-          <span class="seltool">
-            <button class="spark" title="הסבר AI">✦</button>
-            <button title="הדגשה">◐</button>
-            <button title="העתקה">⧉</button>
-            <button title="גודל גופן">א</button>
-          </span>
-        </div>
+    <div class="panel">
+      <h3>Paywall plans</h3>
+      <div style="margin-top:16px">
+        <div class="plan sel"><span class="badge">Save 84%</span><b>7 days free</b><small>then ₪149.90 / year · nothing today</small></div>
+        <div class="plan"><b>Weekly</b><small>₪17.90 billed weekly</small></div>
       </div>
     </div>
   </div>
 
-  <!-- TAB BAR -->
-  <h2 class="section">Components · ניווט תחתון</h2>
-  <hr class="gold">
-  <div style="margin-top:20px;max-width:420px;margin-inline:auto">
-    <div class="tabbar">
-      <div class="tab"><span class="tb">💬</span>צ'אט</div>
-      <div class="tab"><span class="tb">📖</span>סידור</div>
-      <div class="tab active"><span class="tb">🔥</span>היום</div>
-      <div class="tab"><span class="tb">📕</span>תהילים</div>
-      <div class="tab"><span class="tb">📜</span>תנ"ך</div>
-    </div>
+  <h2 class="sec">Navigation</h2><hr class="g">
+  <div class="tabbar" style="margin:0 auto">
+    <div class="tab"><svg><use href="#i-chat"/></svg>Chat</div>
+    <div class="tab"><svg><use href="#i-siddur"/></svg>Siddur</div>
+    <div class="tab active"><svg><use href="#i-flame"/></svg>Today</div>
+    <div class="tab"><svg><use href="#i-psalms"/></svg>Psalms</div>
+    <div class="tab"><svg><use href="#i-tanakh"/></svg>Tanakh</div>
   </div>
 
-  <!-- PAYWALL -->
-  <h2 class="section">Components · מסך מנוי</h2>
-  <hr class="gold">
-  <div class="panel" style="margin-top:20px;max-width:460px;margin-inline:auto">
-    <h3 style="text-align:center;font-size:22px">הדרך הפשוטה לחיבור יומי</h3>
-    <p class="muted" style="text-align:center;margin-bottom:16px">תהילים, סידור, ותפילה. הכל במקום אחד, בכל יום.</p>
-    <div class="feat"><span class="ck">✓</span> הבינו כל פרק ופסוק בעזרת העוזר של נשמה</div>
-    <div class="feat"><span class="ck">✓</span> ווידג'טים למסך הבית ולמסך הנעילה</div>
-    <div class="feat"><span class="ck">✓</span> סימון פסוקים בכל צבע וללא הגבלה</div>
-    <div class="feat"><span class="ck">✓</span> תיקון ימים שפספסתם ושמירה על הרצף</div>
-    <div style="height:14px"></div>
-    <div class="plan sel"><span class="badge">חסכו 84%</span><b>7 ימי ניסיון חינם</b><small>ואז ‎149.90₪ לשנה · ללא חיוב עכשיו</small></div>
-    <div class="plan"><b>מנוי שבועי</b><small>חיוב שבועי של ‎17.90₪</small></div>
-    <button class="btn btn-primary" style="width:100%;margin-top:6px">המשך</button>
-    <p class="small" style="text-align:center;margin-top:12px">פרטיות · תנאים · שחזר רכישות</p>
-  </div>
-
-  <!-- NOTIFICATIONS -->
-  <h2 class="section">Components · התראות (מודעות-שבת)</h2>
-  <hr class="gold">
-  <div class="cards-2 grid" style="margin-top:20px">
-    <div class="lcard" style="align-items:flex-start"><div class="pi">📖</div><div><b>תהילים יומי · 9:00</b><div class="small">התהילים שלך להיום: ע"ז – ע"ח. כמה פסוקים עושים הרבה 🌿</div></div></div>
-    <div class="lcard" style="align-items:flex-start"><div class="pi">🕐</div><div><b>דויד, זמן מנחה · 13:30</b><div class="small">עצור, נשום, התפלל. מנחה כאן ☀️</div></div></div>
-    <div class="lcard" style="align-items:flex-start"><div class="pi">🌙</div><div><b>תפילת ערבית</b><div class="small">אור רך, שעה שקטה. זמן מעריב ✨</div></div></div>
-    <div class="lcard" style="align-items:flex-start"><div class="pi">✨</div><div><b>קריאת שמע על המיטה</b><div class="small">המילים האחרונות של היום, שיהיו שמע 🌙</div></div></div>
-  </div>
-
-  <!-- SCREEN MOCKS -->
-  <h2 class="section">Screens · מסכים מרכזיים</h2>
-  <p class="sub">הדגמת שפת העיצוב על מסכי המוצר האמיתיים.</p>
-  <hr class="gold">
-  <div class="phones" style="margin-top:24px">
-
-    <!-- Onboarding -->
-    <div class="phone"><div class="scr">
-      <div class="statusbar"><span>23:02</span><span>● ● ● ●</span></div>
-      <div class="progress" style="margin-bottom:24px"><i style="width:80%"></i></div>
-      <h5 style="text-align:center;line-height:1.3">הימים שלך מלאים.<br><span style="color:var(--gold-600)">הנשמה</span> שלך מחכה לך.</h5>
-      <div class="illus" style="height:230px;margin-top:24px">
-        <svg viewBox="0 0 64 64" fill="none"><path d="M22 54V30c0-6 4-12 10-12s10 6 10 12v24" stroke="#1E3A5F" stroke-width="2"/><path d="M32 18c0-5 0-9 0-9" stroke="#C8A24B" stroke-width="2"/><circle cx="32" cy="9" r="3" fill="#C8A24B"/><path d="M16 54h32" stroke="#2C5F8A" stroke-width="2"/></svg>
-      </div>
-      <button class="btn btn-primary" style="width:100%;position:absolute;bottom:18px;inset-inline:16px;width:calc(100% - 32px)">המשך</button>
-    </div></div>
-
-    <!-- Today -->
-    <div class="phone"><div class="scr" style="padding-bottom:0">
-      <div class="statusbar"><span>8:48</span><span>5G</span></div>
-      <div style="display:flex;justify-content:space-between;align-items:flex-start">
-        <span class="streak" style="padding:6px 12px">🔥 0</span>
-        <div style="text-align:start"><h5 style="font-size:24px">המסע של היום</h5><div class="note" style="padding:5px 12px;margin-top:6px;font-size:12px">ט"ו בתמוז תשפ"ו · יום שלישי</div></div>
-      </div>
-      <div class="days" style="margin:16px 0;gap:6px;transform:scale(.86);transform-origin:right">
-        <div class="day done" style="width:46px;height:46px;font-size:13px">י"ג</div>
-        <div class="day done" style="width:46px;height:46px;font-size:13px">י"ד</div>
-        <div class="day today" style="width:46px;height:46px;font-size:13px">ט"ו</div>
-        <div class="day" style="width:46px;height:46px;font-size:13px">ט"ז<span class="lock" style="width:18px;height:18px;font-size:9px">🔒</span></div>
-        <div class="day" style="width:46px;height:46px;font-size:13px">י"ז<span class="lock" style="width:18px;height:18px;font-size:9px">🔒</span></div>
-      </div>
-      <div class="pcard navy gold-edge" style="padding:14px 16px;margin-bottom:10px"><div class="pi" style="width:38px;height:38px">✋</div><div><h4 style="font-size:16px">אני לוקח על עצמי</h4><small style="font-size:12px">להתחיל קבלה חדשה</small></div><div style="margin-inline-start:auto">＋</div></div>
-      <div class="lcard" style="padding:12px 14px;margin-bottom:10px"><div class="pi" style="width:34px;height:34px">🍽</div><b style="font-size:14px">המתנה בין בשר לחלב</b><span class="cta" style="font-size:13px">התחילי ›</span></div>
-      <div class="pcard sky" style="padding:14px 16px;margin-bottom:10px"><div class="pi" style="width:38px;height:38px">☀</div><h4 style="font-size:16px">מודה אני</h4></div>
-      <div class="pcard dawn" style="padding:14px 16px"><div class="pi" style="width:38px;height:38px">▤</div><h4 style="font-size:16px">תפילין</h4></div>
-    </div></div>
-
-    <!-- Chat -->
-    <div class="phone"><div class="scr">
-      <div class="statusbar"><span>8:48</span><span>5G</span></div>
-      <div class="kicker" style="text-align:center">המלווה שלך</div>
-      <h5 style="text-align:center;margin:4px 0 18px">שאל את נשמה כל דבר</h5>
-      <div class="chat">
-        <div class="bub me">איזה פרק תהילים עוזר לחרדה?</div>
-        <div class="bub ai">כשאתה מרגיש חרדה, <a>תהילים כ"ג</a> הוא הקלאסי שמרגיע. לפחד עמוק יותר רבים פונים אל <a>תהילים צ"א</a>.<br><br>תרצה לפתוח אחד עכשיו? ה' יישך את ליבך.</div>
-      </div>
-    </div></div>
-
-  </div>
-
-  <p class="cap" style="margin-top:40px">© נשמה · שפת עיצוב — כחול ולבן עם עיטורי זהב עדינים. RTL · עברית.</p>
-
+  <p class="footer">See the full, interactive screens in <a class="link" href="screens.html">the screen gallery</a> · built from <a class="link" href="../prototype/index.html">the prototype</a>.<br>© Neshama · blue · white · gold.</p>
 </div>
 </body>
 </html>

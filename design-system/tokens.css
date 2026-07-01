@@ -1,79 +1,65 @@
 /* ==========================================================================
-   Neshama (נשמה) — Design Tokens
-   Jewish blue & white palette with delicate, light gold accents.
-   Replaces the legacy cream/peach + terracotta-orange theme.
+   Neshama (נשמה) — Design Tokens · R3
+   Deep blue & white with delicate, metallic-gold accents.
    ========================================================================== */
 
 :root {
-  /* ---- Brand blues (tekhelet → navy) ---- */
-  --blue-900: #0B1F33; /* deepest ink */
-  --blue-800: #102A43; /* primary text / dark cards */
-  --blue-700: #1E3A5F; /* primary */
-  --blue-600: #2C5F8A; /* accent / interactive */
-  --blue-500: #3E7CB1; /* bright accent */
-  --blue-300: #9FC3E0; /* soft accent */
-  --blue-100: #DCEAF6; /* tint surface */
-  --blue-050: #EEF5FB; /* lightest tint background */
+  /* ---- Blues (tekhelet → navy) ---- */
+  --navy-900: #0B1F33;
+  --navy-800: #102A43; /* primary text / dark surfaces */
+  --navy-700: #1E3A5F;
+  --navy-600: #2C5F8A;
+  --blue-500: #3E7CB1; /* accent */
+  --blue-300: #9FC3E0;
+  --blue-100: #DCEAF6;
+  --blue-050: #EEF5FB;
 
-  /* ---- White / surfaces ---- */
-  --white:    #FFFFFF;
-  --paper:    #F7FAFC; /* off-white app background */
-  --paper-2:  #EFF4F9;
+  /* ---- Surfaces ---- */
+  --white:  #FFFFFF;
+  --ivory:  #FBF8F1; /* warm reading paper */
+  --paper:  #F6F8FB; /* app background */
 
-  /* ---- Gold (used lightly & sparingly) ---- */
-  --gold-600: #B8902F; /* deepest gold, for small strokes */
-  --gold-500: #C8A24B; /* primary gold accent */
-  --gold-400: #D8B968; /* soft gold */
-  --gold-200: #E9D6A0; /* faint gold wash */
-  --gold-glow: rgba(200, 162, 75, 0.16);
+  /* ---- Gold (accents & ornament only) ---- */
+  --gold-700: #9A6E22;
+  --gold-600: #B4863A;
+  --gold-500: #CBA24E;
+  --gold-400: #DDBE74;
+  --gold-200: #E9D6A0;
 
-  /* ---- Neutrals / semantic ---- */
-  --ink:        #102A43;
-  --ink-soft:   #4A6079;
-  --ink-muted:  #8A9BB0;
-  --line:       #E3EAF1;
-  --locked:     #B9C6D4;
-  --success:    #2E8B6F;
-  --flame:      #C8A24B; /* streak flame restyled to gold */
+  /* ---- Ink / semantic ---- */
+  --ink:      #12283C;
+  --ink-soft: #46617A;
+  --ink-mute: #8AA0B4;
+  --line:     #E6EDF4;
+  --locked:   #B9C6D4;
+  --success:  #2E8B6F;
 
-  /* ---- Gradients & decoration ---- */
-  --grad-sky:  linear-gradient(180deg, #EEF5FB 0%, #F7FAFC 60%, #FFFFFF 100%);
-  --grad-navy: linear-gradient(135deg, #1E3A5F 0%, #102A43 100%);
-  --grad-gold: linear-gradient(90deg, transparent, var(--gold-400), transparent);
+  /* ---- Gradients ---- */
+  --grad-navy: linear-gradient(160deg, #173B5C 0%, #0B1F33 62%, #081726 100%);
+  --grad-dawn: linear-gradient(180deg, #0B1F33 0%, #173B5C 46%, #3E6C93 78%, #7CA6C8 100%);
+  --grad-paper:linear-gradient(180deg, #FBF8F1 0%, #F6F8FB 60%, #FFFFFF 100%);
+  /* metallic gold — for badges, active plan, CTA shimmer */
+  --grad-gold: linear-gradient(120deg, #B4863A, #ECD9A6 45%, #CBA24E 60%, #F6ECD2 80%, #CBA24E);
+  --glow-gold: radial-gradient(circle, rgba(221,190,116,.35), transparent 68%);
 
   /* ---- Elevation ---- */
-  --shadow-sm: 0 1px 3px rgba(16, 42, 67, 0.06);
-  --shadow-md: 0 6px 20px rgba(16, 42, 67, 0.08);
-  --shadow-lg: 0 16px 40px rgba(16, 42, 67, 0.12);
+  --shadow-sm: 0 1px 3px rgba(11, 31, 51, .06);
+  --shadow-md: 0 10px 30px rgba(11, 31, 51, .10);
+  --shadow-lg: 0 22px 50px rgba(11, 31, 51, .16);
+  --shadow-gold: 0 6px 22px rgba(180, 134, 58, .22);
 
-  /* ---- Radii & spacing ---- */
-  --r-sm: 10px;
-  --r-md: 16px;
-  --r-lg: 22px;
+  /* ---- Radii ---- */
+  --r-sm: 12px;
+  --r-md: 18px;
+  --r-lg: 26px;
   --r-pill: 999px;
-  --space: 8px;
 
   /* ---- Type ---- */
-  --font-ui:   "Heebo", "Assistant", "Rubik", system-ui, -apple-system, sans-serif;
-  --font-serif:"Frank Ruhl Libre", "David Libre", "Noto Serif Hebrew", serif;
+  --font-ui:      "Inter", system-ui, -apple-system, sans-serif;
+  --font-ui-he:   "Heebo", "Assistant", system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;   /* English display */
+  --font-serif-he:"Frank Ruhl Libre", "David Libre", serif; /* Hebrew verse/prayer */
 }
 
-/* Light-gold hairline divider used between sections */
-.gold-rule {
-  height: 1px;
-  border: 0;
-  background: var(--grad-gold);
-  opacity: 0.7;
-}
-
-/* Delicate gold corner flourish (very subtle). Apply to a positioned box. */
-.flourish::before,
-.flourish::after {
-  content: "";
-  position: absolute;
-  width: 22px; height: 22px;
-  border: 1.5px solid var(--gold-400);
-  opacity: 0.55;
-}
-.flourish::before { top: 10px; inset-inline-end: 10px; border-bottom: 0; border-inline-start: 0; border-top-right-radius: 6px; }
-.flourish::after  { bottom: 10px; inset-inline-start: 10px; border-top: 0; border-inline-end: 0; border-bottom-left-radius: 6px; }
+/* Light-gold hairline divider */
+.gold-rule { height: 1px; border: 0; background: linear-gradient(90deg, transparent, var(--gold-400), transparent); opacity: .75; }

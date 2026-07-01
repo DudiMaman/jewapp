@@ -695,6 +695,9 @@ h1{margin:0;font-weight:600;letter-spacing:.01em}
   // toast
   var toastEl=document.getElementById('toast'),tt;
   function toast(m){toastEl.textContent=m;toastEl.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){toastEl.classList.remove('on');},1700);}
+  // deep-link a screen via #hash (used by the design-system gallery; also shareable)
+  function fromHash(){var h=(location.hash||'').slice(1);if(h&&document.getElementById(h))show(h);}
+  window.addEventListener('hashchange',fromHash);fromHash();
 })();
 </script>
 </body>

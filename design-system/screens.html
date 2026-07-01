@@ -1,381 +1,75 @@
 <!doctype html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>נשמה · Screen Mockups</title>
+<title>Neshama · Screen Gallery</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&family=Frank+Ruhl+Libre:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --blue-900:#0B1F33;--blue-800:#102A43;--blue-700:#1E3A5F;--blue-600:#2C5F8A;
-  --blue-500:#3E7CB1;--blue-300:#9FC3E0;--blue-200:#CFE0EF;--blue-100:#DCEAF6;--blue-050:#EEF5FB;
-  --white:#fff;--paper:#F7FAFC;
-  --gold-600:#B8902F;--gold-500:#C8A24B;--gold-400:#D8B968;--gold-200:#E9D6A0;--gold-glow:rgba(200,162,75,.15);
-  --ink:#102A43;--ink-soft:#4A6079;--ink-muted:#8A9BB0;--line:#E3EAF1;--locked:#B9C6D4;--success:#2E8B6F;
-  --grad-sky:linear-gradient(180deg,#EEF5FB 0%,#F7FAFC 60%,#fff 100%);
-  --grad-navy:linear-gradient(135deg,#1E3A5F 0%,#102A43 100%);
-  --grad-gold:linear-gradient(90deg,transparent,var(--gold-400),transparent);
-  --shadow-sm:0 1px 3px rgba(16,42,67,.06);--shadow-md:0 6px 20px rgba(16,42,67,.08);--shadow-lg:0 16px 40px rgba(16,42,67,.12);
-  --r-md:16px;--r-lg:22px;--r-pill:999px;
-  --font-ui:"Heebo",system-ui,sans-serif;--font-serif:"Frank Ruhl Libre",serif;
-}
+:root{--navy:#102A43;--ink:#12283C;--soft:#46617A;--mute:#8AA0B4;--gold:#B4863A;--line:#dde6ef}
 *{box-sizing:border-box}
-body{margin:0;font-family:var(--font-ui);color:var(--ink);background:#E9EFF5;line-height:1.55;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1240px;margin:0 auto;padding:44px 20px 90px}
-.head{text-align:center;margin-bottom:36px}
-.head .kicker{font-size:13px;letter-spacing:.18em;color:var(--gold-600);font-weight:800;text-transform:uppercase}
-.head h1{font-size:38px;margin:.1em 0;color:var(--blue-800)}
-.head p{color:var(--ink-soft);margin:6px 0 0}
-.gallery{display:flex;flex-wrap:wrap;gap:30px;justify-content:center}
-figure{margin:0}
-figcaption{text-align:center;margin-top:10px;color:var(--blue-700);font-weight:700;font-size:14px}
-figcaption small{display:block;color:var(--ink-muted);font-weight:400;font-size:12px}
-
-/* phone frame */
-.phone{width:300px;background:#0B1F33;border-radius:44px;padding:10px;box-shadow:var(--shadow-lg)}
-.scr{position:relative;height:640px;background:var(--grad-sky);border-radius:36px;overflow:hidden;display:flex;flex-direction:column}
-.sb{display:flex;justify-content:space-between;align-items:center;padding:14px 22px 6px;font-size:12px;color:var(--ink-soft);font-weight:600}
-.notch{width:96px;height:22px;background:#0B1F33;border-radius:0 0 16px 16px;position:absolute;top:0;inset-inline:50%;transform:translateX(50%)}
-.body{flex:1;overflow:hidden;padding:8px 18px 0}
-.cta{position:absolute;bottom:16px;inset-inline:18px;background:var(--grad-navy);color:#fff;border:0;border-radius:var(--r-pill);padding:15px;font-family:inherit;font-weight:700;font-size:16px;text-align:center;box-shadow:var(--shadow-md)}
-.cta.ghost{background:#fff;color:var(--blue-700);border:1px solid var(--blue-100);box-shadow:var(--shadow-sm)}
-.cta.disabled{background:#E7EEF5;color:var(--locked);box-shadow:none}
-
-h5{margin:0;color:var(--blue-800)}
-.kick{font-size:12px;letter-spacing:.16em;color:var(--gold-600);font-weight:800;text-transform:uppercase;text-align:center}
-.progress{height:7px;background:var(--blue-100);border-radius:99px;overflow:hidden;margin:6px 0 18px}
-.progress>i{display:block;height:100%;background:linear-gradient(90deg,var(--blue-500),var(--gold-400));border-radius:99px}
-.sub{color:var(--ink-muted);font-size:13.5px}
-.opt{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:13px 14px;margin-bottom:10px;box-shadow:var(--shadow-sm)}
-.opt .ic{width:34px;height:34px;border-radius:10px;background:var(--blue-050);display:grid;place-items:center;color:var(--blue-600);font-size:15px}
-.opt .txt{flex:1}.opt .txt b{display:block;color:var(--blue-800);font-size:14.5px}.opt .txt small{color:var(--ink-muted);font-size:12px}
-.opt .radio{width:22px;height:22px;border-radius:50%;border:2px solid var(--locked);flex:none}
-.opt.sel{border-color:var(--gold-400);background:linear-gradient(0deg,var(--gold-glow),var(--gold-glow)),#fff}
-.opt.sel .radio{border-color:var(--gold-500);background:var(--gold-500);display:grid;place-items:center}
-.opt.sel .radio::after{content:"";width:8px;height:8px;border-radius:50%;background:#fff}
-.field{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:16px;text-align:center;font-size:20px;color:var(--blue-800);font-weight:700;box-shadow:var(--shadow-sm)}
-.hint{color:var(--gold-600);font-size:12.5px;text-align:center;margin-top:10px;line-height:1.7}
-.brand-mark{width:70px;height:70px;border-radius:18px;background:#fff;box-shadow:var(--shadow-md);display:grid;place-items:center;margin:0 auto;border:1px solid var(--line)}
-.streak{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--gold-400);color:var(--gold-600);padding:5px 12px;border-radius:99px;font-weight:800;font-size:13px}
-.note{background:var(--blue-050);border:1px solid var(--blue-100);border-radius:12px;padding:8px 12px;color:var(--blue-700);font-size:12px}
-.days{display:flex;gap:5px;justify-content:space-between;margin:14px 0}
-.day{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;background:var(--blue-050);color:var(--ink-muted);font-size:12px;position:relative;border:2px solid transparent}
-.day.done{background:#fff;color:var(--blue-700);border-color:var(--blue-200)}
-.day.today{border-color:var(--gold-500);color:var(--blue-800);background:#fff;box-shadow:0 0 0 3px var(--gold-glow)}
-.day .lk{position:absolute;bottom:-5px;inset-inline:50%;transform:translateX(50%);width:16px;height:16px;border-radius:50%;background:var(--blue-600);color:#fff;display:grid;place-items:center;font-size:8px}
-.pcard{position:relative;border-radius:var(--r-md);padding:13px 15px;color:#fff;overflow:hidden;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:11px;margin-bottom:9px}
-.pcard .pi{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:16px}
-.pcard h4{margin:0;font-size:15px}.pcard small{opacity:.85;font-size:11.5px}
-.pcard.navy{background:var(--grad-navy);box-shadow:var(--shadow-sm),inset 0 0 0 1px var(--gold-400)}
-.pcard.sky{background:linear-gradient(135deg,#3E7CB1,#2C5F8A)}
-.pcard.dawn{background:linear-gradient(135deg,#2C5F8A,#1E3A5F)}
-.lcard{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:11px 14px;display:flex;align-items:center;gap:11px;box-shadow:var(--shadow-sm);margin-bottom:9px}
-.lcard .pi{width:32px;height:32px;border-radius:9px;background:var(--blue-050);color:var(--blue-600);display:grid;place-items:center;font-size:14px}
-.lcard b{color:var(--blue-800);font-size:14px}.lcard .go{margin-inline-start:auto;color:var(--gold-600);font-weight:700;font-size:13px}
-.verse{font-family:var(--font-serif);font-size:19px;line-height:2;color:var(--blue-900);margin:0 0 12px;text-align:justify}
-.verse .vn{color:var(--gold-600);font-size:13px;font-weight:700;margin-inline-start:5px}
-.hl{background:linear-gradient(180deg,transparent 55%,var(--gold-200) 55%)}
-.chap{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--gold-400);color:var(--blue-800);padding:6px 14px;border-radius:99px;font-weight:700;font-size:13px}
-.seltool{display:inline-flex;gap:6px;background:var(--blue-800);padding:6px;border-radius:12px;box-shadow:var(--shadow-lg)}
-.seltool button{width:34px;height:34px;border-radius:8px;border:0;background:rgba(255,255,255,.12);color:#fff;font-size:14px}
-.seltool button.spark{background:var(--gold-500);color:var(--blue-900)}
-.tabbar{display:flex;justify-content:space-between;background:#fff;border-top:1px solid var(--line);padding:10px 12px 8px}
-.tab{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--ink-muted);font-size:10.5px;font-weight:600;flex:1}
-.tab.active{color:var(--gold-600)}
-.chat{display:flex;flex-direction:column;gap:10px}
-.bub{max-width:82%;padding:11px 14px;border-radius:16px;font-size:13.5px}
-.bub.me{align-self:flex-start;background:var(--grad-navy);color:#fff;border-bottom-left-radius:5px}
-.bub.ai{align-self:flex-end;background:#fff;border:1px solid var(--line);border-bottom-right-radius:5px;box-shadow:var(--shadow-sm)}
-.bub.ai a{color:var(--gold-600);font-weight:700}
-.plan{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-md);padding:12px 14px;margin-bottom:10px;position:relative}
-.plan.sel{border-color:var(--gold-500);box-shadow:0 0 0 3px var(--gold-glow)}
-.plan b{color:var(--blue-800);font-size:15px}.plan small{color:var(--ink-muted);display:block;font-size:12px}
-.badge{position:absolute;inset-inline-start:12px;top:-11px;background:var(--grad-navy);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:99px}
-.feat{display:flex;gap:8px;align-items:flex-start;margin:8px 0;color:var(--ink-soft);font-size:13px}
-.feat .ck{color:var(--gold-500)}
-.wheel{position:relative;height:180px;display:grid;place-items:center;margin-top:20px}
-.wheel .row{color:var(--ink-muted);font-size:16px;line-height:2.1}
-.wheel .row.on{color:var(--blue-800);font-weight:800;font-size:26px;background:var(--blue-050);border-radius:12px;padding:2px 40px}
-.illus{border-radius:16px;background:radial-gradient(120px 80px at 50% 35%,rgba(216,185,104,.32),transparent 70%),linear-gradient(180deg,#DCEAF6,#EEF5FB);display:grid;place-items:center;border:1px solid var(--line)}
-.setrow{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px;font-size:13.5px;color:var(--blue-800)}
-.setrow .r{color:var(--ink-muted);font-size:12.5px}
-.tg{width:40px;height:23px;border-radius:99px;background:var(--gold-500);position:relative}
-.tg::after{content:"";position:absolute;width:19px;height:19px;border-radius:50%;background:#fff;top:2px;inset-inline-start:2px}
-.tg.off{background:#D7E0EA}.tg.off::after{inset-inline-start:auto;inset-inline-end:2px}
-.grp{font-size:11px;letter-spacing:.12em;color:var(--ink-muted);text-transform:uppercase;font-weight:700;margin:14px 4px 8px}
-svg.chart{width:100%;height:150px}
+body{margin:0;font-family:"Inter",system-ui,sans-serif;color:var(--ink);background:#E7EDF3}
+.head{text-align:center;padding:48px 20px 26px}
+.head .k{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.head h1{font-family:"Cormorant Garamond",serif;font-size:40px;margin:.1em 0;color:var(--navy)}
+.head p{color:var(--soft);margin:4px 0 0}
+.note{max-width:640px;margin:14px auto 0;color:var(--mute);font-size:13px;line-height:1.6}
+.grid{display:flex;flex-wrap:wrap;gap:30px 26px;justify-content:center;padding:22px 22px 80px;max-width:1320px;margin:0 auto}
+figure{margin:0;width:300px}
+.frame{width:300px;height:632px;border-radius:38px;overflow:hidden;background:#0B1F33;padding:8px;box-shadow:0 22px 50px rgba(11,31,51,.22)}
+.frame iframe{width:100%;height:100%;border:0;border-radius:31px;background:#F6F8FB;display:block}
+figcaption{text-align:center;margin-top:11px;color:var(--navy);font-weight:600;font-size:14px}
+figcaption small{display:block;color:var(--mute);font-weight:400;font-size:12px;margin-top:1px}
+.sec{width:100%;text-align:center;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:18px 0 -8px}
 </style>
 </head>
 <body>
-<div class="wrap">
   <div class="head">
-    <div class="kicker">Screen Mockups</div>
-    <h1>נשמה — מסכי המוצר</h1>
-    <p>שפת העיצוב החדשה (כחול·לבן·זהב) על כל המסכים המרכזיים. RTL · עברית.</p>
+    <div class="k">Screen Gallery</div>
+    <h1>Neshama — Screens</h1>
+    <p>The full product in the R3 visual language — blue, white & gold.</p>
+    <p class="note">Each frame is the live interactive prototype focused on one screen
+      (<code>prototype/index.html#screen</code>). Tap inside any frame to use it. This gallery
+      always reflects the latest design — it has no separate copy to fall out of sync.</p>
   </div>
-  <div class="gallery">
+  <div class="grid" id="grid"></div>
 
-  <!-- SPLASH -->
-  <figure><div class="phone"><div class="scr"><div class="notch"></div>
-    <div class="body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:16px">
-      <div class="brand-mark"><svg viewBox="0 0 48 48" width="40" height="40"><path d="M24 5c4 7-3 10-1 16 1 4 5 5 5 10a9 9 0 1 1-18 0c0-6 6-8 6-14 0-4 1-9 8-12Z" fill="#C8A24B"/><path d="M30 7l1.4 3.2L34.6 11l-3.2 1.4L30 15l-1.4-3.2L25.4 11l3.2-.8L30 7Z" fill="#1E3A5F"/></svg></div>
-      <h5 style="font-size:38px">נשמה</h5>
-      <p class="verse" style="text-align:center;font-size:18px;margin:0">הֽ' שְׂפָתַ֥י תִּפְתָּ֑ח וּ֝פִ֗י יַגִּ֥יד תְּהִלָּתֶֽךָ</p>
-      <div class="kick">פתיחת העמידה</div>
-    </div>
-  </div></div><figcaption>Splash<small>אייקון + פסוק פתיחת העמידה</small></figcaption></figure>
-
-  <!-- GENDER -->
-  <figure><div class="phone"><div class="scr"><div class="notch"></div>
-    <div class="body">
-      <div class="progress" style="margin-top:20px"><i style="width:24%"></i></div>
-      <h5 style="font-size:24px;text-align:center">נעים להכיר</h5>
-      <p class="sub" style="text-align:center;margin:6px 0 20px">זה עוזר לנו להציג תפילות ומנהגים שמתאימים לך.</p>
-      <div class="opt sel"><span class="radio"></span><div class="txt"><b>אישה</b></div><span class="ic">♀</span></div>
-      <div class="opt"><span class="radio"></span><div class="txt"><b>גבר</b></div><span class="ic">♂</span></div>
-    </div>
-    <div class="cta">המשך</div>
-  </div></div><figcaption>Onboarding · מגדר</figcaption></figure>
-
-  <!-- GOALS -->
-  <figure><div class="phone"><div class="scr"><div class="notch"></div>
-    <div class="body">
-      <div class="progress" style="margin-top:20px"><i style="width:36%"></i></div>
-      <h5 style="font-size:22px;text-align:center">מה מביא אותך לכאן?</h5>
-      <p class="sub" style="text-align:center;margin:6px 0 16px">אפשר לבחור כמה שמרגיש נכון.</p>
-      <div class="opt"><span class="radio"></span><div class="txt"><b>כוח להתמודדות</b></div><span class="ic">🛡</span></div>
-      <div class="opt"><span class="radio"></span><div class="txt"><b>רגע יומי של הודיה</b></div><span class="ic">✦</span></div>
-      <div class="opt sel"><span class="radio"></span><div class="txt"><b>רפואה לי או ליקירים</b></div><span class="ic">❤</span></div>
-      <div class="opt"><span class="radio"></span><div class="txt"><b>שמירה ושקט נפשי</b></div><span class="ic">☾</span></div>
-      <div class="opt"><span class="radio"></span><div class="txt"><b>חיבור למשהו גדול יותר</b></div><span class="ic">🕊</span></div>
-    </div>
-    <div class="cta">המשך</div>
-  </div></div><figcaption>Onboarding · מטרות (רב-בחירה)</figcaption></figure>
-
-  <!-- AGE WHEEL -->
-  <figure><div class="phone"><div class="scr"><div class="notch"></div>
-    <div class="body">
-      <div class="progress" style="margin-top:20px"><i style="width:44%"></i></div>
-      <h5 style="font-size:24px;text-align:center">כמה אתה?</h5>
-      <p class="sub" style="text-align:center;margin:6px 0 0">נבחר את פרק התהילים האישי היומי.</p>
-      <div class="wheel">
-        <div>
-          <div class="row">18</div>
-          <div class="row">19</div>
-          <div class="row on">20</div>
-          <div class="row">21</div>
-          <div class="row">22</div>
-        </div>
-      </div>
-      <p class="hint">גיל 20 → פרק תהילים כ"א היומי</p>
-    </div>
-    <div class="cta">המשך</div>
-  </div></div><figcaption>Onboarding · גיל → פרק יומי</figcaption></figure>
-
-  <!-- NAME -->
-  <figure><div class="phone"><div class="scr"><div class="notch"></div>
-    <div class="body">
-      <div class="progress" style="margin-top:20px"><i style="width:52%"></i></div>
-      <h5 style="font-size:23px;text-align:center">מה השם העברי שלך?</h5>
-      <p class="sub" style="text-align:center;margin:6px 0 18px">נשמור לך פרק תהילים אישי, לפי האותיות בשמך.</p>
-      <div class="field">דויד<span style="color:var(--blue-500)">|</span></div>
-      <p class="hint">אותיות שמך מובילות לפסוקים כ"ה-ל"ב, מ"א-מ"ח,<br>ע"ג-פ, כ"ה-ל"ב בפרק קי"ט</p>
-    </div>
-    <div class="cta">המשך</div>
-  </div></div><figcaption>Onboarding · שם עברי → קי"ט</figcaption></figure>
-
-  <!-- NUSACH -->
-  <figure><div class="phone"><div class="scr"><div class="notch"></div>
-    <div class="body">
-      <div class="progress" style="margin-top:20px"><i style="width:60%"></i></div>
-      <h5 style="font-size:22px;text-align:center">מהו נוסח התפילה שלך?</h5>
-      <p class="sub" style="text-align:center;margin:6px 0 16px">נטען עבורך את הסידור הנכון. ניתן לשנות בהגדרות.</p>
-      <div class="opt sel"><span class="radio"></span><div class="txt"><b>אשכנז</b><small>מסורת מרכז ומזרח אירופה</small></div></div>
-      <div class="opt"><span class="radio"></span><div class="txt"><b>ספרד</b><small>נוסח חסידי מבוסס על האר"י</small></div></div>
-      <div class="opt"><span class="radio"></span><div class="txt"><b>עדות המזרח</b><small>מסורות ספרד והמזרח</small></div></div>
-    </div>
-    <div class="cta">המשך</div>
-  </div></div><figcaption>Onboarding · נוסח</figcaption></figure>
-
-  <!-- READING LEVEL -->
-  <figure><div class="phone"><div class="scr"><div class="notch"></div>
-    <div class="body">
-      <div class="progress" style="margin-top:20px"><i style="width:68%"></i></div>
-      <h5 style="font-size:22px;text-align:center">איך הולך לך עם העברית?</h5>
-      <p class="sub" style="text-align:center;margin:6px 0 16px">קובע כמה תרגום וביאור נציג כברירת מחדל.</p>
-      <div class="opt sel"><span class="radio"></span><div class="txt"><b>אני מבין את רוב מה שאני קורא</b></div><span class="ic">✓</span></div>
-      <div class="opt"><span class="radio"></span><div class="txt"><b>קולט חלק, מפספס הרבה</b></div><span class="ic">🔍</span></div>
-      <div class="opt"><span class="radio"></span><div class="txt"><b>קורא את המילים בלי להבין</b></div><span class="ic">?</span></div>
-    </div>
-    <div class="cta">המשך</div>
-  </div></div><figcaption>Onboarding · רמת עברית</figcaption></figure>
-
-  <!-- VALUE + CHART -->
-  <figure><div class="phone"><div class="scr"><div class="notch"></div>
-    <div class="body">
-      <div class="kick" style="margin-top:20px">התוכנית שלך מוכנה</div>
-      <h5 style="font-size:26px;text-align:center;margin:4px 0 14px">דויד, זה נבנה בשבילך</h5>
-      <div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow-sm)">
-        <b style="color:var(--blue-800);font-size:14px">החיבור היומי שלך</b>
-        <svg class="chart" viewBox="0 0 260 150">
-          <path d="M10,40 C80,45 150,120 250,128" fill="none" stroke="#C8A24B" stroke-width="3"/>
-          <path d="M10,95 C80,105 160,128 250,132" fill="none" stroke="#B9C6D4" stroke-width="2.5" stroke-dasharray="5 5"/>
-          <circle cx="10" cy="40" r="4" fill="#C8A24B"/><circle cx="250" cy="128" r="4" fill="#1E3A5F"/>
-          <text x="20" y="34" font-size="11" fill="#B8902F">עם נשמה</text>
-          <text x="18" y="112" font-size="11" fill="#8A9BB0">לבד</text>
-        </svg>
-        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink-muted)"><span>חודש 1</span><span>שבוע 1</span><span>היום</span></div>
-      </div>
-      <p style="text-align:center;font-size:13.5px;color:var(--ink-soft);margin-top:14px"><b style="color:var(--gold-600)">87%</b> מהמתפללים מדווחים שהם מתמידים יותר בזכות נשמה</p>
-    </div>
-    <div class="cta">המשך</div>
-  </div></div><figcaption>Onboarding · מסך ערך מותאם</figcaption></figure>
-
-  <!-- STREAK -->
-  <figure><div class="phone"><div class="scr"><div class="notch"></div>
-    <div class="body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px">
-      <h5 style="font-size:26px">היום הראשון שלך<br>מתחיל עכשיו</h5>
-      <div style="display:flex;align-items:center;gap:8px;font-size:64px;color:var(--blue-800);font-weight:800">1 <span style="color:var(--gold-500)">🔥</span></div>
-      <b style="color:var(--blue-800)">שבת מטופלת</b>
-      <p class="sub" style="max-width:230px">הרצף שלך ממשיך בליל שישי ובשבת. נוח בלי דאגות, אנחנו ממשיכים יחד ביום ראשון.</p>
-    </div>
-    <div class="cta">המשך</div>
-  </div></div><figcaption>Onboarding · רצף (מודע-שבת)</figcaption></figure>
-
-  <!-- NOTIF PRIMING -->
-  <figure><div class="phone"><div class="scr"><div class="notch"></div>
-    <div class="body">
-      <h5 style="font-size:24px;text-align:center;margin-top:24px">נזכיר לך כשמגיע הזמן</h5>
-      <p class="sub" style="text-align:center;margin:8px 0">תזכורות לזמני תפילה, לפרקי התהילים היומיים ולקבלות שלך — בזמנים שנוחים לך.</p>
-      <p style="text-align:center;color:var(--gold-600);font-weight:700;margin:4px 0 16px">בשבת אנחנו שותקים.</p>
-      <div class="lcard" style="align-items:flex-start"><div class="pi">📖</div><div><b style="font-size:13px">תהילים יומי · 9:00</b><div style="font-size:11.5px;color:var(--ink-muted)">התהילים שלך להיום: ע"ז – ע"ח 🌿</div></div></div>
-      <div class="lcard" style="align-items:flex-start"><div class="pi">🕐</div><div><b style="font-size:13px">דויד, זמן מנחה · 13:30</b><div style="font-size:11.5px;color:var(--ink-muted)">עצור, נשום, התפלל. מנחה כאן ☀️</div></div></div>
-      <div class="lcard" style="align-items:flex-start"><div class="pi">🌙</div><div><b style="font-size:13px">תפילת ערבית</b><div style="font-size:11.5px;color:var(--ink-muted)">אור רך, שעה שקטה. זמן מעריב ✨</div></div></div>
-    </div>
-    <div class="cta">להפעיל תזכורות</div>
-  </div></div><figcaption>הרשאת התראות</figcaption></figure>
-
-  <!-- PAYWALL -->
-  <figure><div class="phone"><div class="scr"><div class="notch"></div>
-    <div class="body" style="overflow-y:auto">
-      <div class="illus" style="height:80px;margin:16px 0 12px"><svg viewBox="0 0 64 40" width="90" height="56"><path d="M20 30c-2-8 6-14 12-10 3-6 12-4 12 3 4 0 6 3 5 7H16c-1-4 1-6 4-7Z" fill="#DCEAF6"/><circle cx="44" cy="14" r="6" fill="#D8B968"/><path d="M14 26c4-6 12-8 18-4" stroke="#2C5F8A" stroke-width="2" fill="none"/></svg></div>
-      <h5 style="font-size:20px;text-align:center">הדרך הפשוטה לחיבור יומי</h5>
-      <p class="sub" style="text-align:center;margin:4px 0 12px">תהילים, סידור, ותפילה. הכל במקום אחד, בכל יום.</p>
-      <div class="feat"><span class="ck">✓</span> הבינו כל פרק ופסוק בעזרת העוזר של נשמה</div>
-      <div class="feat"><span class="ck">✓</span> ווידג'טים למסך הבית ולמסך הנעילה</div>
-      <div class="feat"><span class="ck">✓</span> סימון פסוקים בכל צבע וללא הגבלה</div>
-      <div class="feat"><span class="ck">✓</span> תיקון ימים שפספסתם ושמירה על הרצף</div>
-      <div style="height:16px"></div>
-      <div class="plan sel"><span class="badge">חסכו 84%</span><b>7 ימי ניסיון חינם</b><small>ואז ‎149.90₪ לשנה · ללא חיוב עכשיו</small></div>
-      <div class="plan"><b>מנוי שבועי</b><small>חיוב שבועי של ‎17.90₪</small></div>
-      <div style="text-align:center;font-size:11px;color:var(--ink-muted);margin-bottom:70px">פרטיות · תנאים · שחזר רכישות</div>
-    </div>
-    <div class="cta">המשך</div>
-  </div></div><figcaption>Paywall · מנוי</figcaption></figure>
-
-  <!-- TODAY -->
-  <figure><div class="phone"><div class="scr"><div class="notch"></div>
-    <div class="sb"><span>8:48</span><span>5G ▮▮▮</span></div>
-    <div class="body" style="overflow-y:auto;padding-bottom:60px">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
-        <span class="streak">🔥 0</span>
-        <div style="text-align:start"><h5 style="font-size:22px">המסע של היום</h5></div>
-      </div>
-      <div class="note" style="text-align:center;margin-bottom:12px">ט"ו בתמוז תשפ"ו · יום שלישי, 30 ביוני</div>
-      <div class="days">
-        <div class="day done">י"ג</div><div class="day done">י"ד</div>
-        <div class="day today">ט"ו</div>
-        <div class="day">ט"ז<span class="lk">🔒</span></div>
-        <div class="day">י"ז<span class="lk">🔒</span></div>
-        <div class="day">י"ח<span class="lk">🔒</span></div>
-      </div>
-      <div class="pcard navy"><div class="pi">✋</div><div><h4>אני לוקח על עצמי</h4><small>להתחיל קבלה חדשה</small></div><div style="margin-inline-start:auto;font-size:18px">＋</div></div>
-      <div class="lcard"><div class="pi">🍽</div><b>המתנה בין בשר לחלב</b><span class="go">התחילי ›</span></div>
-      <div class="lcard"><div class="pi">📜</div><b>פרשת השבוע · פינחס</b><span class="go">▾</span></div>
-      <div class="pcard sky"><div class="pi">☀</div><div><h4>מודה אני</h4></div><span style="margin-inline-start:auto">▾</span></div>
-      <div class="pcard dawn"><div class="pi">▤</div><div><h4>תפילין</h4></div><span style="margin-inline-start:auto">▾</span></div>
-    </div>
-    <div class="tabbar"><div class="tab">💬<span>צ'אט</span></div><div class="tab">📖<span>סידור</span></div><div class="tab active">🔥<span>היום</span></div><div class="tab">📕<span>תהילים</span></div><div class="tab">📜<span>תנ"ך</span></div></div>
-  </div></div><figcaption>היום · דף הבית</figcaption></figure>
-
-  <!-- TEHILLIM -->
-  <figure><div class="phone"><div class="scr"><div class="notch"></div>
-    <div class="sb"><span>8:48</span><span>5G ▮▮▮</span></div>
-    <div class="body" style="overflow-y:auto">
-      <div style="text-align:center;margin:4px 0 14px"><span class="chap">תהילים כ"ג ▾</span></div>
-      <p class="verse"><span class="vn">א</span> מִזְמ֥וֹר לְדָוִ֑ד יְהוָ֥ה רֹ֝עִ֗י לֹ֣א אֶחְסָֽר׃</p>
-      <p class="verse"><span class="vn">ב</span> בִּנְא֣וֹת <span class="hl">דֶּ֭שֶׁא</span> יַרְבִּיצֵ֑נִי עַל־מֵ֖י מְנֻח֣וֹת יְנַהֲלֵֽנִי׃</p>
-      <p class="verse"><span class="vn">ג</span> נַפְשִׁ֥י יְשׁוֹבֵ֑ב יַֽנְחֵ֥נִי בְמַעְגְּלֵי־צֶ֝֗דֶק לְמַ֣עַן שְׁמֽוֹ׃</p>
-      <div style="text-align:center;margin-top:6px"><span class="seltool"><button class="spark">✦</button><button>◐</button><button>⧉</button><button>א</button></span></div>
-    </div>
-    <div class="tabbar"><div class="tab">💬<span>צ'אט</span></div><div class="tab">📖<span>סידור</span></div><div class="tab">🔥<span>היום</span></div><div class="tab active">📕<span>תהילים</span></div><div class="tab">📜<span>תנ"ך</span></div></div>
-  </div></div><figcaption>תהילים · קורא + הדגשה</figcaption></figure>
-
-  <!-- SIDDUR -->
-  <figure><div class="phone"><div class="scr"><div class="notch"></div>
-    <div class="sb"><span>8:48</span><span>5G ▮▮▮</span></div>
-    <div class="body" style="overflow-y:auto">
-      <div style="text-align:center;margin:4px 0 12px"><span class="chap">שחרית · אשכנז ▾</span></div>
-      <div class="kick" style="text-align:start;margin-bottom:6px">מודה אני</div>
-      <p class="verse" style="font-size:18px">מוֹדֶ֣ה אֲנִ֣י לְפָנֶ֗יךָ מֶ֤לֶךְ חַי֙ וְקַיָּ֔ם שֶׁהֶחֱזַ֥רְתָּ בִּ֛י נִשְׁמָתִ֖י בְּחֶמְלָ֑ה רַבָּ֖ה אֱמוּנָתֶֽךָ׃</p>
-      <div class="lcard" style="margin-top:8px"><div class="pi">🔊</div><b>האזנה לקריאה</b><span class="go">›</span></div>
-      <div class="lcard"><div class="pi">✦</div><b>ביאור בעברית פשוטה</b><span class="go">›</span></div>
-    </div>
-    <div class="tabbar"><div class="tab">💬<span>צ'אט</span></div><div class="tab active">📖<span>סידור</span></div><div class="tab">🔥<span>היום</span></div><div class="tab">📕<span>תהילים</span></div><div class="tab">📜<span>תנ"ך</span></div></div>
-  </div></div><figcaption>סידור · לפי נוסח</figcaption></figure>
-
-  <!-- TANAKH -->
-  <figure><div class="phone"><div class="scr"><div class="notch"></div>
-    <div class="sb"><span>8:48</span><span>5G ▮▮▮</span></div>
-    <div class="body" style="overflow-y:auto">
-      <div style="text-align:center;margin:4px 0 14px"><span class="chap">בראשית א ▾</span></div>
-      <p class="verse"><span class="vn">א</span> בְּרֵאשִׁ֖ית בָּרָ֣א אֱלֹהִ֑ים אֵ֥ת הַשָּׁמַ֖יִם וְאֵ֥ת הָאָֽרֶץ׃</p>
-      <p class="verse"><span class="vn">ב</span> וְהָאָ֗רֶץ הָיְתָ֥ה תֹ֙הוּ֙ וָבֹ֔הוּ וְחֹ֖שֶׁךְ עַל־פְּנֵ֣י תְה֑וֹם׃</p>
-      <p class="verse"><span class="vn">ג</span> וַיֹּ֥אמֶר אֱלֹהִ֖ים יְהִ֣י א֑וֹר וַֽיְהִי־אֽוֹר׃</p>
-      <div style="text-align:center;margin-top:6px"><span class="seltool"><button class="spark">✦</button><button>◐</button><button>⧉</button><button>אא</button></span></div>
-    </div>
-    <div class="tabbar"><div class="tab">💬<span>צ'אט</span></div><div class="tab">📖<span>סידור</span></div><div class="tab">🔥<span>היום</span></div><div class="tab">📕<span>תהילים</span></div><div class="tab active">📜<span>תנ"ך</span></div></div>
-  </div></div><figcaption>תנ"ך · ניקוד + סרגל בחירה</figcaption></figure>
-
-  <!-- CHAT -->
-  <figure><div class="phone"><div class="scr"><div class="notch"></div>
-    <div class="sb"><span>8:48</span><span>5G ▮▮▮</span></div>
-    <div class="body">
-      <div class="kick" style="margin-top:6px">המלווה שלך</div>
-      <h5 style="text-align:center;font-size:20px;margin:2px 0 16px">שאל את נשמה כל דבר</h5>
-      <div class="chat">
-        <div class="bub me">איזה פרק תהילים עוזר לחרדה?</div>
-        <div class="bub ai">כשאתה מרגיש חרדה, <a>תהילים כ"ג</a> הוא הקלאסי שמרגיע. לפחד עמוק יותר רבים פונים אל <a>תהילים צ"א</a>. תרצה לפתוח אחד עכשיו? ה' יישך את ליבך.</div>
-      </div>
-    </div>
-    <div class="tabbar"><div class="tab active">💬<span>צ'אט</span></div><div class="tab">📖<span>סידור</span></div><div class="tab">🔥<span>היום</span></div><div class="tab">📕<span>תהילים</span></div><div class="tab">📜<span>תנ"ך</span></div></div>
-  </div></div><figcaption>צ'אט · המלווה AI</figcaption></figure>
-
-  <!-- SETTINGS -->
-  <figure><div class="phone"><div class="scr"><div class="notch"></div>
-    <div class="sb"><span>8:48</span><span>5G ▮▮▮</span></div>
-    <div class="body" style="overflow-y:auto">
-      <h5 style="font-size:22px;margin:8px 0 6px">הגדרות</h5>
-      <div class="grp">תזכורות</div>
-      <div class="setrow"><span>תהילים יומי · 9:00</span><span class="tg"></span></div>
-      <div class="setrow"><span>זמני תפילה (זמנים)</span><span class="tg"></span></div>
-      <div class="setrow"><span>קריאת שמע על המיטה</span><span class="tg off"></span></div>
-      <div class="setrow"><span>שתיקה בשבת ובחג</span><span class="tg"></span></div>
-      <div class="grp">התאמה אישית</div>
-      <div class="setrow"><span>נוסח</span><span class="r">אשכנז ›</span></div>
-      <div class="setrow"><span>רמת עברית</span><span class="r">מבין את הרוב ›</span></div>
-      <div class="setrow"><span>מיקום לזמנים</span><span class="r">ירושלים ›</span></div>
-      <div class="grp">חשבון</div>
-      <div class="setrow"><span>המנוי שלי</span><span class="r">שנתי · פעיל ›</span></div>
-      <div class="setrow"><span>פרטיות ותנאים</span><span class="r">›</span></div>
-    </div>
-    <div class="tabbar"><div class="tab">💬<span>צ'אט</span></div><div class="tab">📖<span>סידור</span></div><div class="tab active">🔥<span>היום</span></div><div class="tab">📕<span>תהילים</span></div><div class="tab">📜<span>תנ"ך</span></div></div>
-  </div></div><figcaption>הגדרות</figcaption></figure>
-
-  </div>
-  <p style="text-align:center;color:var(--ink-muted);font-size:13px;margin-top:40px">© נשמה · מסכי מוצר בשפת העיצוב החדשה (כחול·לבן·זהב)</p>
-</div>
+<script>
+var P="../prototype/index.html";
+var groups=[
+  ["Onboarding",[
+    ["splash","Splash","Brand & opening verse"],
+    ["lang","Language","Default English · detect device"],
+    ["ob1","Welcome","Value, in one breath"],
+    ["ob-gender","Gender","Tailors prayers & customs"],
+    ["ob-goals","Goals","What brings you here"],
+    ["ob-age","Age","Sets your daily psalm"],
+    ["ob-name","Hebrew name","Psalm 119 name-verses · starts empty"],
+    ["ob-nusach","Nusach","Ashkenaz / Sefard / Edot HaMizrach"],
+    ["ob-reading","Hebrew level","Depth of translation"],
+    ["ob-value","Your plan","Personalized value + chart"],
+    ["paywall","Paywall","Trial · weekly · annual"]
+  ]],
+  ["The app",[
+    ["today","Today","Daily journey"],
+    ["tehillim","Psalms","Reader + highlight"],
+    ["siddur","Siddur","By your nusach"],
+    ["tanakh","Tanakh","Nikud + select toolbar"],
+    ["chat","Chat","Your companion"],
+    ["settings","Settings","Reminders · personal · account"]
+  ]]
+];
+var g=document.getElementById("grid");
+groups.forEach(function(gr){
+  var h=document.createElement("div");h.className="sec";h.textContent=gr[0];g.appendChild(h);
+  gr[1].forEach(function(s){
+    var fig=document.createElement("figure");
+    fig.innerHTML='<div class="frame"><iframe loading="lazy" src="'+P+'#'+s[0]+'"></iframe></div>'+
+      '<figcaption>'+s[1]+'<small>'+s[2]+'</small></figcaption>';
+    g.appendChild(fig);
+  });
+});
+</script>
 </body>
 </html>

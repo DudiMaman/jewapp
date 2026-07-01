@@ -1,22 +1,19 @@
 # נשמה · Design System
 
-A new visual language for the Neshama app: **Jewish blue & white with delicate, light gold
-accents**, replacing the legacy cream/peach + terracotta-orange theme.
+A refined, spiritual visual language for the Neshama app (**R3**): **deep blue & white with
+delicate, metallic-gold accents**, crafted per-screen illustration, layered depth, and calm
+motion — replacing the legacy cream/peach + terracotta-orange theme.
 
-> **Latest direction (R3):** the most refined, up-to-date expression of the design —
-> crafted per-screen illustrations, layered depth, motion, and metallic-gold detail — lives
-> in the **interactive prototype** at [`../prototype/index.html`](../prototype/index.html)
-> (English-default UI, Hebrew sacred text). The showcase files below capture the component
-> system and palette and are being brought in line with that direction.
+Everything here is consistent with the single source of truth, the interactive prototype at
+[`../prototype/index.html`](../prototype/index.html) (English-default UI, Hebrew sacred text).
 
 ## Files
-- **`index.html`** — a self-contained, RTL/Hebrew visual showcase: color & type foundations
-  and every component (buttons, option rows, day-circle journey, streak, cards, chat, reader
-  with selection toolbar, tab bar, paywall, notifications). Open it in any browser.
-- **`screens.html`** — full phone-frame mockups of every major screen in the new palette:
-  splash, onboarding steps (gender, goals, age, name, nusach, reading level), personalized
-  value + chart, streak, notification priming, paywall, Today, Tehillim, Siddur, Tanakh,
-  Chat, and Settings.
+- **`index.html`** — the design-system showcase: palette, typography (EN display + Hebrew
+  verse serif + UI), iconography, illustration set, and components (buttons, option rows,
+  day-circle journey, streak, cards, chat, reader, paywall, tab bar). Open in any browser.
+- **`screens.html`** — a gallery of the **live prototype** screens (each frame is
+  `../prototype/index.html#<screen>`), so it always matches the latest design with no
+  separate copy to drift.
 - **`tokens.css`** — the shared design tokens (palette, gradients, elevation, radii, type) as
   CSS custom properties for implementation.
 
