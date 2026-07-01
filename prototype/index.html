@@ -611,7 +611,7 @@ h1{margin:0;font-weight:700;letter-spacing:.005em}
       <div class="paper" style="margin-top:10px">
         <p class="verse" id="modehText" style="font-size:20px">מוֹדֶ֣ה אֲנִ֣י לְפָנֶ֗יךָ מֶ֤לֶךְ חַי֙ וְקַיָּ֔ם שֶׁהֶחֱזַ֥רְתָּ בִּ֛י נִשְׁמָתִ֖י בְּחֶמְלָ֑ה רַבָּ֖ה אֱמוּנָתֶֽךָ׃</p>
       </div>
-      <div class="card light" id="listenCard"><span class="thumb" id="listenThumb"><svg><use href="#i-listen"/></svg></span><div class="body"><h4 style="font-size:15px" id="listenLbl">האזנה בקול</h4></div><span class="go" id="listenGo">›</span></div>
+      <div class="card light" id="listenCard"><span class="thumb" id="listenThumb"><svg><use href="#i-listen"/></svg></span><div class="body"><h4 style="font-size:15px" id="listenLbl">האזנה בקול</h4><small id="listenVar" style="font-size:11.5px;color:var(--ink-mute)"></small></div><span class="go" id="listenGo">›</span></div>
       <div class="card light" data-goto="chat"><span class="thumb"><svg><use href="#i-spark"/></svg></span><div class="body"><h4 style="font-size:15px">ביאור בעברית פשוטה</h4></div><span class="go">›</span></div>
       <div class="panel" style="margin-top:4px"><div class="eyebrow">רגע של כוונה</div><p class="lead" style="margin:6px 0 0;font-size:14px">עוד לפני נטילת ידיים, פותחים את היום בשתי מילים של תודה: הנשמה חזרה, ויש למי להודות. אפשר לומר לאט, ולהתכוון לכל מילה.</p></div>
       <div class="readerhead" style="margin-top:12px"><span class="chap" data-goto="siddur">התפילה הבאה · בִּרְכוֹת הַשַּׁחַר ›</span></div>
@@ -685,7 +685,8 @@ h1{margin:0;font-weight:700;letter-spacing:.005em}
       <div class="setrow"><span>שקט בשבת ובחג</span><span class="tg" data-toggle></span></div>
       <div class="grp">אזור אישי</div>
       <div class="setrow" data-act="lang"><span>שפה</span><span class="r" id="setLangVal">עברית ›</span></div>
-      <div class="setrow"><span>נוסח</span><span class="r">אשכנז ›</span></div>
+      <div class="setrow" data-act="nusach"><span>נוסח</span><span class="r" id="setNusachVal">אשכנז ›</span></div>
+      <div class="setrow" data-act="voice"><span>קול ההקראה</span><span class="r" id="setVoiceVal">קול גבר ›</span></div>
       <div class="setrow"><span>רמת עברית</span><span class="r">מבין את הרוב ›</span></div>
       <div class="setrow"><span>מיקום לזמנים</span><span class="r">ירושלים ›</span></div>
       <div class="grp">חשבון</div>
@@ -795,8 +796,8 @@ h1{margin:0;font-weight:700;letter-spacing:.005em}
   document.getElementById('tefNext').addEventListener('click',function(){if(tefI===TEF.length-1){document.getElementById('streakNum').textContent='2';show('today',-1);toast('תפילין סומנו כבוצע להיום 🔥');}else{tefI++;renderTef();}});
   document.getElementById('tefBack').addEventListener('click',function(){if(tefI>0){tefI--;renderTef();}});
 
-  // ---- audio: bundled recording (best quality) + graceful TTS fallback ----
-  var CURT='shacharit',audioEl=null,playing=false;
+  // ---- audio: neural recordings by preference (nusach × voice) + TTS fallback ----
+  var CURT='shacharit',audioEl=null,playing=false,VGENDER='male',NUSACH='ashkenaz';
   function stripNikud(s){return s.replace(/[֑-ׇ]/g,'').replace(/׃/g,'.');}
   function setListen(on){var t=document.getElementById('listenThumb'),l=document.getElementById('listenLbl');if(!t)return;
     if(on){t.innerHTML='<span class="eq" style="color:var(--navy-700)"><i></i><i></i><i></i></span>';l.textContent='מנגן… (הקש/י לעצירה)';}
@@ -812,28 +813,32 @@ h1{margin:0;font-weight:700;letter-spacing:.005em}
     u.onend=function(){playing=false;setListen(false);};u.onerror=function(){playing=false;setListen(false);};
     window.speechSynthesis.speak(u);}catch(e){playing=false;setListen(false);}}
   var listenCard=document.getElementById('listenCard');
+  function audioSrc(){var k=(PRAYERS[CURT]&&PRAYERS[CURT].k)||'modeh-ani';return 'audio/'+k+'-'+VGENDER+'.mp3';}
   if(listenCard)listenCard.addEventListener('click',function(){
     if(playing){stopAudio();return;}
     playing=true;setListen(true);
-    if(CURT==='shacharit'){
-      if(!audioEl){audioEl=new Audio('audio/modeh-ani.mp3');audioEl.onended=function(){playing=false;setListen(false);};audioEl.onerror=function(){audioEl=null;speakFallback();};}
-      try{audioEl.currentTime=0;}catch(e){}var p=audioEl.play();if(p&&p.catch)p.catch(function(){speakFallback();});
-    } else speakFallback();
+    if(!audioEl){audioEl=new Audio();audioEl.onended=function(){playing=false;setListen(false);};audioEl.onerror=function(){speakFallback();};}
+    try{audioEl.src=audioSrc();audioEl.currentTime=0;}catch(e){}
+    var p=audioEl.play();if(p&&p.catch)p.catch(function(){speakFallback();});
   });
   if('speechSynthesis'in window)window.speechSynthesis.onvoiceschanged=function(){};
   // ---- siddur: time-of-day context (shacharit / mincha / arvit) ----
   var PRAYERS={
-    shacharit:{sc:'#s-sunrise',g:'linear-gradient(180deg,#12314f,#3a5f86 60%,#c9a86a)',lbl:'מודה אני · עם היקיצה',txt:'מוֹדֶ֣ה אֲנִ֣י לְפָנֶ֗יךָ מֶ֤לֶךְ חַי֙ וְקַיָּ֔ם שֶׁהֶחֱזַ֥רְתָּ בִּ֛י נִשְׁמָתִ֖י בְּחֶמְלָ֑ה רַבָּ֖ה אֱמוּנָתֶֽךָ׃'},
-    mincha:{sc:'#s-sunhigh',g:'linear-gradient(180deg,#3a6ea5,#8fb9dc 70%,#eaf3fb)',lbl:'אַשְׁרֵי · תפילת מנחה',txt:'אַשְׁרֵ֣י י֭וֹשְׁבֵי בֵיתֶ֑ךָ ע֝֗וֹד יְֽהַלְל֥וּךָ סֶּֽלָה׃ אַשְׁרֵ֣י הָ֭עָם שֶׁכָּ֣כָה לּ֑וֹ אַשְׁרֵ֥י הָ֝עָ֗ם שֶׁיֲהֹוָ֥ה אֱלֹהָֽיו׃'},
-    arvit:{sc:'#s-moonstars',g:'linear-gradient(180deg,#1a1740,#3b2b63 55%,#a56b7e)',lbl:'קריאת שמע · שעל המיטה',txt:'שְׁמַ֖ע יִשְׂרָאֵ֑ל יְהֹוָ֥ה אֱלֹהֵ֖ינוּ יְהֹוָ֥ה ׀ אֶחָֽד׃'}
+    shacharit:{k:'modeh-ani',sc:'#s-sunrise',g:'linear-gradient(180deg,#12314f,#3a5f86 60%,#c9a86a)',lbl:'מודה אני · עם היקיצה',txt:'מוֹדֶ֣ה אֲנִ֣י לְפָנֶ֗יךָ מֶ֤לֶךְ חַי֙ וְקַיָּ֔ם שֶׁהֶחֱזַ֥רְתָּ בִּ֛י נִשְׁמָתִ֖י בְּחֶמְלָ֑ה רַבָּ֖ה אֱמוּנָתֶֽךָ׃'},
+    mincha:{k:'ashrei',sc:'#s-sunhigh',g:'linear-gradient(180deg,#3a6ea5,#8fb9dc 70%,#eaf3fb)',lbl:'אַשְׁרֵי · תפילת מנחה',txt:'אַשְׁרֵ֣י י֭וֹשְׁבֵי בֵיתֶ֑ךָ ע֝֗וֹד יְֽהַלְל֥וּךָ סֶּֽלָה׃ אַשְׁרֵ֣י הָ֭עָם שֶׁכָּ֣כָה לּ֑וֹ אַשְׁרֵ֥י הָ֝עָ֗ם שֶׁיֲהֹוָ֥ה אֱלֹהָֽיו׃'},
+    arvit:{k:'shema',sc:'#s-moonstars',g:'linear-gradient(180deg,#1a1740,#3b2b63 55%,#a56b7e)',lbl:'קריאת שמע · שעל המיטה',txt:'שְׁמַ֖ע יִשְׂרָאֵ֑ל יְהֹוָ֥ה אֱלֹהֵ֖ינוּ יְהֹוָ֥ה ׀ אֶחָֽד׃'}
   };
   function setPrayer(t){var p=PRAYERS[t];if(!p)return;CURT=t;stopAudio();
     var b=document.getElementById('tband');if(b)b.style.background=p.g;
     var sc=document.getElementById('tbScene');if(sc)sc.firstElementChild.setAttribute('href',p.sc);
     var lb=document.getElementById('prayerLabel');if(lb)lb.textContent=p.lbl;
     var mt=document.getElementById('modehText');if(mt)mt.textContent=p.txt;
-    document.querySelectorAll('.tchip').forEach(function(c){c.classList.toggle('on',c.getAttribute('data-time')===t);});}
+    document.querySelectorAll('.tchip').forEach(function(c){c.classList.toggle('on',c.getAttribute('data-time')===t);});updateVoiceLabel();}
   document.querySelectorAll('.tchip').forEach(function(c){c.addEventListener('click',function(){setPrayer(c.getAttribute('data-time'));});});
+  function updateVoiceLabel(){var v=document.getElementById('listenVar');if(v)v.textContent='קול '+(VGENDER==='male'?'גבר':'אישה')+' · '+(NUSACH==='ashkenaz'?'אשכנז':'ספרד')+' · הקראה נוירונית';}
+  document.querySelectorAll('[data-act="voice"]').forEach(function(r){r.addEventListener('click',function(){VGENDER=(VGENDER==='male'?'female':'male');stopAudio();var e=document.getElementById('setVoiceVal');if(e)e.textContent=(VGENDER==='male'?'קול גבר ›':'קול אישה ›');updateVoiceLabel();toast('קול ההקראה: '+(VGENDER==='male'?'גבר':'אישה'));});});
+  document.querySelectorAll('[data-act="nusach"]').forEach(function(r){r.addEventListener('click',function(){NUSACH=(NUSACH==='ashkenaz'?'sepharad':'ashkenaz');var e=document.getElementById('setNusachVal');if(e)e.textContent=(NUSACH==='ashkenaz'?'אשכנז ›':'ספרד ›');updateVoiceLabel();toast('נוסח: '+(NUSACH==='ashkenaz'?'אשכנז':'ספרד'));});});
+  updateVoiceLabel();
 
   // ---- chat (coherent, canned) ----
   var input=document.getElementById('chatInput'),list=document.getElementById('chatList'),cscr=document.getElementById('chatScroll');
