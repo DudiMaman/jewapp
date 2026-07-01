@@ -1,8 +1,10 @@
-# Neshama (נשמה) — Product Specification
+# Ve'ahavta (וְאָהַבְתָּ) — Product Specification
 
-> **נשמה** — a daily Jewish-life companion for prayer, Tehillim (Psalms), and mitzvot,
-> with an AI guide and gentle, time-aware reminders.
-> Subscription mobile app for **iOS + Android**, Hebrew-first (RTL).
+> **וְאָהַבְתָּ** — a daily Jewish-life companion for prayer, Tehillim (Psalms), and mitzvot,
+> with an AI guide and gentle, time-aware reminders. Named for the Shema
+> (*"וְאָהַבְתָּ אֵת ה׳ אֱלֹהֶיךָ"*).
+> Subscription mobile app for **iOS + Android**, **Hebrew-default (RTL)**; UI language is
+> changeable in the personal area (Settings).
 
 ---
 
@@ -28,7 +30,7 @@
 
 ## 1. Overview & Vision
 
-**Neshama** ("Soul") is a subscription mobile app that makes everyday Jewish practice feel
+**Ve'ahavta** ("Soul") is a subscription mobile app that makes everyday Jewish practice feel
 *simple, personal, and close again*. It combines the spiritual content a person needs —
 the Siddur, Tehillim, the Tanakh, prayer guides, and daily mitzvot — with three things a
 plain text app does not provide:
@@ -133,7 +135,7 @@ chevron is available.
 Immediately after the splash, before onboarding, a **language screen** appears. The app
 defaults to **English**; on first launch it reads the device locale and, if it differs from
 English, offers to switch. Copy (English default, device set to Hebrew):
-- **Title:** "Welcome to Neshama"
+- **Title:** "Welcome to Ve'ahavta"
 - **Body:** "Your device language is Hebrew. Would you like to continue in Hebrew, or stay in
   English? You can change this anytime in Settings."
 - **Buttons:** primary "המשך בעברית · Continue in Hebrew" · secondary "Stay in English".
@@ -179,7 +181,7 @@ name's verses → choosing your daily chapters → setting your daily pace.*
 
 ### 5.5 Personalized value screen
 "דויד, זה נבנה בשבילך" ("your plan is ready"). A "החיבור היומי שלך" line chart compares
-**עם נשמה** vs **לבד** (with Neshama vs alone) over היום / שבוע 1 / חודש 1. Social-proof
+**עם נשמה** vs **לבד** (with Ve'ahavta vs alone) over היום / שבוע 1 / חודש 1. Social-proof
 stat: *"87% מהמתפללים מדווחים שהם מתמידים יותר…"*. Teases reminders, tefillin guidance, and
 the AI chat.
 
@@ -582,6 +584,13 @@ The blue-white-gold design system and screen mockups live in `design-system/`:
 - **R2** — added full screen-mockup gallery (`screens.html`); expanded Settings, Account/
   Auth/Sync, Tefillin guide, Commitments, Halacha cards, age→psalm birthday handling,
   zmanim/location, and AI guardrails; trimmed open questions to the genuinely-undecided.
+- **R4** — **renamed the app to וְאָהַבְתָּ (Ve'ahavta)**; set the product to **Hebrew-only by
+  default** with the language switch moved to the personal area (removed the standalone
+  language-picker onboarding screen); removed the vague first welcome slide and the
+  "built-for-you" value/graph screen; **redesigned every onboarding screen** as immersive
+  image-led compositions (hero scene + content sheet, no dead space); made the companion chat
+  give coherent Hebrew answers with suggestion chips; made "listen aloud" actually play via
+  on-device text-to-speech; QA pass across all screens.
 - **R3** — interactive prototype (`prototype/index.html`) redesigned to a more refined,
   spiritual visual language (crafted illustrations per screen, depth, motion, gold detail);
   **default UI language set to English** with first-run language detection; **all UI copy

@@ -1,122 +1,131 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <meta name="theme-color" content="#0B1F33" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<title>Neshama · Prototype</title>
+<title>ואהבת · Prototype</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@400;500;700&family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Heebo:wght@300;400;500;600;700;800&family=Frank+Ruhl+Libre:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --navy-950:#081726;--navy-900:#0B1F33;--navy-800:#102A43;--navy-700:#173B5C;--navy-600:#22557F;
   --blue-500:#3E7CB1;--blue-300:#9FC3E0;--blue-200:#CBE0F1;--blue-100:#E1EDF7;--blue-050:#F0F6FB;
-  --ivory:#FBF8F1;--paper:#F6F8FB;--white:#fff;
+  --ivory:#FBF8F1;--paper:#F5F8FB;--white:#fff;
   --gold-700:#9A6E22;--gold-600:#B4863A;--gold-500:#CBA24E;--gold-400:#DDBE74;--gold-300:#ECD9A6;--gold-100:#F6ECD2;
   --ink:#12283C;--ink-soft:#46617A;--ink-mute:#8AA0B4;--line:#E6EDF4;--lineg:rgba(203,162,78,.5);
-  --glowgold:radial-gradient(circle,rgba(221,190,116,.35),transparent 68%);
+  --glow:radial-gradient(circle,rgba(221,190,116,.4),transparent 68%);
   --grad-navy:linear-gradient(160deg,#173B5C 0%,#0B1F33 62%,#081726 100%);
-  --grad-paper:linear-gradient(180deg,#FBF8F1 0%,#F6F8FB 60%,#fff 100%);
+  --grad-dawn:linear-gradient(180deg,#0B1F33 0%,#1c3a5c 42%,#5b7ea3 74%,#c9a86a 100%);
+  --grad-paper:linear-gradient(180deg,#FBF8F1 0%,#F5F8FB 60%,#fff 100%);
   --grad-gold:linear-gradient(120deg,#B4863A,#ECD9A6 45%,#CBA24E 60%,#F6ECD2 80%,#CBA24E);
-  --sh-sm:0 1px 3px rgba(11,31,51,.06);--sh-md:0 10px 30px rgba(11,31,51,.10);--sh-lg:0 24px 60px rgba(11,31,51,.20);--sh-gold:0 6px 22px rgba(180,134,58,.22);
+  --sh-sm:0 1px 3px rgba(11,31,51,.06);--sh-md:0 10px 30px rgba(11,31,51,.10);--sh-lg:0 24px 60px rgba(11,31,51,.22);--sh-gold:0 6px 22px rgba(180,134,58,.24);
   --r-md:18px;--r-lg:26px;--r-pill:999px;
-  --ui:"Inter",system-ui,sans-serif;--ui-he:"Heebo",system-ui,sans-serif;
-  --serif:"Cormorant Garamond",Georgia,serif;--serif-he:"Frank Ruhl Libre",serif;
+  --ui:"Heebo",system-ui,sans-serif;--serif:"Cormorant Garamond",Georgia,serif;--serif-he:"Frank Ruhl Libre",serif;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%}
 body{font-family:var(--ui);color:var(--ink);background:#0a1622;-webkit-font-smoothing:antialiased;display:grid;place-items:center;overflow:hidden}
-body.he{font-family:var(--ui-he)}
-body.he .serif{font-family:var(--serif-he)}
-.he-num{font-family:var(--serif-he)}
-
+.serif-he{font-family:var(--serif-he)}
 #device{position:relative;width:100%;max-width:400px;height:100dvh;max-height:860px;overflow:hidden;background:var(--grad-paper)}
 @media(min-width:460px){#device{border-radius:46px;height:860px;box-shadow:var(--sh-lg),0 0 0 11px #0b1622,0 0 0 13px #1c2c3c}}
-#device::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(120% 60% at 50% -10%,rgba(221,190,116,.10),transparent 60%),radial-gradient(90% 50% at 50% 120%,rgba(62,124,177,.08),transparent 60%)}
-#grain{position:absolute;inset:0;pointer-events:none;z-index:60;opacity:.05;mix-blend-mode:multiply}
+#grain{position:absolute;inset:0;pointer-events:none;z-index:60;opacity:.045;mix-blend-mode:multiply}
 
-.screen{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;pointer-events:none;transform:none;transition:opacity .45s ease,transform .45s cubic-bezier(.2,.7,.2,1);z-index:1}
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;pointer-events:none;transform:none;transition:opacity .45s ease,transform .5s cubic-bezier(.2,.7,.2,1);z-index:1}
 .screen.on{opacity:1;pointer-events:auto;transform:none;z-index:2}
 .dark{color:#EAF1F8}
 .scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:0 22px 26px;position:relative;z-index:2}
-.pad-top{padding-top:calc(env(safe-area-inset-top,0px) + 20px)}
-.center{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;text-align:center;gap:18px;padding:0 30px;position:relative;z-index:2}
+.pad-top{padding-top:calc(env(safe-area-inset-top,0px) + 18px)}
+.center{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;text-align:center;gap:16px;padding:0 30px;position:relative;z-index:2}
 
 .sb{display:flex;justify-content:space-between;align-items:center;padding:13px 24px 4px;font-size:12px;color:var(--ink-mute);font-weight:600;flex:none;z-index:3}
-h1{margin:0;font-weight:600;letter-spacing:.01em}
-.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:var(--gold-600)}
-.eyebrow.dim{color:var(--gold-300);opacity:.85}
-.lead{color:var(--ink-soft);font-size:15px;line-height:1.65}
-.lead.dim{color:rgba(220,232,244,.72)}
-.shimmer{background:var(--grad-gold);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 6s linear infinite}
-@keyframes sh{to{background-position:220% center}}
-.flourish{display:block;margin:0 auto;width:120px;height:16px;color:var(--gold-500)}
+h1{margin:0;font-weight:700;letter-spacing:.005em}
+.eyebrow{font-size:11px;letter-spacing:.26em;font-weight:700;color:var(--gold-600)}
+.eyebrow.dim{color:var(--gold-300)}
+.lead{color:var(--ink-soft);font-size:15px;line-height:1.7}
+.lead.dim{color:rgba(220,232,244,.78)}
+.flourish{display:block;margin:0 auto;width:120px;height:16px;color:var(--gold-400)}
 
-.cta{margin:auto 22px calc(env(safe-area-inset-bottom,0px) + 22px);border:0;border-radius:var(--r-pill);padding:17px;font-family:inherit;font-weight:600;font-size:16px;letter-spacing:.02em;cursor:pointer;flex:none;position:relative;z-index:3;color:#fff;background:var(--grad-navy);box-shadow:var(--sh-md);overflow:hidden}
-.cta::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(90deg,transparent,rgba(236,217,166,.35),transparent);transform:skewX(-18deg);animation:gleam 5.5s ease-in-out infinite}
-@keyframes gleam{0%,60%{left:-60%}80%,100%{left:130%}}
+/* immersive onboarding: hero scene + content sheet */
+.ob{flex-direction:column}
+.obhero{position:relative;flex:1;min-height:172px;overflow:hidden}
+.obhero .scene{position:absolute;inset:0;width:100%;height:100%}
+.obhero .scrim{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(245,248,251,.2) 76%,var(--paper) 100%)}
+.obprog{position:absolute;top:calc(env(safe-area-inset-top,0px) + 16px);left:22px;right:22px;height:5px;background:rgba(255,255,255,.28);border-radius:99px;overflow:hidden;z-index:4}
+.obprog>i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--gold-300),var(--gold-500));transition:width .5s cubic-bezier(.2,.7,.2,1)}
+.obsheet{position:relative;z-index:3;background:var(--white);border-radius:32px 32px 0 0;margin-top:-30px;padding:24px 22px 6px;box-shadow:0 -14px 44px rgba(11,31,51,.12);max-height:72%;overflow-y:auto;overflow-x:hidden}
+.obsheet h1{font-size:27px;color:var(--navy-800);text-align:center}
+.obsheet .lead{text-align:center;margin:8px 6px 18px}
+.ob .cta{margin:8px 22px calc(env(safe-area-inset-bottom,0px) + 18px)}
+
+.cta{border:0;border-radius:var(--r-pill);padding:17px;font-family:inherit;font-weight:700;font-size:16px;cursor:pointer;flex:none;position:relative;z-index:3;color:#fff;background:var(--grad-navy);box-shadow:var(--sh-md);overflow:hidden;margin:auto 22px calc(env(safe-area-inset-bottom,0px) + 20px)}
+.cta::after{content:"";position:absolute;top:0;bottom:0;width:40%;inset-inline-start:-60%;background:linear-gradient(90deg,transparent,rgba(236,217,166,.35),transparent);transform:skewX(-18deg);animation:gleam 5.5s ease-in-out infinite}
+@keyframes gleam{0%,60%{inset-inline-start:-60%}80%,100%{inset-inline-start:130%}}
 .cta:active{transform:translateY(1px) scale(.995)}
 .cta.gold{background:var(--grad-gold);background-size:200% auto;color:#3c2c0e;box-shadow:var(--sh-gold);animation:goldmove 6s linear infinite}
 @keyframes goldmove{to{background-position:200% center}}
 .cta.disabled{background:#E7EEF5;color:#AFC0D0;box-shadow:none;pointer-events:none}
-.cta.ghost{background:rgba(16,42,67,.05);color:var(--navy-700);border:1px solid var(--line);box-shadow:none}
-.cta.ghost::after{display:none}
 .cta.sm{padding:15px;font-size:15px;margin:0}
-.btnrow{display:flex;flex-direction:column;gap:12px;margin:auto 22px calc(env(safe-area-inset-bottom,0px) + 22px);z-index:3}
 .linkrow{display:flex;gap:18px;justify-content:center;color:var(--ink-mute);font-size:12px;margin:12px 0 2px}
 
-.mark{width:88px;height:88px;border-radius:24px;display:grid;place-items:center;position:relative;background:linear-gradient(180deg,#12304c,#0b1f33);box-shadow:var(--sh-lg),inset 0 0 0 1px rgba(221,190,116,.35)}
-.mark::after{content:"";position:absolute;inset:-14px;border-radius:32px;background:var(--glowgold);z-index:-1;animation:breathe 5s ease-in-out infinite}
-@keyframes breathe{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:.95;transform:scale(1.06)}}
-.art{width:100%;display:grid;place-items:center;position:relative}
-.art .halo{position:absolute;inset:0;background:var(--glowgold);z-index:0;pointer-events:none}
-.art svg{position:relative;z-index:1}
-.float{animation:float 6s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-
-.dots{display:flex;gap:7px;justify-content:center;margin:4px 0 8px}
-.dots i{width:6px;height:6px;border-radius:99px;background:var(--blue-200);transition:.3s}
-.dots i.on{width:24px;background:linear-gradient(90deg,var(--gold-400),var(--gold-600))}
-.prog{height:6px;background:var(--blue-100);border-radius:99px;overflow:hidden;margin:16px 0 20px}
-.prog>i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue-500),var(--gold-400));transition:width .5s cubic-bezier(.2,.7,.2,1)}
-
-.opt{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.86);border:1px solid var(--line);border-radius:var(--r-md);padding:15px;margin-bottom:12px;box-shadow:var(--sh-sm);cursor:pointer;backdrop-filter:blur(6px);transition:transform .18s ease,border-color .18s,box-shadow .18s}
+/* option cards */
+.opt{display:flex;align-items:center;gap:14px;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-md);padding:15px;margin-bottom:11px;box-shadow:var(--sh-sm);cursor:pointer;transition:transform .16s,border-color .16s,box-shadow .16s}
 .opt:active{transform:scale(.99)}
-.opt .ic{width:44px;height:44px;border-radius:13px;background:linear-gradient(180deg,#eaf2fa,#dbe9f6);display:grid;place-items:center;color:var(--navy-700);flex:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.6)}
-.opt .ic svg{width:24px;height:24px}
-.opt .txt{flex:1}.opt .txt b{display:block;color:var(--navy-800);font-size:15.5px;font-weight:600}.opt .txt small{color:var(--ink-mute);font-size:12.5px}
-.opt .rad{width:23px;height:23px;border-radius:50%;border:2px solid #C4D3E0;flex:none;transition:.2s}
-.opt.sel{border-color:var(--gold-400);box-shadow:0 8px 22px rgba(180,134,58,.14);background:linear-gradient(180deg,#fffdf7,#fff)}
+.opt .ic{width:46px;height:46px;border-radius:14px;background:linear-gradient(180deg,#eef5fb,#dde9f6);display:grid;place-items:center;color:var(--navy-700);flex:none}
+.opt .ic svg{width:25px;height:25px}
+.opt .txt{flex:1}.opt .txt b{display:block;color:var(--navy-800);font-size:16px;font-weight:600}.opt .txt small{color:var(--ink-mute);font-size:12.5px}
+.opt .rad{width:24px;height:24px;border-radius:50%;border:2px solid #C4D3E0;flex:none;transition:.2s}
+.opt.sel{border-color:var(--gold-400);box-shadow:0 8px 22px rgba(180,134,58,.16);background:linear-gradient(180deg,#fffdf7,#fff)}
 .opt.sel .ic{background:linear-gradient(180deg,#f6ecd2,#e9d3a0);color:var(--gold-700)}
 .opt.sel .rad{border-color:var(--gold-500);background:var(--gold-500);box-shadow:0 0 0 4px rgba(203,162,78,.16)}
-.opt.sel .rad::after{content:"";display:block;width:7px;height:7px;border-radius:50%;background:#fff;margin:6px auto}
+.opt.sel .rad::after{content:"";display:block;width:8px;height:8px;border-radius:50%;background:#fff;margin:6px auto}
+/* big two-up cards (gender) */
+.duo{display:flex;gap:12px}
+.bigopt{flex:1;background:#fff;border:1.5px solid var(--line);border-radius:22px;padding:18px 12px;text-align:center;cursor:pointer;box-shadow:var(--sh-sm);transition:.16s}
+.bigopt:active{transform:scale(.98)}
+.bigopt .art{width:88px;height:88px;margin:0 auto 8px;border-radius:20px;display:grid;place-items:center;background:radial-gradient(60px 50px at 50% 40%,rgba(221,190,116,.22),transparent 70%),linear-gradient(180deg,#eef5fb,#dfeaf6)}
+.bigopt .art svg{width:52px;height:52px}
+.bigopt b{color:var(--navy-800);font-size:17px}
+.bigopt.sel{border-color:var(--gold-400);box-shadow:0 10px 26px rgba(180,134,58,.18);background:linear-gradient(180deg,#fffdf7,#fff)}
+.bigopt.sel .art{background:radial-gradient(60px 50px at 50% 40%,rgba(221,190,116,.4),transparent 70%),linear-gradient(180deg,#f6ecd2,#ecd9a6)}
 
-.field{width:100%;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-md);padding:17px;text-align:center;font-family:var(--serif-he);font-size:24px;color:var(--navy-800);box-shadow:var(--sh-sm)}
-.field::placeholder{color:#C0CEDB;font-weight:400}
+.field{width:100%;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-md);padding:17px;text-align:center;font-family:var(--serif-he);font-size:26px;color:var(--navy-800);box-shadow:var(--sh-sm)}
+.field::placeholder{color:#C0CEDB;font-weight:400;font-size:20px}
 .field:focus{outline:0;border-color:var(--gold-400);box-shadow:0 0 0 4px rgba(203,162,78,.12)}
-.hint{color:var(--gold-700);font-size:12.5px;text-align:center;margin-top:12px;line-height:1.7;min-height:34px}
+.hint{color:var(--gold-700);font-size:12.5px;text-align:center;margin-top:12px;line-height:1.7;min-height:20px}
 
-.spinner svg{animation:spin 1.4s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.stagger>*{opacity:0;animation:rise .6s cubic-bezier(.2,.7,.2,1) forwards}
-.screen.on .stagger>*{opacity:0;animation:rise .6s cubic-bezier(.2,.7,.2,1) forwards}
-.stagger>*:nth-child(1){animation-delay:.05s}.stagger>*:nth-child(2){animation-delay:.12s}.stagger>*:nth-child(3){animation-delay:.19s}.stagger>*:nth-child(4){animation-delay:.26s}.stagger>*:nth-child(5){animation-delay:.33s}.stagger>*:nth-child(6){animation-delay:.40s}.stagger>*:nth-child(7){animation-delay:.47s}.stagger>*:nth-child(8){animation-delay:.54s}
+.spinner svg{animation:spin 1.4s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.stagger>*{opacity:0;animation:rise .55s cubic-bezier(.2,.7,.2,1) forwards}
+.screen.on .stagger>*{opacity:0;animation:rise .55s cubic-bezier(.2,.7,.2,1) forwards}
+.stagger>*:nth-child(1){animation-delay:.04s}.stagger>*:nth-child(2){animation-delay:.11s}.stagger>*:nth-child(3){animation-delay:.18s}.stagger>*:nth-child(4){animation-delay:.25s}.stagger>*:nth-child(5){animation-delay:.32s}.stagger>*:nth-child(6){animation-delay:.39s}.stagger>*:nth-child(7){animation-delay:.46s}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
+/* age picker */
+.picker{position:relative;height:200px;margin:2px 0}
+.picker .band{position:absolute;inset-inline:22px;top:50%;transform:translateY(-50%);height:52px;border-radius:14px;background:linear-gradient(180deg,#fff,#f1f6fc);border:1px solid var(--line);box-shadow:var(--sh-sm);z-index:0}
+.picker .fade{position:absolute;inset-inline:0;height:66px;z-index:2;pointer-events:none}
+.picker .fade.t{top:0;background:linear-gradient(180deg,#fff,transparent)}
+.picker .fade.b{bottom:0;background:linear-gradient(0deg,#fff,transparent)}
+.picker .scroll2{position:relative;height:100%;overflow-y:auto;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;z-index:1;scrollbar-width:none}
+.picker .scroll2::-webkit-scrollbar{display:none}
+.picker .pad{height:74px}
+.picker .num{height:52px;display:flex;align-items:center;justify-content:center;scroll-snap-align:center;font-family:var(--serif);font-size:19px;color:var(--ink-mute);opacity:.5;transition:.15s;cursor:pointer}
+.picker .num.sel{color:var(--navy-800);font-weight:600;font-size:30px;opacity:1}
+
+/* app chrome */
 .streak{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--gold-400);color:var(--gold-700);padding:7px 14px;border-radius:99px;font-weight:700;font-size:13px;box-shadow:var(--sh-sm)}
 .streak svg{width:16px;height:16px}
-.datepill{display:inline-flex;gap:8px;align-items:center;max-width:100%;background:rgba(255,255,255,.8);border:1px solid var(--line);border-radius:99px;padding:7px 14px;color:var(--navy-700);font-size:12.5px;box-shadow:var(--sh-sm);backdrop-filter:blur(6px);white-space:nowrap}
+.datepill{display:inline-flex;gap:8px;align-items:center;max-width:100%;background:rgba(255,255,255,.85);border:1px solid var(--line);border-radius:99px;padding:7px 14px;color:var(--navy-700);font-size:12.5px;box-shadow:var(--sh-sm);white-space:nowrap}
 .gear{width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center;box-shadow:var(--sh-sm);cursor:pointer;color:var(--navy-700)}
 .gear svg{width:20px;height:20px}
 .days{display:flex;gap:6px;justify-content:space-between;margin:16px 0 4px}
-.day{flex:1;aspect-ratio:1;max-width:46px;border-radius:14px;display:grid;place-items:center;font-weight:700;background:rgba(255,255,255,.7);color:var(--ink-mute);font-size:12px;position:relative;border:1.5px solid transparent;font-family:var(--serif-he)}
+.day{flex:1;aspect-ratio:1;max-width:46px;border-radius:14px;display:grid;place-items:center;font-weight:700;background:rgba(255,255,255,.75);color:var(--ink-mute);font-size:12px;position:relative;border:1.5px solid transparent;font-family:var(--serif-he)}
 .day.done{background:#fff;color:var(--navy-700);border-color:var(--blue-200)}
 .day.today{border-color:var(--gold-500);color:var(--navy-800);background:#fff;box-shadow:0 0 0 3px rgba(203,162,78,.16)}
-.day .lk{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:16px;height:16px;border-radius:50%;background:var(--navy-600);color:#fff;display:grid;place-items:center;font-size:8px}
+.day .lk{position:absolute;bottom:-5px;inset-inline-start:50%;transform:translateX(50%);width:16px;height:16px;border-radius:50%;background:var(--navy-600);color:#fff;display:grid;place-items:center;font-size:8px}
 
-.card{position:relative;border-radius:var(--r-lg);padding:16px 17px;overflow:hidden;margin-bottom:12px;cursor:pointer;box-shadow:var(--sh-sm);display:flex;align-items:center;gap:13px;min-height:74px;transition:transform .18s}
+.card{position:relative;border-radius:var(--r-lg);padding:16px 17px;overflow:hidden;margin-bottom:12px;cursor:pointer;box-shadow:var(--sh-sm);display:flex;align-items:center;gap:13px;min-height:74px;transition:transform .16s}
 .card:active{transform:scale(.99)}
 .card .thumb{width:52px;height:52px;border-radius:14px;flex:none;display:grid;place-items:center;position:relative;overflow:hidden}
 .card .thumb svg{width:34px;height:34px;position:relative;z-index:1}
@@ -125,20 +134,14 @@ h1{margin:0;font-weight:600;letter-spacing:.01em}
 .card .go{margin-inline-start:auto;font-size:13px;font-weight:600;opacity:.9}
 .card.hero{color:#EAF1F8;background:var(--grad-navy);box-shadow:var(--sh-md),inset 0 0 0 1px rgba(221,190,116,.35)}
 .card.hero .thumb{background:rgba(221,190,116,.16);color:var(--gold-300)}
-.card.light{background:rgba(255,255,255,.9);color:var(--navy-800);backdrop-filter:blur(6px)}
-.card.light .thumb{background:linear-gradient(180deg,#eef5fb,#dfeaf6);color:var(--navy-700)}
-.card.light .go{color:var(--gold-700)}
-.card.tint{color:#0f2a40;background:linear-gradient(135deg,#dcebf8,#eaf3fb)}
-.card.tint .thumb{background:#fff;color:var(--navy-700);box-shadow:var(--sh-sm)}
-.card.tint .go{color:var(--gold-700)}
-.card .deco{position:absolute;inset-inline-end:-10px;bottom:-14px;width:96px;height:96px;opacity:.14;z-index:0}
-.card.hero .deco{opacity:.22;color:var(--gold-300)}
+.card.light{background:#fff;color:var(--navy-800)}.card.light .thumb{background:linear-gradient(180deg,#eef5fb,#dfeaf6);color:var(--navy-700)}.card.light .go{color:var(--gold-700)}
+.card.tint{color:#0f2a40;background:linear-gradient(135deg,#dcebf8,#eaf3fb)}.card.tint .thumb{background:#fff;color:var(--navy-700);box-shadow:var(--sh-sm)}.card.tint .go{color:var(--gold-700)}
+.card .deco{position:absolute;inset-inline-end:-10px;bottom:-14px;width:96px;height:96px;opacity:.14;z-index:0}.card.hero .deco{opacity:.22;color:var(--gold-300)}
 
-.tabbar{display:flex;justify-content:space-between;background:rgba(255,255,255,.92);border-top:1px solid var(--line);padding:8px 8px calc(env(safe-area-inset-bottom,0px) + 8px);flex:none;backdrop-filter:blur(12px);z-index:5}
-.tab{display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--ink-mute);font-size:10px;font-weight:600;flex:1;cursor:pointer;background:none;border:0;font-family:inherit;padding:5px 0;transition:color .2s}
+.tabbar{display:flex;justify-content:space-between;background:rgba(255,255,255,.94);border-top:1px solid var(--line);padding:8px 8px calc(env(safe-area-inset-bottom,0px) + 8px);flex:none;backdrop-filter:blur(12px);z-index:5}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--ink-mute);font-size:10.5px;font-weight:600;flex:1;cursor:pointer;background:none;border:0;font-family:inherit;padding:5px 0;transition:color .2s}
 .tab svg{width:23px;height:23px}
-.tab.active{color:var(--gold-700)}
-.tab.active svg .fill{fill:var(--gold-500)}
+.tab.active{color:var(--gold-700)}.tab.active svg .fill{fill:var(--gold-500)}
 
 .topbar{display:flex;align-items:center;gap:12px;padding:14px 20px 6px;flex:none;z-index:3}
 .topbar .back{width:38px;height:38px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center;box-shadow:var(--sh-sm);cursor:pointer;color:var(--navy-700);font-size:18px}
@@ -147,9 +150,9 @@ h1{margin:0;font-weight:600;letter-spacing:.01em}
 .chap{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--gold-400);color:var(--navy-800);padding:8px 17px;border-radius:99px;font-weight:600;font-size:14px;box-shadow:var(--sh-sm)}
 .orn{width:150px;height:20px;margin:12px auto 6px;color:var(--gold-500);display:block}
 .paper{background:linear-gradient(180deg,#fffdf8,#fbf8f1);border:1px solid #efe6d2;border-radius:var(--r-lg);padding:20px 20px 8px;box-shadow:var(--sh-sm);position:relative;overflow:hidden}
-.paper::before{content:"";position:absolute;inset:0;background:var(--glowgold);opacity:.25;pointer-events:none}
+.paper::before{content:"";position:absolute;inset:0;background:var(--glow);opacity:.22;pointer-events:none}
 .verse{font-family:var(--serif-he);font-size:22px;line-height:2.1;color:var(--navy-900);margin:0 0 14px;text-align:justify;cursor:pointer;position:relative;z-index:1;direction:rtl}
-.verse .vn{color:var(--gold-600);font-size:13px;font-weight:700;margin-left:7px;font-family:var(--serif)}
+.verse .vn{color:var(--gold-600);font-size:13px;font-weight:700;margin-inline-start:7px;font-family:var(--serif)}
 .verse.hl{background:linear-gradient(180deg,transparent 55%,rgba(236,217,166,.75) 55%);border-radius:3px}
 .tip{color:var(--ink-mute);font-size:13px;text-align:center;margin:6px 0}
 .seltool{position:fixed;display:none;gap:6px;background:var(--navy-800);padding:8px;border-radius:14px;box-shadow:var(--sh-lg);transform:translate(-50%,-118%);z-index:40;border:1px solid rgba(221,190,116,.3)}
@@ -159,16 +162,18 @@ h1{margin:0;font-weight:600;letter-spacing:.01em}
 .seltool button.spark{background:var(--grad-gold);color:#3c2c0e}
 
 .chat{display:flex;flex-direction:column;gap:12px;padding-top:8px}
-.bub{max-width:85%;padding:13px 16px;border-radius:19px;font-size:14px;line-height:1.62}
-.bub.me{align-self:flex-end;background:var(--grad-navy);color:#fff;border-bottom-right-radius:6px}
-.bub.ai{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:6px;box-shadow:var(--sh-sm)}
+.bub{max-width:86%;padding:13px 16px;border-radius:19px;font-size:14.5px;line-height:1.65}
+.bub.me{align-self:flex-end;background:var(--grad-navy);color:#fff;border-bottom-left-radius:6px}
+.bub.ai{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-right-radius:6px;box-shadow:var(--sh-sm)}
 .bub.ai a{color:var(--gold-700);font-weight:700;cursor:pointer;border-bottom:1px solid var(--lineg)}
-.bub .qv{font-family:var(--serif-he);direction:rtl;display:inline-block}
+.bub .qv{font-family:var(--serif-he);display:inline-block}
 .typing{align-self:flex-start;background:#fff;border:1px solid var(--line);border-radius:19px;padding:14px 17px;display:flex;gap:5px}
 .typing i{width:7px;height:7px;border-radius:50%;background:var(--blue-300);animation:bl 1s infinite}
 .typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
-@keyframes bl{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-2px)}}
-.composer{display:flex;gap:9px;padding:10px 16px calc(env(safe-area-inset-bottom,0px) + 10px);border-top:1px solid var(--line);background:rgba(255,255,255,.95);flex:none;backdrop-filter:blur(10px)}
+@keyframes bl{0%,60%,100%{opacity:.3}30%{opacity:1}}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:8px 16px 4px;flex:none;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
+.chip2{flex:none;background:#fff;border:1px solid var(--gold-400);color:var(--gold-700);border-radius:99px;padding:8px 14px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap}
+.composer{display:flex;gap:9px;padding:8px 16px calc(env(safe-area-inset-bottom,0px) + 10px);border-top:1px solid var(--line);background:rgba(255,255,255,.96);flex:none}
 .composer input{flex:1;border:1px solid var(--line);background:var(--paper);border-radius:99px;padding:13px 17px;font-family:inherit;font-size:14px}
 .composer input:focus{outline:0;border-color:var(--gold-400)}
 .composer .send{width:46px;height:46px;border-radius:50%;background:var(--grad-navy);color:#fff;border:0;cursor:pointer;flex:none;display:grid;place-items:center;box-shadow:var(--sh-sm)}
@@ -177,12 +182,12 @@ h1{margin:0;font-weight:600;letter-spacing:.01em}
 .panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:16px;box-shadow:var(--sh-sm)}
 .feat{display:flex;gap:11px;align-items:flex-start;margin:11px 0;color:var(--ink-soft);font-size:14.5px}
 .feat .ck{color:var(--gold-600);flex:none;margin-top:1px}.feat .ck svg{width:19px;height:19px}
-.plan{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-md);padding:14px 16px;margin-bottom:11px;position:relative;cursor:pointer;transition:.18s}
+.plan{background:#fff;border:1.5px solid var(--line);border-radius:var(--r-md);padding:14px 16px;margin-bottom:11px;position:relative;cursor:pointer;transition:.16s}
 .plan.sel{border-color:var(--gold-500);box-shadow:0 8px 22px rgba(180,134,58,.16)}
 .plan b{color:var(--navy-800);font-size:16px;font-weight:600}.plan small{color:var(--ink-mute);display:block;font-size:12.5px;margin-top:2px}
 .badge{position:absolute;inset-inline-end:14px;top:-11px;background:var(--grad-gold);color:#3c2c0e;font-size:11px;font-weight:700;padding:4px 11px;border-radius:99px;box-shadow:var(--sh-gold)}
 
-.grp{font-size:11px;letter-spacing:.14em;color:var(--ink-mute);text-transform:uppercase;font-weight:700;margin:18px 4px 9px}
+.grp{font-size:11px;letter-spacing:.12em;color:var(--ink-mute);font-weight:700;margin:18px 4px 9px}
 .setrow{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:8px;font-size:14.5px;color:var(--navy-800)}
 .setrow .r{color:var(--ink-mute);font-size:13px}
 .setrow[data-act]{cursor:pointer}
@@ -190,39 +195,32 @@ h1{margin:0;font-weight:600;letter-spacing:.01em}
 .tg::after{content:"";position:absolute;width:21px;height:21px;border-radius:50%;background:#fff;top:2px;inset-inline-start:21px;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
 .tg.off{background:#D3DFEA}.tg.off::after{inset-inline-start:2px}
 
-.langcard{width:100%;background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px;box-shadow:var(--sh-md);backdrop-filter:blur(8px)}
-.langrow{display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;background:#fff;border:1px solid var(--line);margin-bottom:10px}
-.langrow .fl{width:34px;height:34px;border-radius:9px;background:var(--blue-050);display:grid;place-items:center;font-size:15px;flex:none;color:var(--navy-700);font-weight:700}
-
-/* tefillin guide */
+/* tefillin */
 .tefwrap{display:flex;flex-direction:column;flex:1;overflow:hidden}
-.tefart{position:relative;display:grid;place-items:center;padding:14px 0 4px}
-.tefart .halo{position:absolute;inset:0;background:var(--glowgold);opacity:.5}
+.tefart{position:relative;display:grid;place-items:center;padding:12px 0 2px}
+.tefart .halo{position:absolute;inset:0;background:var(--glow);opacity:.5}
 .tefart svg{width:150px;height:150px;position:relative;z-index:1}
-.tefbody{flex:1;overflow-y:auto;padding:0 24px}
-.tefstep{text-align:center;color:var(--gold-700);font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+.tefbody{flex:1;overflow-y:auto;padding:0 24px;display:flex;flex-direction:column;justify-content:center}
+.tefstep{text-align:center;color:var(--gold-700);font-size:11px;letter-spacing:.2em;font-weight:700}
 .tefbracha{background:linear-gradient(180deg,#fffdf8,#fbf8f1);border:1px solid #efe6d2;border-radius:16px;padding:14px 16px;margin-top:14px}
-.tefbracha .bl{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-700);font-weight:700}
-.tefbracha .bt{font-family:var(--serif-he);direction:rtl;font-size:19px;line-height:1.9;color:var(--navy-900);margin-top:4px}
+.tefbracha .bl{font-size:10px;letter-spacing:.16em;color:var(--gold-700);font-weight:700}
+.tefbracha .bt{font-family:var(--serif-he);font-size:19px;line-height:1.9;color:var(--navy-900);margin-top:4px}
 .tefbracha .bn{color:var(--ink-mute);font-size:11.5px;margin-top:6px}
 .tefnote{color:var(--ink-mute);font-size:12.5px;text-align:center;margin-top:12px}
 .tefnav{display:flex;gap:12px;padding:12px 22px calc(env(safe-area-inset-bottom,0px) + 16px);flex:none}
-.tefnav button{flex:1;border:0;border-radius:var(--r-pill);padding:15px;font-family:inherit;font-weight:600;font-size:15px;cursor:pointer}
-.tefnav .bk{flex:0 0 42%;background:rgba(16,42,67,.05);color:var(--navy-700);border:1px solid var(--line)}
+.tefnav button{flex:1;border:0;border-radius:var(--r-pill);padding:15px;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer}
+.tefnav .bk{flex:0 0 40%;background:rgba(16,42,67,.05);color:var(--navy-700);border:1px solid var(--line)}
 .tefnav .nx{background:var(--grad-navy);color:#fff;box-shadow:var(--sh-md)}
+.dots{display:flex;gap:7px;justify-content:center;margin:4px 0 8px}
+.dots i{width:6px;height:6px;border-radius:99px;background:var(--blue-200);transition:.3s}
+.dots i.on{width:22px;background:linear-gradient(90deg,var(--gold-400),var(--gold-600))}
 
-.toast{position:absolute;bottom:96px;left:24px;right:24px;background:var(--navy-800);color:#fff;padding:13px 16px;border-radius:14px;font-size:13.5px;text-align:center;box-shadow:var(--sh-lg);opacity:0;transform:translateY(10px);transition:.28s;z-index:50;pointer-events:none;border:1px solid rgba(221,190,116,.25)}
+.toast{position:absolute;bottom:96px;inset-inline:24px;background:var(--navy-800);color:#fff;padding:13px 16px;border-radius:14px;font-size:13.5px;text-align:center;box-shadow:var(--sh-lg);opacity:0;transform:translateY(10px);transition:.28s;z-index:50;pointer-events:none;border:1px solid rgba(221,190,116,.25)}
 .toast.on{opacity:1;transform:none}
-.picker{position:relative;height:208px;margin:6px 0 2px;touch-action:pan-y}
-.picker .band{position:absolute;left:24px;right:24px;top:50%;transform:translateY(-50%);height:52px;border-radius:14px;background:linear-gradient(180deg,#fff,#f1f6fc);border:1px solid var(--line);box-shadow:var(--sh-sm);z-index:0}
-.picker .fade{position:absolute;left:0;right:0;height:70px;z-index:2;pointer-events:none}
-.picker .fade.t{top:0;background:linear-gradient(180deg,var(--paper),transparent)}
-.picker .fade.b{bottom:0;background:linear-gradient(0deg,var(--paper),transparent)}
-.picker .scroll2{position:relative;height:100%;overflow-y:auto;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;z-index:1;scrollbar-width:none}
-.picker .scroll2::-webkit-scrollbar{display:none}
-.picker .pad{height:78px}
-.picker .num{height:52px;display:flex;align-items:center;justify-content:center;scroll-snap-align:center;font-family:var(--serif);font-size:19px;color:var(--ink-mute);opacity:.5;transition:.15s;cursor:pointer}
-.picker .num.sel{color:var(--navy-800);font-weight:600;font-size:30px;opacity:1}
+.eq{display:inline-flex;gap:2px;align-items:flex-end;height:14px}
+.eq i{width:3px;background:currentColor;border-radius:2px;animation:eq 1s ease-in-out infinite}
+.eq i:nth-child(1){height:6px;animation-delay:0s}.eq i:nth-child(2){height:12px;animation-delay:.2s}.eq i:nth-child(3){height:8px;animation-delay:.4s}
+@keyframes eq{0%,100%{transform:scaleY(.5)}50%{transform:scaleY(1)}}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -230,23 +228,83 @@ h1{margin:0;font-weight:600;letter-spacing:.01em}
 <div id="device">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
   <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ECD9A6"/><stop offset=".5" stop-color="#CBA24E"/><stop offset="1" stop-color="#9A6E22"/></linearGradient>
-  <linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CFE6F8"/><stop offset="1" stop-color="#8FB9DC"/></linearGradient>
+  <radialGradient id="gSun" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FBE6B0" stop-opacity=".95"/><stop offset="1" stop-color="#FBE6B0" stop-opacity="0"/></radialGradient>
   <radialGradient id="gFlame" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#FBE9BE"/><stop offset="1" stop-color="#D9A441"/></radialGradient>
-  <symbol id="s-window" viewBox="0 0 100 130"><path d="M20 60a30 30 0 0 1 60 0v58a4 4 0 0 1-4 4H24a4 4 0 0 1-4-4z" fill="url(#gSky)" opacity=".55"/><path d="M20 60a30 30 0 0 1 60 0v58a4 4 0 0 1-4 4H24a4 4 0 0 1-4-4z" fill="none" stroke="url(#gGold)" stroke-width="2.5"/><path d="M50 30v92M20 74h60" stroke="url(#gGold)" stroke-width="2"/><circle cx="50" cy="20" r="3.4" fill="url(#gGold)"/></symbol>
+  <linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CFE6F8"/><stop offset="1" stop-color="#8FB9DC"/></linearGradient>
+
+  <!-- rich scenes (full-bleed) -->
+  <symbol id="scene-city" viewBox="0 0 400 300" preserveAspectRatio="xMidYMax slice">
+    <circle cx="200" cy="212" r="150" fill="url(#gSun)"/>
+    <circle cx="200" cy="216" r="34" fill="#F4D488"/>
+    <path d="M96 84q9-7 18 0q9-7 18 0" stroke="#EAD6A0" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".9"/>
+    <path d="M250 66q7-6 14 0q7-6 14 0" stroke="#EAD6A0" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".7"/>
+    <g fill="#0f2b45">
+      <path d="M0 300V236h26v-12h14v12h12a20 20 0 0 1 40 0h12v-26h12v26h22v-16h16v16h20a18 18 0 0 1 36 0h14v-22h12v22h22v-14h16v14h20v-18h12v18h22V300Z"/>
+    </g>
+    <path d="M0 236h26v-12h14v12h12a20 20 0 0 1 40 0h12v-26h12v26h22v-16h16v16h20a18 18 0 0 1 36 0h14v-22h12v22h22v-14h16v14h20v-18h12v18h22" fill="none" stroke="url(#gGold)" stroke-width="1.6" opacity=".55"/>
+    <rect x="86" y="252" width="7" height="10" fill="#F4D488" rx="1.5" opacity=".9"/><rect x="300" y="256" width="7" height="9" fill="#F4D488" rx="1.5" opacity=".9"/>
+  </symbol>
+  <symbol id="scene-window" viewBox="0 0 400 300" preserveAspectRatio="xMidYMax slice">
+    <rect width="400" height="300" fill="none"/>
+    <g transform="translate(200,150)">
+      <ellipse cx="0" cy="0" rx="150" ry="150" fill="url(#gSun)" opacity=".8"/>
+      <path d="M-70 130V-30a70 70 0 0 1 140 0V130Z" fill="url(#gSky)" opacity=".65"/>
+      <path d="M-70 130V-30a70 70 0 0 1 140 0V130" fill="none" stroke="url(#gGold)" stroke-width="4"/>
+      <path d="M0 -100V130M-70 40H70" stroke="url(#gGold)" stroke-width="3"/>
+      <path d="M-70 40 A70 70 0 0 1 70 40" fill="none" stroke="url(#gGold)" stroke-width="2" opacity=".7"/>
+      <g stroke="#F6E4B0" stroke-width="3" opacity=".5" stroke-linecap="round"><path d="M-40 150l-24 44M0 156v50M40 150l24 44"/></g>
+    </g>
+  </symbol>
+  <symbol id="scene-candles" viewBox="0 0 400 300" preserveAspectRatio="xMidYMax slice">
+    <ellipse cx="205" cy="150" rx="150" ry="120" fill="url(#gSun)" opacity=".55"/>
+    <g transform="translate(168,150)">
+      <path d="M0 -42 C10 -24 10 -8 0 3 C-10 -8 -10 -24 0 -42Z" fill="url(#gFlame)"/>
+      <path d="M0 -34 C5 -22 5 -12 0 -5 C-5 -12 -5 -22 0 -34Z" fill="#FFF7E2" opacity=".85"/>
+      <path d="M0 -2v7" stroke="#7a5a1e" stroke-width="2"/>
+      <rect x="-9" y="4" width="18" height="130" rx="6" fill="#F7EFDD" stroke="url(#gGold)" stroke-width="1.6"/>
+    </g>
+    <g transform="translate(244,130)">
+      <path d="M0 -48 C11 -28 11 -10 0 3 C-11 -10 -11 -28 0 -48Z" fill="url(#gFlame)"/>
+      <path d="M0 -39 C6 -26 6 -14 0 -6 C-6 -14 -6 -26 0 -39Z" fill="#FFF7E2" opacity=".85"/>
+      <path d="M0 -2v7" stroke="#7a5a1e" stroke-width="2"/>
+      <rect x="-10" y="4" width="20" height="150" rx="6" fill="#F7EFDD" stroke="url(#gGold)" stroke-width="1.6"/>
+    </g>
+  </symbol>
+  <symbol id="scene-scroll" viewBox="0 0 400 300" preserveAspectRatio="xMidYMax slice">
+    <ellipse cx="200" cy="170" rx="170" ry="120" fill="url(#gSun)" opacity=".55"/>
+    <g transform="translate(200,168)">
+      <rect x="-84" y="-70" width="168" height="150" rx="8" fill="#fffdf6" stroke="url(#gGold)" stroke-width="2.5"/>
+      <g stroke="#2b5a86" stroke-width="3" opacity=".45" stroke-linecap="round"><path d="M-60 -44h120M-60 -20h120M-60 4h120M-60 28h84"/></g>
+      <rect x="-104" y="-84" width="20" height="178" rx="10" fill="#12304c"/><rect x="84" y="-84" width="20" height="178" rx="10" fill="#12304c"/>
+      <circle cx="-94" cy="-84" r="9" fill="url(#gGold)"/><circle cx="94" cy="-84" r="9" fill="url(#gGold)"/>
+    </g>
+  </symbol>
+  <symbol id="scene-letters" viewBox="0 0 400 300" preserveAspectRatio="xMidYMax slice">
+    <ellipse cx="200" cy="150" rx="180" ry="130" fill="url(#gSun)" opacity=".45"/>
+    <g font-family="Frank Ruhl Libre, serif" fill="url(#gGold)" opacity=".9">
+      <text x="88" y="150" font-size="90">א</text><text x="180" y="200" font-size="120" opacity=".85">ב</text><text x="286" y="150" font-size="80" opacity=".7">ג</text>
+    </g>
+  </symbol>
+  <symbol id="scene-heart" viewBox="0 0 400 300" preserveAspectRatio="xMidYMax slice">
+    <ellipse cx="200" cy="150" rx="170" ry="130" fill="url(#gSun)" opacity=".5"/>
+    <path d="M200 226c-70-44-104-84-104-124a44 44 0 0 1 104-24 44 44 0 0 1 104 24c0 40-34 80-104 124z" fill="none" stroke="url(#gGold)" stroke-width="4"/>
+    <path d="M170 96l6 14 14 6-14 6-6 14-6-14-14-6 14-6z" fill="url(#gGold)"/>
+  </symbol>
+
+  <!-- object symbols -->
   <symbol id="s-tefillin" viewBox="0 0 120 120"><path d="M38 44h20v20H38z" fill="#1c3a57"/><path d="M38 44h20v20H38z" fill="none" stroke="url(#gGold)" stroke-width="2"/><path d="M40 64c-6 12-14 20-26 24M56 64c6 10 12 15 22 17" fill="none" stroke="url(#gGold)" stroke-width="2.4" stroke-linecap="round"/><path d="M70 40h22v22H70z" fill="#1c3a57"/><path d="M70 40h22v22H70z" fill="none" stroke="url(#gGold)" stroke-width="2"/><path d="M74 62c-2 14-2 26 2 38M88 62c3 12 4 22 2 34" fill="none" stroke="url(#gGold)" stroke-width="2.2" stroke-linecap="round"/></symbol>
-  <symbol id="s-tefillin-arm" viewBox="0 0 120 120"><path d="M30 88c14-6 26-18 34-34" fill="none" stroke="#e7c98a" stroke-width="9" stroke-linecap="round" opacity=".5"/><path d="M52 44h22v22H52z" fill="#1c3a57" stroke="url(#gGold)" stroke-width="2"/><path d="M55 66c-6 12-16 20-30 24" fill="none" stroke="url(#gGold)" stroke-width="2.6" stroke-linecap="round"/><path d="M63 44v22M52 55h22" stroke="url(#gGold)" stroke-width="1.2" opacity=".6"/></symbol>
-  <symbol id="s-tefillin-head" viewBox="0 0 120 120"><path d="M40 70a20 14 0 0 1 40 0" fill="none" stroke="#cbd8e4" stroke-width="2"/><path d="M50 48h20v20H50z" fill="#1c3a57" stroke="url(#gGold)" stroke-width="2"/><path d="M52 68c-2 14-2 26 2 40M68 68c2 14 2 26-2 40" fill="none" stroke="url(#gGold)" stroke-width="2.4" stroke-linecap="round"/><circle cx="60" cy="88" r="2" fill="url(#gGold)"/></symbol>
-  <symbol id="s-hand-wrap" viewBox="0 0 120 120"><path d="M40 40v40a20 20 0 0 0 40 0V52" fill="none" stroke="#cbd8e4" stroke-width="2"/><path d="M44 52c8 4 24 4 32 0M44 62c8 4 24 4 32 0M44 72c8 4 24 4 32 0" stroke="url(#gGold)" stroke-width="2.4" stroke-linecap="round"/><path d="M50 92l8 12M62 92l-4 12" stroke="url(#gGold)" stroke-width="2" stroke-linecap="round"/></symbol>
-  <symbol id="s-tallit" viewBox="0 0 120 120"><path d="M24 30h72l-8 62a6 6 0 0 1-6 5H38a6 6 0 0 1-6-5z" fill="#fff" stroke="url(#gGold)" stroke-width="2"/><path d="M34 40h52M35 50h50" stroke="#22557F" stroke-width="3" opacity=".5"/><path d="M32 92l-4 18M44 97l-2 16M76 97l2 16M88 92l4 18" stroke="url(#gGold)" stroke-width="2" stroke-linecap="round"/></symbol>
-  <symbol id="s-book" viewBox="0 0 120 120"><path d="M60 34c-10-7-24-8-36-4v58c12-4 26-3 36 4 10-7 24-8 36-4V30c-12-4-26-3-36 4z" fill="#fff" stroke="url(#gGold)" stroke-width="2.2"/><path d="M60 38v58" stroke="url(#gGold)" stroke-width="2"/><path d="M30 44c8-2 16-2 22 1M68 45c8-3 16-3 22-1" stroke="#22557F" stroke-width="1.6" opacity=".5"/></symbol>
-  <symbol id="s-candle" viewBox="0 0 100 130"><ellipse cx="50" cy="40" rx="9" ry="15" fill="url(#gFlame)"/><rect x="43" y="54" width="14" height="52" rx="4" fill="#F4ECDA" stroke="url(#gGold)" stroke-width="1.6"/><path d="M34 106h32l-4 10H38z" fill="url(#gGold)"/></symbol>
-  <symbol id="s-kotel" viewBox="0 0 130 120"><g fill="#EadFc6" stroke="url(#gGold)" stroke-width="1.4"><rect x="18" y="60" width="30" height="16"/><rect x="50" y="60" width="34" height="16"/><rect x="86" y="60" width="26" height="16"/><rect x="26" y="78" width="34" height="16"/><rect x="62" y="78" width="30" height="16"/><rect x="94" y="78" width="20" height="16"/></g><path d="M64 40c8-6 18-4 24 2-8 0-10 6-18 4 6 4 4 12-2 12-4-6-12-4-14-10 4 0 6-6 10-8z" fill="#fff" stroke="url(#gGold)" stroke-width="1.4"/></symbol>
-  <symbol id="s-star" viewBox="0 0 100 100"><path d="M50 12l14 24h-28zM50 88l-14-24h28zM22 32l28 0 14 24-28 0zM78 32l-28 0-14 24 28 0z" fill="none" stroke="url(#gGold)" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="s-tefillin-arm" viewBox="0 0 120 120"><path d="M30 88c14-6 26-18 34-34" fill="none" stroke="#e7c98a" stroke-width="9" stroke-linecap="round" opacity=".5"/><path d="M52 44h22v22H52z" fill="#1c3a57" stroke="url(#gGold)" stroke-width="2"/><path d="M55 66c-6 12-16 20-30 24" fill="none" stroke="url(#gGold)" stroke-width="2.6" stroke-linecap="round"/></symbol>
+  <symbol id="s-tefillin-head" viewBox="0 0 120 120"><path d="M40 70a20 14 0 0 1 40 0" fill="none" stroke="#cbd8e4" stroke-width="2"/><path d="M50 48h20v20H50z" fill="#1c3a57" stroke="url(#gGold)" stroke-width="2"/><path d="M52 68c-2 14-2 26 2 40M68 68c2 14 2 26-2 40" fill="none" stroke="url(#gGold)" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="s-hand-wrap" viewBox="0 0 120 120"><path d="M40 40v40a20 20 0 0 0 40 0V52" fill="none" stroke="#cbd8e4" stroke-width="2"/><path d="M44 52c8 4 24 4 32 0M44 62c8 4 24 4 32 0M44 72c8 4 24 4 32 0" stroke="url(#gGold)" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="s-tallit" viewBox="0 0 120 120"><path d="M24 30h72l-8 62a6 6 0 0 1-6 5H38a6 6 0 0 1-6-5z" fill="#fff" stroke="url(#gGold)" stroke-width="2"/><path d="M34 40h52M35 50h50" stroke="#22557F" stroke-width="3" opacity=".5"/></symbol>
+  <symbol id="s-book" viewBox="0 0 120 120"><path d="M60 34c-10-7-24-8-36-4v58c12-4 26-3 36 4 10-7 24-8 36-4V30c-12-4-26-3-36 4z" fill="#fff" stroke="url(#gGold)" stroke-width="2.2"/><path d="M60 38v58" stroke="url(#gGold)" stroke-width="2"/></symbol>
   <symbol id="s-scroll" viewBox="0 0 120 120"><rect x="34" y="26" width="52" height="68" rx="4" fill="#fff" stroke="url(#gGold)" stroke-width="2"/><path d="M44 40h32M44 52h32M44 64h24" stroke="#22557F" stroke-width="1.6" opacity=".5"/><rect x="26" y="20" width="10" height="80" rx="5" fill="#12304c"/><rect x="84" y="20" width="10" height="80" rx="5" fill="#12304c"/><circle cx="31" cy="20" r="5" fill="url(#gGold)"/><circle cx="89" cy="20" r="5" fill="url(#gGold)"/></symbol>
   <symbol id="s-sun" viewBox="0 0 120 90"><path d="M20 66h80" stroke="url(#gGold)" stroke-width="2"/><circle cx="60" cy="66" r="18" fill="url(#gFlame)"/><g stroke="url(#gGold)" stroke-width="2" stroke-linecap="round"><path d="M60 30v-10M38 44l-7-7M82 44l7-7M28 60H18M102 60h-8"/></g></symbol>
   <symbol id="s-hand" viewBox="0 0 100 100"><path d="M36 54V32a5 5 0 0 1 10 0v18m0-2V26a5 5 0 0 1 10 0v24m0-4V32a5 5 0 0 1 10 0v26c0 16-8 28-24 28-10 0-16-6-22-16l-8-14a5 5 0 0 1 8-6l6 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="s-plate" viewBox="0 0 100 100"><circle cx="50" cy="50" r="26" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="1.6" opacity=".6"/><path d="M24 30v20m0 0a6 6 0 0 0 6-6V30M78 30c-5 0-8 6-8 14 0 4 3 6 8 6v20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
-  <symbol id="s-orn" viewBox="0 0 150 20"><path d="M10 10h50M90 10h50" stroke="currentColor" stroke-width="1.2"/><path d="M75 3l6 7-6 7-6-7z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="63" cy="10" r="1.6" fill="currentColor"/><circle cx="87" cy="10" r="1.6" fill="currentColor"/></symbol>
+  <symbol id="s-star" viewBox="0 0 100 100"><path d="M50 12l14 24h-28zM50 88l-14-24h28zM22 32l28 0 14 24-28 0zM78 32l-28 0-14 24 28 0z" fill="none" stroke="url(#gGold)" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="s-woman" viewBox="0 0 64 64"><circle cx="32" cy="18" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M18 54c0-10 6-18 14-18s14 8 14 18M24 40l-4 14M40 40l4 14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="s-man" viewBox="0 0 64 64"><circle cx="32" cy="16" r="7.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M22 54V34a10 10 0 0 1 20 0v20M26 30l-6 4M38 30l6 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-chat" viewBox="0 0 24 24"><path class="fill" d="M4 5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
   <symbol id="i-siddur" viewBox="0 0 24 24"><path class="fill" d="M12 6c-2-1.4-5-1.6-7-1v12c2-.6 5-.4 7 1 2-1.4 5-1.6 7-1V5c-2-.6-5-.4-7 1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 6v12" stroke="currentColor" stroke-width="1.4"/></symbol>
   <symbol id="i-flame" viewBox="0 0 24 24"><path class="fill" d="M12 3c2 3.5-1.5 5-.5 8 .5 2 2.5 2.5 2.5 5a4 4 0 1 1-8 0c0-3 3-4 3-7 0-2 .5-4.5 3-6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
@@ -254,204 +312,138 @@ h1{margin:0;font-weight:600;letter-spacing:.01em}
   <symbol id="i-tanakh" viewBox="0 0 24 24"><rect x="7" y="4" width="10" height="14" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="4" y="3" width="3" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="17" y="3" width="3" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
   <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.5 5.5l2 2M16.5 16.5l2 2M18.5 5.5l-2 2M7.5 16.5l-2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
   <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="currentColor"/></symbol>
-  <symbol id="i-mark" viewBox="0 0 24 24"><path d="M12 4c3 5-2 7-1 11 .5 2 3 2.5 3 5a3 3 0 1 1-6 0c0-3 3-3.5 3-7 0-2-2-6-2-9z" fill="url(#gGold)"/><path d="M17 4l1 2.4 2.4 1-2.4 1L17 11l-1-2.6L13.6 7.4 16 6.8z" fill="url(#gGold)"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12l16-7-7 16-2-6z" fill="currentColor"/></symbol>
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
   <symbol id="i-hl" viewBox="0 0 24 24"><path d="M4 20h16M6 15l8-8 4 4-8 8H6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
-  <symbol id="i-aa" viewBox="0 0 24 24"><text x="4" y="18" font-size="14" font-family="Georgia" fill="currentColor">Aa</text></symbol>
+  <symbol id="i-aa" viewBox="0 0 24 24"><text x="3" y="18" font-size="14" font-family="Georgia" fill="currentColor">א</text><text x="13" y="18" font-size="10" font-family="Georgia" fill="currentColor">א</text></symbol>
   <symbol id="i-listen" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M16 8a5 5 0 0 1 0 8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-strength" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-heartline" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14a8 8 0 0 1-10-10 8 8 0 1 0 10 10z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
 </defs></svg>
 
 <svg id="grain" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
 
   <!-- SPLASH -->
-  <section class="screen on dark" id="splash" style="background:var(--grad-navy)">
-    <div class="center stagger">
-      <div class="mark"><svg width="46" height="46"><use href="#i-mark"/></svg></div>
-      <h1 class="serif" style="font-size:46px;letter-spacing:.06em;color:#fff">Neshama</h1>
-      <div class="eyebrow dim">נשמה · the soul</div>
-      <p class="verse he" style="text-align:center;font-size:20px;margin:6px 0 0;color:#EAF1F8;cursor:default;direction:rtl">הֽ׳ שְׂפָתַ֥י תִּפְתָּ֑ח וּ֝פִ֗י יַגִּ֥יד תְּהִלָּתֶֽךָ</p>
-      <div class="lead dim" style="font-size:13px" data-i18n="splash_cap">The words that open the morning prayer</div>
-      <svg class="flourish" style="margin-top:4px;color:var(--gold-400)"><use href="#s-orn"/></svg>
+  <section class="screen on dark" id="splash">
+    <div style="position:absolute;inset:0;background:var(--grad-dawn)"></div>
+    <svg class="scene" style="position:absolute;inset:0;width:100%;height:100%;opacity:.9"><use href="#scene-city"/></svg>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,23,38,.5),transparent 40%,rgba(8,23,38,.35))"></div>
+    <div class="center stagger" style="justify-content:flex-start;padding-top:16%">
+      <h1 class="serif-he" style="font-size:52px;color:#fff;letter-spacing:.01em;text-shadow:0 2px 20px rgba(0,0,0,.3)">וְאָהַבְתָּ</h1>
+      <svg class="flourish" style="color:var(--gold-300);width:150px"><use href="#s-star"/></svg>
+      <p class="serif-he" style="font-size:19px;color:#F3E9D0;margin:2px 0 0;line-height:1.9">וְאָהַבְתָּ֗ אֵ֚ת ה׳ אֱלֹהֶ֔יךָ<br>בְּכׇל־לְבָבְךָ֥ וּבְכׇל־נַפְשְׁךָ֖</p>
+      <div class="eyebrow dim" style="margin-top:6px">מִתּוֹךְ קְרִיאַת שְׁמַע</div>
     </div>
-    <button class="cta gold" data-goto="lang" data-i18n="begin">Begin</button>
-  </section>
-
-  <!-- LANGUAGE -->
-  <section class="screen" id="lang">
-    <div class="scroll pad-top">
-      <div class="art" style="height:120px;margin:6px 0 4px"><span class="halo"></span><svg width="120" height="120" class="float"><use href="#s-star"/></svg></div>
-      <div class="stagger">
-        <h1 class="serif" style="font-size:30px;text-align:center;color:var(--navy-800)" data-i18n="lang_title">Welcome to Neshama</h1>
-        <p class="lead" style="text-align:center;margin:8px 22px 20px" data-i18n="lang_body">Your device language is Hebrew. Would you like to continue in Hebrew, or stay in English? You can change this anytime.</p>
-        <div class="langcard">
-          <div class="langrow"><span class="fl">א</span><div style="flex:1"><b class="he" style="color:var(--navy-800)">עברית</b><div style="font-size:12px;color:var(--ink-mute)" data-i18n="lang_detected">Detected on your device</div></div><svg width="20" height="20" style="color:var(--gold-600)"><use href="#i-check"/></svg></div>
-          <div class="langrow"><span class="fl">EN</span><div style="flex:1"><b style="color:var(--navy-800)">English</b><div style="font-size:12px;color:var(--ink-mute)" data-i18n="lang_current">Current</div></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="btnrow">
-      <button class="cta gold sm" id="btnHe">המשך בעברית · Continue in Hebrew</button>
-      <button class="cta ghost sm" id="btnEn" data-i18n="lang_stay">Stay in English</button>
-    </div>
-  </section>
-
-  <!-- WELCOME -->
-  <section class="screen" id="ob1">
-    <div class="scroll pad-top">
-      <div class="dots"><i></i><i></i><i></i><i class="on"></i></div>
-      <div class="art" style="height:280px;margin-top:6px"><span class="halo"></span><svg width="200" height="260" class="float"><use href="#s-window"/></svg></div>
-      <div class="stagger" style="margin-top:6px">
-        <h1 class="serif" style="font-size:32px;text-align:center;line-height:1.25;color:var(--navy-800)" data-i18n="ob1_title">A quieter kind of day</h1>
-        <p class="lead" style="text-align:center;margin:12px 20px 0" data-i18n="ob1_body">A few still minutes for Psalms, prayer, and the small acts that keep faith close — shaped around your life.</p>
-      </div>
-    </div>
-    <button class="cta" data-goto="ob-gender" data-i18n="continue">Continue</button>
+    <button class="cta gold" data-goto="ob-gender" data-dir="1">שנתחיל?</button>
   </section>
 
   <!-- GENDER -->
-  <section class="screen" id="ob-gender">
-    <div class="scroll pad-top">
-      <div class="prog"><i style="width:16%"></i></div>
-      <div class="stagger">
-        <h1 class="serif" style="font-size:27px;text-align:center;color:var(--navy-800)" data-i18n="gender_title">A little about you</h1>
-        <p class="lead" style="text-align:center;margin:8px 0 22px" data-i18n="gender_body">So we can show the prayers and customs that are yours.</p>
-        <div class="opt" data-pick="single"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 12.5V21M8.5 17h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><div class="txt"><b data-i18n="woman">Woman</b></div><span class="rad"></span></div>
-        <div class="opt" data-pick="single"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="10" cy="14" r="5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M14 10l6-6M15 4h5v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div class="txt"><b data-i18n="man">Man</b></div><span class="rad"></span></div>
+  <section class="screen ob" id="ob-gender">
+    <div class="obhero"><div class="obprog"><i style="width:16%"></i></div><svg class="scene"><use href="#scene-window"/></svg><div class="scrim"></div></div>
+    <div class="obsheet stagger">
+      <h1>נעים להכיר</h1>
+      <p class="lead">כדי שנלווה אותך בדיוק בתפילות ובמנהגים שמתאימים לך.</p>
+      <div class="duo">
+        <div class="bigopt" data-pick="single"><div class="art"><svg style="color:var(--navy-700)"><use href="#s-woman"/></svg></div><b>אישה</b></div>
+        <div class="bigopt" data-pick="single"><div class="art"><svg style="color:var(--navy-700)"><use href="#s-man"/></svg></div><b>גבר</b></div>
       </div>
     </div>
-    <button class="cta disabled" data-goto="ob-goals" data-i18n="continue">Continue</button>
+    <button class="cta disabled" data-goto="ob-goals" data-dir="1">המשך</button>
   </section>
 
   <!-- GOALS -->
-  <section class="screen" id="ob-goals">
-    <div class="scroll pad-top">
-      <div class="prog"><i style="width:30%"></i></div>
-      <div class="stagger">
-        <h1 class="serif" style="font-size:27px;text-align:center;color:var(--navy-800)" data-i18n="goals_title">What brings you here?</h1>
-        <p class="lead" style="text-align:center;margin:8px 0 18px" data-i18n="goals_body">Choose whatever feels true — more than one is welcome.</p>
-        <div class="opt" data-pick="multi"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><div class="txt"><b data-i18n="goal_strength">Strength for hard days</b></div><span class="rad"></span></div>
-        <div class="opt" data-pick="multi"><span class="ic"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg></span><div class="txt"><b data-i18n="goal_grat">A daily moment of gratitude</b></div><span class="rad"></span></div>
-        <div class="opt" data-pick="multi"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><div class="txt"><b data-i18n="goal_heal">Healing — for me or those I love</b></div><span class="rad"></span></div>
-        <div class="opt" data-pick="multi"><span class="ic"><svg viewBox="0 0 24 24"><path d="M20 14a8 8 0 0 1-10-10 8 8 0 1 0 10 10z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><div class="txt"><b data-i18n="goal_calm">Calm and peace of mind</b></div><span class="rad"></span></div>
-        <div class="opt" data-pick="multi"><span class="ic"><svg viewBox="0 0 24 24"><use href="#s-star"/></svg></span><div class="txt"><b data-i18n="goal_conn">Connection to something greater</b></div><span class="rad"></span></div>
-        <div class="opt" data-pick="multi"><span class="ic"><svg viewBox="0 0 24 24"><use href="#i-flame"/></svg></span><div class="txt"><b data-i18n="goal_habit">Building a daily habit</b></div><span class="rad"></span></div>
-      </div>
+  <section class="screen ob" id="ob-goals">
+    <div class="obhero"><div class="obprog"><i style="width:34%"></i></div><svg class="scene"><use href="#scene-heart"/></svg><div class="scrim"></div></div>
+    <div class="obsheet stagger">
+      <h1>מה קרוב ללב שלך?</h1>
+      <p class="lead">בחר/י כל מה שמתאים — אפשר יותר מאחד.</p>
+      <div class="opt" data-pick="multi"><span class="ic"><svg><use href="#i-strength"/></svg></span><div class="txt"><b>כוח לימים קשים</b></div><span class="rad"></span></div>
+      <div class="opt" data-pick="multi"><span class="ic"><svg><use href="#i-spark"/></svg></span><div class="txt"><b>רגע יומי של תודה</b></div><span class="rad"></span></div>
+      <div class="opt" data-pick="multi"><span class="ic"><svg><use href="#i-heartline"/></svg></span><div class="txt"><b>רפואה — לי או לאהוביי</b></div><span class="rad"></span></div>
+      <div class="opt" data-pick="multi"><span class="ic"><svg><use href="#i-moon"/></svg></span><div class="txt"><b>שקט ומנוחת הנפש</b></div><span class="rad"></span></div>
+      <div class="opt" data-pick="multi"><span class="ic"><svg><use href="#s-star"/></svg></span><div class="txt"><b>חיבור למשהו גדול יותר</b></div><span class="rad"></span></div>
+      <div class="opt" data-pick="multi"><span class="ic"><svg><use href="#i-flame"/></svg></span><div class="txt"><b>בניית הרגל יומי</b></div><span class="rad"></span></div>
     </div>
-    <button class="cta disabled" data-goto="ob-age" data-i18n="continue">Continue</button>
+    <button class="cta disabled" data-goto="ob-age" data-dir="1">המשך</button>
   </section>
 
   <!-- AGE -->
-  <section class="screen" id="ob-age">
-    <div class="scroll pad-top">
-      <div class="prog"><i style="width:45%"></i></div>
-      <div class="stagger">
-        <h1 class="serif" style="font-size:27px;text-align:center;color:var(--navy-800)" data-i18n="age_title">How old are you?</h1>
-        <p class="lead" style="text-align:center;margin:8px 0 8px" data-i18n="age_body">We'll set the psalm that walks with your years.</p>
-        <div class="art" style="height:74px"><svg width="104" height="70"><use href="#s-candle"/></svg></div>
-        <div class="picker"><div class="band"></div><div class="fade t"></div><div class="fade b"></div><div class="scroll2" id="ageScroll"></div></div>
-        <p class="hint" id="ageHint">Age 20 — your daily psalm is 21</p>
-      </div>
+  <section class="screen ob" id="ob-age">
+    <div class="obhero"><div class="obprog"><i style="width:50%"></i></div><svg class="scene"><use href="#scene-candles"/></svg><div class="scrim"></div></div>
+    <div class="obsheet stagger">
+      <h1>בן/בת כמה את/ה?</h1>
+      <p class="lead">נלווה אותך עם פרק התהילים ההולך עם שנותיך.</p>
+      <div class="picker"><div class="band"></div><div class="fade t"></div><div class="fade b"></div><div class="scroll2" id="ageScroll"></div></div>
+      <p class="hint" id="ageHint"></p>
     </div>
-    <button class="cta" data-goto="ob-name" data-i18n="continue">Continue</button>
+    <button class="cta" data-goto="ob-name" data-dir="1">המשך</button>
   </section>
 
   <!-- NAME -->
-  <section class="screen" id="ob-name">
-    <div class="scroll pad-top">
-      <div class="prog"><i style="width:60%"></i></div>
-      <div class="stagger">
-        <div class="art" style="height:110px;margin-bottom:2px"><span class="halo"></span><svg width="130" height="100"><use href="#s-scroll"/></svg></div>
-        <h1 class="serif" style="font-size:27px;text-align:center;color:var(--navy-800)" data-i18n="name_title">What's your Hebrew name?</h1>
-        <p class="lead" style="text-align:center;margin:8px 18px 18px" data-i18n="name_body">We'll keep a personal passage from Psalm 119, drawn from the letters of your name.</p>
-        <input class="field he" id="nameInput" data-i18n-ph="name_ph" placeholder="Type your name in Hebrew" autocomplete="off" />
-        <p class="hint" id="nameHint"></p>
-      </div>
+  <section class="screen ob" id="ob-name">
+    <div class="obhero"><div class="obprog"><i style="width:66%"></i></div><svg class="scene"><use href="#scene-scroll"/></svg><div class="scrim"></div></div>
+    <div class="obsheet stagger">
+      <h1>מה השם העברי שלך?</h1>
+      <p class="lead">נשמור לך קטע אישי מפרק קי״ט בתהילים, לפי אותיות שמך.</p>
+      <input class="field serif-he" id="nameInput" placeholder="הקלד/י את שמך" autocomplete="off" />
+      <p class="hint" id="nameHint"></p>
     </div>
-    <button class="cta" data-goto="ob-nusach" data-i18n="continue">Continue</button>
+    <button class="cta" data-goto="ob-nusach" data-dir="1">המשך</button>
   </section>
 
   <!-- NUSACH -->
-  <section class="screen" id="ob-nusach">
-    <div class="scroll pad-top">
-      <div class="prog"><i style="width:74%"></i></div>
-      <div class="stagger">
-        <h1 class="serif" style="font-size:26px;text-align:center;color:var(--navy-800)" data-i18n="nusach_title">Which tradition is yours?</h1>
-        <p class="lead" style="text-align:center;margin:8px 0 18px" data-i18n="nusach_body">We'll load the right siddur — you can change it anytime.</p>
-        <div class="opt" data-pick="single"><span class="ic"><svg><use href="#i-siddur"/></svg></span><div class="txt"><b data-i18n="nusach_ashk">Ashkenaz</b><small data-i18n="nusach_ashk_d">Central & Eastern European rite</small></div><span class="rad"></span></div>
-        <div class="opt" data-pick="single"><span class="ic"><svg><use href="#i-siddur"/></svg></span><div class="txt"><b data-i18n="nusach_sef">Sefard</b><small data-i18n="nusach_sef_d">Chassidic rite, after the Arizal</small></div><span class="rad"></span></div>
-        <div class="opt" data-pick="single"><span class="ic"><svg><use href="#i-siddur"/></svg></span><div class="txt"><b data-i18n="nusach_edot">Edot HaMizrach</b><small data-i18n="nusach_edot_d">Sephardi & Mizrahi traditions</small></div><span class="rad"></span></div>
-      </div>
+  <section class="screen ob" id="ob-nusach">
+    <div class="obhero"><div class="obprog"><i style="width:82%"></i></div><svg class="scene"><use href="#scene-window"/></svg><div class="scrim"></div></div>
+    <div class="obsheet stagger">
+      <h1>מהו נוסח התפילה שלך?</h1>
+      <p class="lead">נטען את הסידור המתאים — תמיד אפשר לשנות בהגדרות.</p>
+      <div class="opt" data-pick="single"><span class="ic"><svg><use href="#i-siddur"/></svg></span><div class="txt"><b>אשכנז</b><small>מסורת מרכז ומזרח אירופה</small></div><span class="rad"></span></div>
+      <div class="opt" data-pick="single"><span class="ic"><svg><use href="#i-siddur"/></svg></span><div class="txt"><b>ספרד</b><small>נוסח חסידי על פי האר״י</small></div><span class="rad"></span></div>
+      <div class="opt" data-pick="single"><span class="ic"><svg><use href="#i-siddur"/></svg></span><div class="txt"><b>עדות המזרח</b><small>מסורות ספרד והמזרח</small></div><span class="rad"></span></div>
     </div>
-    <button class="cta disabled" data-goto="ob-reading" data-i18n="continue">Continue</button>
+    <button class="cta disabled" data-goto="ob-reading" data-dir="1">המשך</button>
   </section>
 
   <!-- READING -->
-  <section class="screen" id="ob-reading">
-    <div class="scroll pad-top">
-      <div class="prog"><i style="width:88%"></i></div>
-      <div class="stagger">
-        <h1 class="serif" style="font-size:26px;text-align:center;color:var(--navy-800)" data-i18n="read_title">How is your Hebrew?</h1>
-        <p class="lead" style="text-align:center;margin:8px 0 18px" data-i18n="read_body">Biblical Hebrew isn't everyday Hebrew. It's perfectly fine not to catch every word.</p>
-        <div class="opt" data-pick="single"><span class="ic"><svg><use href="#i-check"/></svg></span><div class="txt"><b data-i18n="read_high">I understand most of what I read</b></div><span class="rad"></span></div>
-        <div class="opt" data-pick="single"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 16l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><div class="txt"><b data-i18n="read_mid">I catch some, miss a lot</b></div><span class="rad"></span></div>
-        <div class="opt" data-pick="single"><span class="ic"><svg viewBox="0 0 24 24"><path d="M9 9a3 3 0 1 1 4 3c-1 .7-1 1.5-1 2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="18" r="1.2" fill="currentColor"/></svg></span><div class="txt"><b data-i18n="read_low">I read the words without understanding</b></div><span class="rad"></span></div>
-      </div>
+  <section class="screen ob" id="ob-reading">
+    <div class="obhero"><div class="obprog"><i style="width:96%"></i></div><svg class="scene"><use href="#scene-letters"/></svg><div class="scrim"></div></div>
+    <div class="obsheet stagger">
+      <h1>איך העברית שלך?</h1>
+      <p class="lead">עברית מקראית שונה מעברית של יום‑יום — לגמרי בסדר לא לתפוס כל מילה.</p>
+      <div class="opt" data-pick="single"><span class="ic"><svg><use href="#i-check"/></svg></span><div class="txt"><b>מבין/ה את רוב מה שאני קורא/ת</b></div><span class="rad"></span></div>
+      <div class="opt" data-pick="single"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 16l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><div class="txt"><b>קולט/ת חלק, מפספס/ת הרבה</b></div><span class="rad"></span></div>
+      <div class="opt" data-pick="single"><span class="ic"><svg viewBox="0 0 24 24"><path d="M9 9a3 3 0 1 1 4 3c-1 .7-1 1.5-1 2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="18" r="1.2" fill="currentColor"/></svg></span><div class="txt"><b>קורא/ת את המילים בלי להבין</b></div><span class="rad"></span></div>
     </div>
-    <button class="cta disabled" data-goto="ob-build" data-i18n="continue">Continue</button>
+    <button class="cta disabled" data-goto="ob-build" data-dir="1">סיום</button>
   </section>
 
   <!-- BUILD -->
   <section class="screen dark" id="ob-build" style="background:var(--grad-navy)">
     <div class="center">
       <div class="spinner"><svg width="70" height="70" viewBox="0 0 50 50"><circle cx="25" cy="25" r="21" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="4"/><path d="M25 4a21 21 0 0 1 21 21" fill="none" stroke="url(#gGold)" stroke-width="4" stroke-linecap="round"/></svg></div>
-      <h1 class="serif" style="font-size:26px;color:#fff" data-i18n="build_title">Preparing your journey</h1>
-      <p class="lead dim" style="max-width:250px" data-i18n="build_body">Matching your tradition · finding your name's verses · choosing your daily chapters · setting a gentle pace</p>
+      <h1 class="serif-he" style="font-size:27px;color:#fff">מכינים את המסע שלך</h1>
+      <p class="lead dim" style="max-width:250px">מתאימים נוסח · מוצאים את פסוקי שמך · בוחרים פרקים יומיים · קובעים קצב עדין</p>
     </div>
-  </section>
-
-  <!-- VALUE -->
-  <section class="screen" id="ob-value">
-    <div class="scroll pad-top">
-      <div class="stagger">
-        <div class="eyebrow" style="text-align:center;margin-top:4px" data-i18n="plan_ready">Your plan is ready</div>
-        <h1 class="serif" id="valueName" style="font-size:29px;text-align:center;margin:4px 0 14px;color:var(--navy-800)">This was made for you</h1>
-        <div class="panel">
-          <b style="color:var(--navy-800);font-size:14px" data-i18n="value_chart">Your daily connection</b>
-          <svg viewBox="0 0 300 150" style="width:100%;height:150px;margin-top:6px">
-            <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#DDBE74"/><stop offset="1" stop-color="#B4863A"/></linearGradient></defs>
-            <path d="M12,44 C90,50 175,120 288,128" fill="none" stroke="url(#lg)" stroke-width="3.5" stroke-linecap="round"/>
-            <path d="M12,100 C90,110 185,128 288,132" fill="none" stroke="#B9C6D4" stroke-width="2.5" stroke-dasharray="5 6"/>
-            <circle cx="12" cy="44" r="4.5" fill="#B4863A"/><circle cx="288" cy="128" r="4.5" fill="#173B5C"/>
-            <text x="24" y="38" font-size="12" fill="#9A6E22" font-family="Inter" data-i18n="value_with">With Neshama</text>
-            <text x="22" y="118" font-size="12" fill="#8AA0B4" font-family="Inter" data-i18n="value_alone">On your own</text>
-          </svg>
-        </div>
-        <p style="text-align:center;font-size:14.5px;color:var(--ink-soft);margin-top:16px;line-height:1.6" data-i18n-html="value_stat"><b style="color:var(--gold-700)">87%</b> of people say they keep a steadier rhythm of prayer with Neshama.</p>
-      </div>
-    </div>
-    <button class="cta" data-goto="paywall" data-i18n="continue">Continue</button>
   </section>
 
   <!-- PAYWALL -->
-  <section class="screen" id="paywall">
-    <div class="scroll pad-top">
-      <div class="art" style="height:120px;margin-bottom:6px"><span class="halo"></span><svg width="150" height="110" class="float"><use href="#s-kotel"/></svg></div>
-      <div class="stagger">
-        <h1 class="serif" style="font-size:26px;text-align:center;color:var(--navy-800)" data-i18n="pay_title">The simple path to a daily connection</h1>
-        <p class="lead" style="text-align:center;margin:6px 0 14px" data-i18n="pay_body">Psalms, siddur, and prayer — together, every day.</p>
-        <div class="feat"><span class="ck"><svg><use href="#i-check"/></svg></span><span data-i18n="pay_f1">Understand any chapter or verse with your companion</span></div>
-        <div class="feat"><span class="ck"><svg><use href="#i-check"/></svg></span><span data-i18n="pay_f2">Home-screen and lock-screen widgets</span></div>
-        <div class="feat"><span class="ck"><svg><use href="#i-check"/></svg></span><span data-i18n="pay_f3">Highlight verses in any color, without limit</span></div>
-        <div class="feat"><span class="ck"><svg><use href="#i-check"/></svg></span><span data-i18n="pay_f4">Make up missed days and keep your streak</span></div>
-        <div style="height:14px"></div>
-        <div class="plan sel" data-pick="single"><span class="badge" data-i18n="pay_save">Save 84%</span><b data-i18n="pay_free">7 days free</b><small data-i18n="pay_free_sub">then ₪149.90 / year · nothing charged today</small></div>
-        <div class="plan" data-pick="single"><b data-i18n="pay_weekly">Weekly</b><small data-i18n="pay_weekly_sub">₪17.90 billed weekly</small></div>
-        <div class="linkrow" data-i18n="pay_links">Privacy · Terms · Restore</div>
-      </div>
+  <section class="screen ob" id="paywall">
+    <div class="obhero" style="min-height:150px;flex:0 0 190px"><svg class="scene"><use href="#scene-city"/></svg><div class="scrim"></div></div>
+    <div class="obsheet stagger" style="max-height:78%">
+      <h1>הדרך הפשוטה לחיבור יומי</h1>
+      <p class="lead">תהילים, סידור ותפילה — יחד, בכל יום.</p>
+      <div class="feat"><span class="ck"><svg><use href="#i-check"/></svg></span><span>הבנת כל פרק ופסוק בעזרת המלווה</span></div>
+      <div class="feat"><span class="ck"><svg><use href="#i-check"/></svg></span><span>ווידג׳טים למסך הבית ולמסך הנעילה</span></div>
+      <div class="feat"><span class="ck"><svg><use href="#i-check"/></svg></span><span>סימון פסוקים בכל צבע, ללא הגבלה</span></div>
+      <div class="feat"><span class="ck"><svg><use href="#i-check"/></svg></span><span>השלמת ימים שהוחמצו ושמירה על הרצף</span></div>
+      <div style="height:12px"></div>
+      <div class="plan sel" data-pick="single"><span class="badge">חיסכון 84%</span><b>7 ימים חינם</b><small>אחר כך ‎149.90₪ לשנה · ללא חיוב היום</small></div>
+      <div class="plan" data-pick="single"><b>שבועי</b><small>‎17.90₪ בחיוב שבועי</small></div>
+      <div class="linkrow">פרטיות · תנאים · שחזור</div>
     </div>
-    <button class="cta gold" data-goto="today" data-i18n="pay_cta">Start 7 days free</button>
+    <button class="cta gold" data-goto="today" data-dir="1">התחלת 7 ימי ניסיון</button>
   </section>
 
   <!-- TODAY -->
@@ -459,171 +451,168 @@ h1{margin:0;font-weight:600;letter-spacing:.01em}
     <div class="sb"><span>8:48</span><span>5G ▮▮▮</span></div>
     <div class="scroll">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">
-        <div style="display:flex;gap:8px;align-items:center"><div class="gear" data-goto="settings"><svg><use href="#i-gear"/></svg></div><span class="streak"><svg><use href="#i-flame"/></svg> <span id="streakNum">1</span></span></div>
-        <h1 class="serif" style="font-size:26px;color:var(--navy-800)" data-i18n="today">Today</h1>
+        <div style="display:flex;gap:8px;align-items:center"><div class="gear" data-goto="settings" data-dir="1"><svg><use href="#i-gear"/></svg></div><span class="streak"><svg><use href="#i-flame"/></svg> <span id="streakNum">1</span></span></div>
+        <h1 class="serif-he" style="font-size:26px;color:var(--navy-800)">המסע של היום</h1>
       </div>
-      <div style="text-align:end;margin-bottom:12px"><span class="datepill" data-i18n="date">Tue, 30 Jun · 15 Tammuz 5786</span></div>
+      <div style="text-align:start;margin-bottom:12px"><span class="datepill">יום ג׳ · ט״ו בתמוז תשפ״ו</span></div>
       <div class="days">
-        <div class="day done">י״ג</div><div class="day done">י״ד</div>
-        <div class="day today">ט״ו</div>
-        <div class="day">ט״ז<span class="lk">🔒</span></div>
-        <div class="day">י״ז<span class="lk">🔒</span></div>
-        <div class="day">י״ח<span class="lk">🔒</span></div>
+        <div class="day done">י״ג</div><div class="day done">י״ד</div><div class="day today">ט״ו</div>
+        <div class="day">ט״ז<span class="lk">🔒</span></div><div class="day">י״ז<span class="lk">🔒</span></div><div class="day">י״ח<span class="lk">🔒</span></div>
       </div>
       <div class="stagger" style="margin-top:8px">
-        <div class="card hero" data-toast-k="toast_commit"><span class="thumb"><svg><use href="#s-hand"/></svg></span><div class="body"><h4 data-i18n="card_commit_t">I'll take this on</h4><small data-i18n="card_commit_s">Begin a new commitment</small></div><span class="go" style="font-size:22px">＋</span><svg class="deco"><use href="#s-star"/></svg></div>
-        <div class="card light" data-toast-k="toast_meat"><span class="thumb"><svg><use href="#s-plate"/></svg></span><div class="body"><h4 data-i18n="card_meat_t">Waiting between meat & milk</h4><small data-i18n="card_meat_s">Today's practice</small></div><span class="go" data-i18n="start">Start ›</span></div>
-        <div class="card tint" data-toast-k="toast_portion"><span class="thumb"><svg><use href="#s-scroll"/></svg></span><div class="body"><h4 data-i18n="card_portion_t">This week's portion</h4><small data-i18n="card_portion_s">Pinchas</small></div><span class="go">▾</span></div>
-        <div class="card tint" data-goto="siddur"><span class="thumb"><svg><use href="#s-sun"/></svg></span><div class="body"><h4 data-i18n="card_modeh_t">Modeh Ani</h4><small data-i18n="card_modeh_s">Open the day in gratitude</small></div><span class="go">›</span></div>
-        <div class="card hero" data-goto="tefillin"><span class="thumb"><svg><use href="#s-tefillin"/></svg></span><div class="body"><h4 data-i18n="card_tef_t">Tefillin</h4><small data-i18n="card_tef_s">Guided, step by step</small></div><span class="go">›</span><svg class="deco"><use href="#s-tallit"/></svg></div>
-        <div class="card tint" data-goto="tehillim"><span class="thumb"><svg><use href="#s-book"/></svg></span><div class="body"><h4 id="psalmCardT">Daily Psalm · 21</h4><small data-i18n="card_psalm_s">Your personal chapter</small></div><span class="go">›</span></div>
+        <div class="card hero" data-toast="קבלה חדשה נוספה למסע שלך ✓"><span class="thumb"><svg><use href="#s-hand"/></svg></span><div class="body"><h4>אני מקבל/ת על עצמי</h4><small>להתחיל קבלה חדשה</small></div><span class="go" style="font-size:22px">＋</span><svg class="deco"><use href="#s-star"/></svg></div>
+        <div class="card light" data-toast="נפתח: הלכות המתנה בין בשר לחלב"><span class="thumb"><svg><use href="#s-plate"/></svg></span><div class="body"><h4>המתנה בין בשר לחלב</h4><small>התרגול של היום</small></div><span class="go">התחלה ›</span></div>
+        <div class="card tint" data-toast="פרשת פינחס — סיכום קצר"><span class="thumb"><svg><use href="#s-scroll"/></svg></span><div class="body"><h4>פרשת השבוע</h4><small>פינחס</small></div><span class="go">›</span></div>
+        <div class="card tint" data-goto="siddur"><span class="thumb"><svg><use href="#s-sun"/></svg></span><div class="body"><h4>מודה אני</h4><small>לפתוח את היום בתודה</small></div><span class="go">›</span></div>
+        <div class="card hero" data-goto="tefillin"><span class="thumb"><svg><use href="#s-tefillin"/></svg></span><div class="body"><h4>תפילין</h4><small>הדרכה, צעד אחר צעד</small></div><span class="go">›</span><svg class="deco"><use href="#s-tallit"/></svg></div>
+        <div class="card tint" data-goto="tehillim"><span class="thumb"><svg><use href="#s-book"/></svg></span><div class="body"><h4 id="psalmCardT">תהילים יומי · כ״א</h4><small>הפרק האישי שלך</small></div><span class="go">›</span></div>
       </div>
     </div>
     <nav class="tabbar" data-tabs>
-      <button class="tab" data-tab="chat"><svg><use href="#i-chat"/></svg><span data-i18n="tab_chat">Chat</span></button>
-      <button class="tab" data-tab="siddur"><svg><use href="#i-siddur"/></svg><span data-i18n="tab_siddur">Siddur</span></button>
-      <button class="tab active" data-tab="today"><svg><use href="#i-flame"/></svg><span data-i18n="tab_today">Today</span></button>
-      <button class="tab" data-tab="tehillim"><svg><use href="#i-psalms"/></svg><span data-i18n="tab_psalms">Psalms</span></button>
-      <button class="tab" data-tab="tanakh"><svg><use href="#i-tanakh"/></svg><span data-i18n="tab_tanakh">Tanakh</span></button>
+      <button class="tab" data-tab="chat"><svg><use href="#i-chat"/></svg><span>שיחה</span></button>
+      <button class="tab" data-tab="siddur"><svg><use href="#i-siddur"/></svg><span>סידור</span></button>
+      <button class="tab active" data-tab="today"><svg><use href="#i-flame"/></svg><span>היום</span></button>
+      <button class="tab" data-tab="tehillim"><svg><use href="#i-psalms"/></svg><span>תהילים</span></button>
+      <button class="tab" data-tab="tanakh"><svg><use href="#i-tanakh"/></svg><span>תנ״ך</span></button>
     </nav>
   </section>
 
-  <!-- TEFILLIN GUIDE -->
+  <!-- TEFILLIN -->
   <section class="screen" id="tefillin">
-    <div class="topbar"><div class="back" data-goto="today">‹</div><b data-i18n="tef_title">Tefillin</b></div>
+    <div class="topbar"><div class="back" data-goto="today" data-dir="-1">›</div><b>תפילין</b></div>
     <div class="tefwrap">
-      <div class="tefart"><span class="halo"></span><svg id="tefUse" class="float"><use href="#s-tefillin-arm" id="tefUseHref"/></svg></div>
       <div class="tefbody">
+        <div class="tefart"><span class="halo"></span><svg id="tefUse" class="float"><use href="#s-tefillin-arm"/></svg></div>
         <div class="dots" id="tefDots"></div>
-        <div class="tefstep" id="tefStep">Step 1 of 6</div>
-        <h1 class="serif" id="tefTitle" style="font-size:25px;text-align:center;color:var(--navy-800);margin:6px 0 8px">Begin</h1>
+        <div class="tefstep" id="tefStep"></div>
+        <h1 class="serif-he" id="tefTitle" style="font-size:25px;text-align:center;color:var(--navy-800);margin:6px 0 8px"></h1>
         <p class="lead" id="tefBody" style="text-align:center"></p>
-        <div class="tefbracha" id="tefBrachaBox" style="display:none">
-          <div class="bl" id="tefBrachaLabel">Blessing</div>
-          <div class="bt" id="tefBracha"></div>
-          <div class="bn" id="tefCustom"></div>
-        </div>
+        <div class="tefbracha" id="tefBrachaBox" style="display:none"><div class="bl" id="tefBrachaLabel">ברכה</div><div class="bt serif-he" id="tefBracha"></div><div class="bn" id="tefCustom"></div></div>
         <div class="tefnote" id="tefHandNote"></div>
       </div>
-      <div class="tefnav">
-        <button class="bk" id="tefBack">Back</button>
-        <button class="nx" id="tefNext">Next</button>
-      </div>
+      <div class="tefnav"><button class="bk" id="tefBack">חזרה</button><button class="nx" id="tefNext">הבא</button></div>
     </div>
   </section>
 
   <!-- TEHILLIM -->
   <section class="screen" id="tehillim">
     <div class="sb"><span>8:48</span><span>5G ▮▮▮</span></div>
-    <div class="readerhead"><span class="chap">Psalm 23 · תהילים כ״ג ▾</span><svg class="orn"><use href="#s-orn"/></svg></div>
+    <div class="readerhead"><span class="chap">תהילים כ״ג ▾</span><svg class="orn"><use href="#s-star"/></svg></div>
     <div class="scroll">
       <div class="paper">
-        <p class="verse"><span class="vn">1</span> מִזְמ֥וֹר לְדָוִ֑ד יְהוָ֥ה רֹ֝עִ֗י לֹ֣א אֶחְסָֽר׃</p>
-        <p class="verse"><span class="vn">2</span> בִּנְא֣וֹת דֶּ֭שֶׁא יַרְבִּיצֵ֑נִי עַל־מֵ֖י מְנֻח֣וֹת יְנַהֲלֵֽנִי׃</p>
-        <p class="verse"><span class="vn">3</span> נַפְשִׁ֥י יְשׁוֹבֵ֑ב יַֽנְחֵ֥נִי בְמַעְגְּלֵי־צֶ֝֗דֶק לְמַ֣עַן שְׁמֽוֹ׃</p>
-        <p class="verse"><span class="vn">4</span> גַּ֤ם כִּֽי־אֵלֵ֨ךְ בְּגֵ֪יא צַלְמָ֡וֶת לֹא־אִ֘ירָ֤א רָ֗ע כִּי־אַתָּ֥ה עִמָּדִ֑י׃</p>
+        <p class="verse"><span class="vn">א</span> מִזְמ֥וֹר לְדָוִ֑ד יְהוָ֥ה רֹ֝עִ֗י לֹ֣א אֶחְסָֽר׃</p>
+        <p class="verse"><span class="vn">ב</span> בִּנְא֣וֹת דֶּ֭שֶׁא יַרְבִּיצֵ֑נִי עַל־מֵ֖י מְנֻח֣וֹת יְנַהֲלֵֽנִי׃</p>
+        <p class="verse"><span class="vn">ג</span> נַפְשִׁ֥י יְשׁוֹבֵ֑ב יַֽנְחֵ֥נִי בְמַעְגְּלֵי־צֶ֝֗דֶק לְמַ֣עַן שְׁמֽוֹ׃</p>
+        <p class="verse"><span class="vn">ד</span> גַּ֤ם כִּֽי־אֵלֵ֨ךְ בְּגֵ֪יא צַלְמָ֡וֶת לֹא־אִ֘ירָ֤א רָ֗ע כִּי־אַתָּ֥ה עִמָּדִ֑י׃</p>
       </div>
-      <p class="tip" data-i18n="reader_tip">Tap a verse to highlight it or ask your companion</p>
+      <p class="tip">הקש/י על פסוק כדי לסמן או לשאול את המלווה</p>
     </div>
     <nav class="tabbar" data-tabs>
-      <button class="tab" data-tab="chat"><svg><use href="#i-chat"/></svg><span data-i18n="tab_chat">Chat</span></button>
-      <button class="tab" data-tab="siddur"><svg><use href="#i-siddur"/></svg><span data-i18n="tab_siddur">Siddur</span></button>
-      <button class="tab" data-tab="today"><svg><use href="#i-flame"/></svg><span data-i18n="tab_today">Today</span></button>
-      <button class="tab active" data-tab="tehillim"><svg><use href="#i-psalms"/></svg><span data-i18n="tab_psalms">Psalms</span></button>
-      <button class="tab" data-tab="tanakh"><svg><use href="#i-tanakh"/></svg><span data-i18n="tab_tanakh">Tanakh</span></button>
+      <button class="tab" data-tab="chat"><svg><use href="#i-chat"/></svg><span>שיחה</span></button>
+      <button class="tab" data-tab="siddur"><svg><use href="#i-siddur"/></svg><span>סידור</span></button>
+      <button class="tab" data-tab="today"><svg><use href="#i-flame"/></svg><span>היום</span></button>
+      <button class="tab active" data-tab="tehillim"><svg><use href="#i-psalms"/></svg><span>תהילים</span></button>
+      <button class="tab" data-tab="tanakh"><svg><use href="#i-tanakh"/></svg><span>תנ״ך</span></button>
     </nav>
   </section>
 
   <!-- SIDDUR -->
   <section class="screen" id="siddur">
     <div class="sb"><span>8:48</span><span>5G ▮▮▮</span></div>
-    <div class="readerhead"><span class="chap" data-i18n="siddur_head">Shacharit · Ashkenaz ▾</span><svg class="orn"><use href="#s-orn"/></svg></div>
+    <div class="readerhead"><span class="chap">שחרית · אשכנז ▾</span><svg class="orn"><use href="#s-star"/></svg></div>
     <div class="scroll">
-      <div class="art" style="height:96px;margin-bottom:6px"><svg width="120" height="90"><use href="#s-sun"/></svg></div>
-      <div class="eyebrow" style="text-align:center" data-i18n="modeh_label">Modeh Ani · on waking</div>
+      <div class="eyebrow" style="text-align:center;margin-top:4px">מודה אני · עם היקיצה</div>
       <div class="paper" style="margin-top:10px">
-        <p class="verse" style="font-size:20px">מוֹדֶ֣ה אֲנִ֣י לְפָנֶ֗יךָ מֶ֤לֶךְ חַי֙ וְקַיָּ֔ם שֶׁהֶחֱזַ֥רְתָּ בִּ֛י נִשְׁמָתִ֖י בְּחֶמְלָ֑ה רַבָּ֖ה אֱמוּנָתֶֽךָ׃</p>
+        <p class="verse" id="modehText" style="font-size:20px">מוֹדֶ֣ה אֲנִ֣י לְפָנֶ֗יךָ מֶ֤לֶךְ חַי֙ וְקַיָּ֔ם שֶׁהֶחֱזַ֥רְתָּ בִּ֛י נִשְׁמָתִ֖י בְּחֶמְלָ֑ה רַבָּ֖ה אֱמוּנָתֶֽךָ׃</p>
       </div>
-      <div class="card light" data-toast-k="toast_listen" style="margin-top:12px"><span class="thumb"><svg><use href="#i-listen"/></svg></span><div class="body"><h4 style="font-size:15px" data-i18n="listen">Listen aloud</h4></div><span class="go">›</span></div>
-      <div class="card light" data-goto="chat"><span class="thumb"><svg><use href="#i-spark"/></svg></span><div class="body"><h4 style="font-size:15px" data-i18n="explain">Explain in plain words</h4></div><span class="go">›</span></div>
+      <div class="card light" id="listenCard"><span class="thumb" id="listenThumb"><svg><use href="#i-listen"/></svg></span><div class="body"><h4 style="font-size:15px" id="listenLbl">האזנה בקול</h4></div><span class="go" id="listenGo">›</span></div>
+      <div class="card light" data-goto="chat"><span class="thumb"><svg><use href="#i-spark"/></svg></span><div class="body"><h4 style="font-size:15px">ביאור בעברית פשוטה</h4></div><span class="go">›</span></div>
+      <div class="panel" style="margin-top:4px"><div class="eyebrow">רגע של כוונה</div><p class="lead" style="margin:6px 0 0;font-size:14px">עוד לפני נטילת ידיים, פותחים את היום בשתי מילים של תודה: הנשמה חזרה, ויש למי להודות. אפשר לומר לאט, ולהתכוון לכל מילה.</p></div>
+      <div class="readerhead" style="margin-top:12px"><span class="chap" data-goto="siddur">התפילה הבאה · בִּרְכוֹת הַשַּׁחַר ›</span></div>
     </div>
     <nav class="tabbar" data-tabs>
-      <button class="tab" data-tab="chat"><svg><use href="#i-chat"/></svg><span data-i18n="tab_chat">Chat</span></button>
-      <button class="tab active" data-tab="siddur"><svg><use href="#i-siddur"/></svg><span data-i18n="tab_siddur">Siddur</span></button>
-      <button class="tab" data-tab="today"><svg><use href="#i-flame"/></svg><span data-i18n="tab_today">Today</span></button>
-      <button class="tab" data-tab="tehillim"><svg><use href="#i-psalms"/></svg><span data-i18n="tab_psalms">Psalms</span></button>
-      <button class="tab" data-tab="tanakh"><svg><use href="#i-tanakh"/></svg><span data-i18n="tab_tanakh">Tanakh</span></button>
+      <button class="tab" data-tab="chat"><svg><use href="#i-chat"/></svg><span>שיחה</span></button>
+      <button class="tab active" data-tab="siddur"><svg><use href="#i-siddur"/></svg><span>סידור</span></button>
+      <button class="tab" data-tab="today"><svg><use href="#i-flame"/></svg><span>היום</span></button>
+      <button class="tab" data-tab="tehillim"><svg><use href="#i-psalms"/></svg><span>תהילים</span></button>
+      <button class="tab" data-tab="tanakh"><svg><use href="#i-tanakh"/></svg><span>תנ״ך</span></button>
     </nav>
   </section>
 
   <!-- TANAKH -->
   <section class="screen" id="tanakh">
     <div class="sb"><span>8:48</span><span>5G ▮▮▮</span></div>
-    <div class="readerhead"><span class="chap">Genesis 1 · בראשית א ▾</span><svg class="orn"><use href="#s-orn"/></svg></div>
+    <div class="readerhead"><span class="chap">בראשית א ▾</span><svg class="orn"><use href="#s-star"/></svg></div>
     <div class="scroll">
       <div class="paper">
-        <p class="verse"><span class="vn">1</span> בְּרֵאשִׁ֖ית בָּרָ֣א אֱלֹהִ֑ים אֵ֥ת הַשָּׁמַ֖יִם וְאֵ֥ת הָאָֽרֶץ׃</p>
-        <p class="verse"><span class="vn">2</span> וְהָאָ֗רֶץ הָיְתָ֥ה תֹ֙הוּ֙ וָבֹ֔הוּ וְחֹ֖שֶׁךְ עַל־פְּנֵ֣י תְה֑וֹם׃</p>
-        <p class="verse"><span class="vn">3</span> וַיֹּ֥אמֶר אֱלֹהִ֖ים יְהִ֣י א֑וֹר וַֽיְהִי־אֽוֹר׃</p>
-        <p class="verse"><span class="vn">4</span> וַיַּ֧רְא אֱלֹהִ֛ים אֶת־הָא֖וֹר כִּי־ט֑וֹב וַיַּבְדֵּ֣ל אֱלֹהִ֔ים בֵּ֥ין הָא֖וֹר וּבֵ֥ין הַחֹֽשֶׁךְ׃</p>
+        <p class="verse"><span class="vn">א</span> בְּרֵאשִׁ֖ית בָּרָ֣א אֱלֹהִ֑ים אֵ֥ת הַשָּׁמַ֖יִם וְאֵ֥ת הָאָֽרֶץ׃</p>
+        <p class="verse"><span class="vn">ב</span> וְהָאָ֗רֶץ הָיְתָ֥ה תֹ֙הוּ֙ וָבֹ֔הוּ וְחֹ֖שֶׁךְ עַל־פְּנֵ֣י תְה֑וֹם׃</p>
+        <p class="verse"><span class="vn">ג</span> וַיֹּ֥אמֶר אֱלֹהִ֖ים יְהִ֣י א֑וֹר וַֽיְהִי־אֽוֹר׃</p>
+        <p class="verse"><span class="vn">ד</span> וַיַּ֧רְא אֱלֹהִ֛ים אֶת־הָא֖וֹר כִּי־ט֑וֹב וַיַּבְדֵּ֣ל אֱלֹהִ֔ים בֵּ֥ין הָא֖וֹר וּבֵ֥ין הַחֹֽשֶׁךְ׃</p>
       </div>
     </div>
     <nav class="tabbar" data-tabs>
-      <button class="tab" data-tab="chat"><svg><use href="#i-chat"/></svg><span data-i18n="tab_chat">Chat</span></button>
-      <button class="tab" data-tab="siddur"><svg><use href="#i-siddur"/></svg><span data-i18n="tab_siddur">Siddur</span></button>
-      <button class="tab" data-tab="today"><svg><use href="#i-flame"/></svg><span data-i18n="tab_today">Today</span></button>
-      <button class="tab" data-tab="tehillim"><svg><use href="#i-psalms"/></svg><span data-i18n="tab_psalms">Psalms</span></button>
-      <button class="tab active" data-tab="tanakh"><svg><use href="#i-tanakh"/></svg><span data-i18n="tab_tanakh">Tanakh</span></button>
+      <button class="tab" data-tab="chat"><svg><use href="#i-chat"/></svg><span>שיחה</span></button>
+      <button class="tab" data-tab="siddur"><svg><use href="#i-siddur"/></svg><span>סידור</span></button>
+      <button class="tab" data-tab="today"><svg><use href="#i-flame"/></svg><span>היום</span></button>
+      <button class="tab" data-tab="tehillim"><svg><use href="#i-psalms"/></svg><span>תהילים</span></button>
+      <button class="tab active" data-tab="tanakh"><svg><use href="#i-tanakh"/></svg><span>תנ״ך</span></button>
     </nav>
   </section>
 
   <!-- CHAT -->
   <section class="screen" id="chat">
     <div class="sb"><span>8:48</span><span>5G ▮▮▮</span></div>
-    <div style="text-align:center;padding:6px 0 4px"><div class="eyebrow" data-i18n="chat_eyebrow">Your companion</div><b class="serif" style="color:var(--navy-800);font-size:21px" data-i18n="chat_title">Ask Neshama</b></div>
-    <div class="scroll" id="chatScroll">
+    <div style="text-align:center;padding:6px 0 4px"><div class="eyebrow">המלווה שלך</div><b class="serif-he" style="color:var(--navy-800);font-size:22px">שיחה</b></div>
+    <div class="scroll" id="chatScroll" style="padding-bottom:6px">
       <div class="chat" id="chatList">
-        <div class="bub ai" id="chatGreet" data-i18n-html="chat_greeting">Shalom 🌿 I'm here with you. Ask me about any prayer, verse, or psalm — for example, <i>"Which psalm helps with anxiety?"</i></div>
+        <div class="bub ai">שלום 🌿 אני כאן ללוות אותך. אפשר לשאול על כל פסוק, תפילה או פרק תהילים — או פשוט לבחור אחת מההצעות למטה.</div>
       </div>
     </div>
+    <div class="chips" id="chatChips">
+      <button class="chip2" data-q="איזה פרק תהילים עוזר בחרדה?">פרק לחרדה</button>
+      <button class="chip2" data-q="מה המשמעות של מודה אני?">מה זה מודה אני?</button>
+      <button class="chip2" data-q="פרק להודיה">פרק להודיה</button>
+      <button class="chip2" data-q="על מה הפרשה השבוע?">הפרשה השבוע</button>
+    </div>
     <div class="composer">
-      <input id="chatInput" data-i18n-ph="chat_ph" placeholder="Write a message…" />
+      <input id="chatInput" placeholder="כתוב/כתבי הודעה…" />
       <button class="send" id="chatSend"><svg><use href="#i-send"/></svg></button>
     </div>
     <nav class="tabbar" data-tabs>
-      <button class="tab active" data-tab="chat"><svg><use href="#i-chat"/></svg><span data-i18n="tab_chat">Chat</span></button>
-      <button class="tab" data-tab="siddur"><svg><use href="#i-siddur"/></svg><span data-i18n="tab_siddur">Siddur</span></button>
-      <button class="tab" data-tab="today"><svg><use href="#i-flame"/></svg><span data-i18n="tab_today">Today</span></button>
-      <button class="tab" data-tab="tehillim"><svg><use href="#i-psalms"/></svg><span data-i18n="tab_psalms">Psalms</span></button>
-      <button class="tab" data-tab="tanakh"><svg><use href="#i-tanakh"/></svg><span data-i18n="tab_tanakh">Tanakh</span></button>
+      <button class="tab active" data-tab="chat"><svg><use href="#i-chat"/></svg><span>שיחה</span></button>
+      <button class="tab" data-tab="siddur"><svg><use href="#i-siddur"/></svg><span>סידור</span></button>
+      <button class="tab" data-tab="today"><svg><use href="#i-flame"/></svg><span>היום</span></button>
+      <button class="tab" data-tab="tehillim"><svg><use href="#i-psalms"/></svg><span>תהילים</span></button>
+      <button class="tab" data-tab="tanakh"><svg><use href="#i-tanakh"/></svg><span>תנ״ך</span></button>
     </nav>
   </section>
 
   <!-- SETTINGS -->
   <section class="screen" id="settings">
-    <div class="topbar"><div class="back" data-goto="today">‹</div><b data-i18n="settings">Settings</b></div>
+    <div class="topbar"><div class="back" data-goto="today" data-dir="-1">›</div><b>הגדרות</b></div>
     <div class="scroll">
-      <div class="grp" data-i18n="set_reminders">Reminders</div>
-      <div class="setrow"><span data-i18n="set_daily">Daily Psalm · 9:00</span><span class="tg" data-toggle></span></div>
-      <div class="setrow"><span data-i18n="set_zman">Prayer times (zmanim)</span><span class="tg" data-toggle></span></div>
-      <div class="setrow"><span data-i18n="set_shema">Bedtime Shema</span><span class="tg off" data-toggle></span></div>
-      <div class="setrow"><span data-i18n="set_shabbat">Silent on Shabbat & festivals</span><span class="tg" data-toggle></span></div>
-      <div class="grp" data-i18n="set_personal">Personal</div>
-      <div class="setrow" data-act="lang"><span data-i18n="set_lang">Language</span><span class="r" id="setLangVal">English ›</span></div>
-      <div class="setrow"><span data-i18n="set_nusach">Tradition (nusach)</span><span class="r" data-i18n="val_ashk">Ashkenaz ›</span></div>
-      <div class="setrow"><span data-i18n="set_level">Hebrew level</span><span class="r" data-i18n="val_level">Understand most ›</span></div>
-      <div class="setrow"><span data-i18n="set_loc">Location for times</span><span class="r" data-i18n="val_loc">Jerusalem ›</span></div>
-      <div class="grp" data-i18n="set_account">Account</div>
-      <div class="setrow"><span data-i18n="set_sub">My subscription</span><span class="r" data-i18n="val_sub">Trial · 7 days ›</span></div>
-      <div class="setrow"><span data-i18n="set_privacy">Privacy & terms</span><span class="r">›</span></div>
+      <div class="grp">תזכורות</div>
+      <div class="setrow"><span>תהילים יומי · 9:00</span><span class="tg" data-toggle></span></div>
+      <div class="setrow"><span>זמני תפילה (זמנים)</span><span class="tg" data-toggle></span></div>
+      <div class="setrow"><span>קריאת שמע שעל המיטה</span><span class="tg off" data-toggle></span></div>
+      <div class="setrow"><span>שקט בשבת ובחג</span><span class="tg" data-toggle></span></div>
+      <div class="grp">אזור אישי</div>
+      <div class="setrow" data-act="lang"><span>שפה</span><span class="r" id="setLangVal">עברית ›</span></div>
+      <div class="setrow"><span>נוסח</span><span class="r">אשכנז ›</span></div>
+      <div class="setrow"><span>רמת עברית</span><span class="r">מבין את הרוב ›</span></div>
+      <div class="setrow"><span>מיקום לזמנים</span><span class="r">ירושלים ›</span></div>
+      <div class="grp">חשבון</div>
+      <div class="setrow"><span>המנוי שלי</span><span class="r">ניסיון · 7 ימים ›</span></div>
+      <div class="setrow"><span>פרטיות ותנאים</span><span class="r">›</span></div>
     </div>
   </section>
 
   <div class="seltool" id="seltool">
-    <button class="spark" data-toast-k="toast_explain"><svg><use href="#i-spark"/></svg></button>
-    <button data-toast-k="toast_hl"><svg><use href="#i-hl"/></svg></button>
-    <button data-toast-k="toast_copy"><svg><use href="#i-copy"/></svg></button>
-    <button data-toast-k="toast_size"><svg><use href="#i-aa"/></svg></button>
+    <button class="spark" data-toast="המלווה מסביר את הפסוק…"><svg><use href="#i-spark"/></svg></button>
+    <button data-toast="הפסוק סומן בזהב"><svg><use href="#i-hl"/></svg></button>
+    <button data-toast="הועתק"><svg><use href="#i-copy"/></svg></button>
+    <button data-toast="גודל טקסט"><svg><use href="#i-aa"/></svg></button>
   </div>
   <div class="toast" id="toast"></div>
 </div>
@@ -631,266 +620,149 @@ h1{margin:0;font-weight:600;letter-spacing:.01em}
 <script>
 (function(){
   var device=document.getElementById('device');
-  var LANG='en';
+  var LANG='he';
 
-  var I18N={
-    begin:{en:"Begin",he:"בואו נתחיל"},
-    continue:{en:"Continue",he:"המשך"},
-    start:{en:"Start ›",he:"התחלה ›"},
-    splash_cap:{en:"The words that open the morning prayer",he:"המילים שפותחות את תפילת שחרית"},
-    lang_title:{en:"Welcome to Neshama",he:"ברוכים הבאים לנשמה"},
-    lang_body:{en:"Your device language is Hebrew. Would you like to continue in Hebrew, or stay in English? You can change this anytime.",he:"שפת המכשיר שלך היא עברית. אפשר להמשיך בעברית או להישאר באנגלית — תמיד אפשר לשנות בהגדרות."},
-    lang_detected:{en:"Detected on your device",he:"זוהתה במכשיר שלך"},
-    lang_current:{en:"Current",he:"נוכחית"},
-    lang_stay:{en:"Stay in English",he:"המשך באנגלית"},
-    ob1_title:{en:"A quieter kind of day",he:"יום קצת יותר שקט"},
-    ob1_body:{en:"A few still minutes for Psalms, prayer, and the small acts that keep faith close — shaped around your life.",he:"כמה דקות שקטות ביום — תהילים, תפילה ומעשים קטנים שמקרבים את הלב, בהתאמה לחייך."},
-    gender_title:{en:"A little about you",he:"קצת עליך"},
-    gender_body:{en:"So we can show the prayers and customs that are yours.",he:"כדי שנציג את התפילות והמנהגים שמתאימים לך."},
-    woman:{en:"Woman",he:"אישה"},man:{en:"Man",he:"גבר"},
-    goals_title:{en:"What brings you here?",he:"מה מביא אותך לכאן?"},
-    goals_body:{en:"Choose whatever feels true — more than one is welcome.",he:"בחר כל מה שנכון עבורך — אפשר יותר מאחד."},
-    goal_strength:{en:"Strength for hard days",he:"כוח לימים קשים"},
-    goal_grat:{en:"A daily moment of gratitude",he:"רגע יומי של תודה"},
-    goal_heal:{en:"Healing — for me or those I love",he:"רפואה — לי או לאהוביי"},
-    goal_calm:{en:"Calm and peace of mind",he:"שקט ומנוחת הנפש"},
-    goal_conn:{en:"Connection to something greater",he:"חיבור למשהו גדול יותר"},
-    goal_habit:{en:"Building a daily habit",he:"בניית הרגל יומי"},
-    age_title:{en:"How old are you?",he:"בן כמה אתה?"},
-    age_body:{en:"We'll set the psalm that walks with your years.",he:"נתאים את פרק התהילים שהולך עם שנותיך."},
-    age_hint:{en:"Age 20 — your daily psalm is 21",he:"גיל 20 — פרק התהילים היומי שלך הוא כ״א"},
-    name_title:{en:"What's your Hebrew name?",he:"מה השם העברי שלך?"},
-    name_body:{en:"We'll keep a personal passage from Psalm 119, drawn from the letters of your name.",he:"נשמור לך קטע אישי מפרק קי״ט בתהילים, לפי אותיות שמך."},
-    name_ph:{en:"Type your name in Hebrew",he:"הקלד את שמך בעברית"},
-    name_hint:{en:"Your name maps to verses in Psalm 119 — we'll save them for you",he:"אותיות שמך מובילות לפסוקים בפרק קי״ט — נשמור אותם עבורך"},
-    nusach_title:{en:"Which tradition is yours?",he:"מהו נוסח התפילה שלך?"},
-    nusach_body:{en:"We'll load the right siddur — you can change it anytime.",he:"נטען את הסידור המתאים — אפשר לשנות בכל עת."},
-    nusach_ashk:{en:"Ashkenaz",he:"אשכנז"},nusach_ashk_d:{en:"Central & Eastern European rite",he:"מסורת מרכז ומזרח אירופה"},
-    nusach_sef:{en:"Sefard",he:"ספרד"},nusach_sef_d:{en:"Chassidic rite, after the Arizal",he:"נוסח חסידי על פי האר״י"},
-    nusach_edot:{en:"Edot HaMizrach",he:"עדות המזרח"},nusach_edot_d:{en:"Sephardi & Mizrahi traditions",he:"מסורות ספרד והמזרח"},
-    read_title:{en:"How is your Hebrew?",he:"איך העברית שלך?"},
-    read_body:{en:"Biblical Hebrew isn't everyday Hebrew. It's perfectly fine not to catch every word.",he:"עברית מקראית שונה מעברית יום‑יומית. זה לגמרי בסדר לא לתפוס כל מילה."},
-    read_high:{en:"I understand most of what I read",he:"מבין את רוב מה שאני קורא"},
-    read_mid:{en:"I catch some, miss a lot",he:"קולט חלק, מפספס הרבה"},
-    read_low:{en:"I read the words without understanding",he:"קורא את המילים בלי להבין"},
-    build_title:{en:"Preparing your journey",he:"מכינים את המסע שלך"},
-    build_body:{en:"Matching your tradition · finding your name's verses · choosing your daily chapters · setting a gentle pace",he:"מתאימים נוסח · מוצאים את פסוקי שמך · בוחרים פרקים יומיים · קובעים קצב עדין"},
-    plan_ready:{en:"Your plan is ready",he:"התוכנית שלך מוכנה"},
-    value_chart:{en:"Your daily connection",he:"החיבור היומי שלך"},
-    value_with:{en:"With Neshama",he:"עם נשמה"},value_alone:{en:"On your own",he:"לבד"},
-    value_stat:{en:'<b style="color:var(--gold-700)">87%</b> of people say they keep a steadier rhythm of prayer with Neshama.',he:'<b style="color:var(--gold-700)">87%</b> מהמשתמשים מדווחים על קביעוּת גדולה יותר בתפילה עם נשמה.'},
-    value_made:{en:"This was made for you",he:"זה נבנה בשבילך"},
-    value_made_n:{en:"{n}, this was made for you",he:"{n}, זה נבנה בשבילך"},
-    pay_title:{en:"The simple path to a daily connection",he:"הדרך הפשוטה לחיבור יומי"},
-    pay_body:{en:"Psalms, siddur, and prayer — together, every day.",he:"תהילים, סידור ותפילה — יחד, בכל יום."},
-    pay_f1:{en:"Understand any chapter or verse with your companion",he:"הבנת כל פרק ופסוק בעזרת המלווה"},
-    pay_f2:{en:"Home-screen and lock-screen widgets",he:"ווידג׳טים למסך הבית ולמסך הנעילה"},
-    pay_f3:{en:"Highlight verses in any color, without limit",he:"סימון פסוקים בכל צבע, ללא הגבלה"},
-    pay_f4:{en:"Make up missed days and keep your streak",he:"השלמת ימים שהוחמצו ושמירה על הרצף"},
-    pay_free:{en:"7 days free",he:"7 ימים חינם"},pay_free_sub:{en:"then ₪149.90 / year · nothing charged today",he:"אחר כך ₪149.90 לשנה · ללא חיוב היום"},
-    pay_weekly:{en:"Weekly",he:"שבועי"},pay_weekly_sub:{en:"₪17.90 billed weekly",he:"₪17.90 בחיוב שבועי"},
-    pay_save:{en:"Save 84%",he:"חיסכון 84%"},pay_links:{en:"Privacy · Terms · Restore",he:"פרטיות · תנאים · שחזור"},
-    pay_cta:{en:"Start 7 days free",he:"התחל 7 ימי ניסיון"},
-    today:{en:"Today",he:"היום"},
-    date:{en:"Tue, 30 Jun · 15 Tammuz 5786",he:"יום ג׳ · ט״ו בתמוז תשפ״ו"},
-    card_commit_t:{en:"I'll take this on",he:"אני מקבל על עצמי"},card_commit_s:{en:"Begin a new commitment",he:"להתחיל קבלה חדשה"},
-    card_meat_t:{en:"Waiting between meat & milk",he:"המתנה בין בשר לחלב"},card_meat_s:{en:"Today's practice",he:"התרגול של היום"},
-    card_portion_t:{en:"This week's portion",he:"פרשת השבוע"},card_portion_s:{en:"Pinchas",he:"פינחס"},
-    card_modeh_t:{en:"Modeh Ani",he:"מודה אני"},card_modeh_s:{en:"Open the day in gratitude",he:"לפתוח את היום בתודה"},
-    card_tef_t:{en:"Tefillin",he:"תפילין"},card_tef_s:{en:"Guided, step by step",he:"הדרכה, צעד אחר צעד"},
-    card_psalm_t:{en:"Daily Psalm · 21",he:"תהילים יומי · כ״א"},card_psalm_s:{en:"Your personal chapter",he:"הפרק האישי שלך"},
-    tab_chat:{en:"Chat",he:"צ׳אט"},tab_siddur:{en:"Siddur",he:"סידור"},tab_today:{en:"Today",he:"היום"},tab_psalms:{en:"Psalms",he:"תהילים"},tab_tanakh:{en:"Tanakh",he:"תנ״ך"},
-    reader_tip:{en:"Tap a verse to highlight it or ask your companion",he:"הקש על פסוק כדי לסמן או לשאול את המלווה"},
-    siddur_head:{en:"Shacharit · Ashkenaz ▾",he:"שחרית · אשכנז ▾"},
-    modeh_label:{en:"Modeh Ani · on waking",he:"מודה אני · עם היקיצה"},
-    listen:{en:"Listen aloud",he:"האזנה בקול"},explain:{en:"Explain in plain words",he:"ביאור בעברית פשוטה"},
-    chat_eyebrow:{en:"Your companion",he:"המלווה שלך"},chat_title:{en:"Ask Neshama",he:"שאל את נשמה"},
-    chat_greeting:{en:'Shalom 🌿 I\'m here with you. Ask me about any prayer, verse, or psalm — for example, <i>"Which psalm helps with anxiety?"</i>',he:'שלום 🌿 אני כאן איתך. שאל אותי על כל תפילה, פסוק או פרק תהילים — למשל: <i>״איזה פרק עוזר בחרדה?״</i>'},
-    chat_ph:{en:"Write a message…",he:"כתוב הודעה…"},
-    settings:{en:"Settings",he:"הגדרות"},
-    set_reminders:{en:"Reminders",he:"תזכורות"},set_daily:{en:"Daily Psalm · 9:00",he:"תהילים יומי · 9:00"},set_zman:{en:"Prayer times (zmanim)",he:"זמני תפילה"},set_shema:{en:"Bedtime Shema",he:"קריאת שמע שעל המיטה"},set_shabbat:{en:"Silent on Shabbat & festivals",he:"שקט בשבת ובחג"},
-    set_personal:{en:"Personal",he:"אישי"},set_lang:{en:"Language",he:"שפה"},set_nusach:{en:"Tradition (nusach)",he:"נוסח"},set_level:{en:"Hebrew level",he:"רמת עברית"},set_loc:{en:"Location for times",he:"מיקום לזמנים"},
-    set_account:{en:"Account",he:"חשבון"},set_sub:{en:"My subscription",he:"המנוי שלי"},set_privacy:{en:"Privacy & terms",he:"פרטיות ותנאים"},
-    val_ashk:{en:"Ashkenaz ›",he:"אשכנז ›"},val_level:{en:"Understand most ›",he:"מבין את הרוב ›"},val_loc:{en:"Jerusalem ›",he:"ירושלים ›"},val_sub:{en:"Trial · 7 days ›",he:"ניסיון · 7 ימים ›"},
-    lang_val:{en:"English ›",he:"עברית ›"},
-    // tefillin
-    tef_title:{en:"Tefillin",he:"תפילין"},
-    tef_step:{en:"Step {i} of {n}",he:"שלב {i} מתוך {n}"},
-    tef_bracha:{en:"Blessing",he:"ברכה"},
-    tef_custom:{en:"Follow your community's custom.",he:"נהג כמנהג הקהילה שלך."},
-    tef_next:{en:"Next",he:"הבא"},tef_back:{en:"Back",he:"חזרה"},tef_finish:{en:"Done for today",he:"סיימתי להיום"},
-    tef_hand:{en:"Right-handed? Bind on the left arm.",he:"ימני? מניחים על יד שמאל."},
-    // toasts
-    toast_commit:{en:"A new commitment was added to your journey ✓",he:"קבלה חדשה נוספה למסע שלך ✓"},
-    toast_meat:{en:"Opening: the laws of waiting between meat and milk",he:"נפתח: הלכות המתנה בין בשר לחלב"},
-    toast_portion:{en:"Parashat Pinchas — a short summary",he:"פרשת פינחס — סיכום קצר"},
-    toast_listen:{en:"▶ Playing the audio reading",he:"▶ מנגן קריאה קולית"},
-    toast_explain:{en:"Neshama is explaining this verse…",he:"נשמה מסבירה את הפסוק…"},
-    toast_hl:{en:"Verse highlighted in gold",he:"הפסוק סומן בזהב"},
-    toast_copy:{en:"Copied",he:"הועתק"},toast_size:{en:"Text size",he:"גודל טקסט"},
-    toast_tef_done:{en:"Tefillin marked as done for today 🔥",he:"תפילין סומנו כבוצע להיום 🔥"}
-  };
-
-  var TEF=[
-    {ill:"s-tefillin",t:{en:"Before you begin",he:"לפני שמתחילים"},b:{en:"Stand, and have the arm-tefillin ready. We place the arm (yad) first, then the head (rosh).",he:"עמוד, והכן את תפילין של יד. מניחים תחילה של יד ואחר כך של ראש."},hand:true},
-    {ill:"s-tefillin-arm",t:{en:"The arm",he:"של יד"},br:"בָּרוּךְ אַתָּה ה׳ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֺתָיו וְצִוָּנוּ לְהָנִיחַ תְּפִלִּין",b:{en:"Place the box on the upper arm, facing the heart, and tighten the strap.",he:"הנח את הבית על שריר הזרוע, מול הלב, והדק את הרצועה."}},
-    {ill:"s-hand-wrap",t:{en:"Seven windings",he:"שבע כריכות"},b:{en:"Wind the strap seven times around the forearm.",he:"כרוך את הרצועה שבע פעמים סביב האמה."}},
-    {ill:"s-tefillin-head",t:{en:"The head",he:"של ראש"},br:"בָּרוּךְ אַתָּה ה׳ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֺתָיו וְצִוָּנוּ עַל מִצְוַת תְּפִלִּין",note:true,b:{en:"Place the head-tefillin above the hairline, centered between the eyes.",he:"הנח את תפילין של ראש מעל קו השיער, במרכז בין העיניים."}},
-    {ill:"s-hand-wrap",t:{en:"Around the hand",he:"על היד"},b:{en:"Wind the remaining strap around the hand and fingers, forming the letters Shin-Dalet-Yud (שד״י).",he:"כרוך את שארית הרצועה סביב היד והאצבעות, ליצירת האותיות שד״י."}},
-    {ill:"s-star",t:{en:"You're set",he:"מוכן"},b:{en:"You're ready. May it be a day of connection.",he:"מוכן. שיהיה יום של חיבור."}}
-  ];
-  var tefI=0;
-
-  // ---- age picker ----
-  var AGE_MIN=12,AGE_MAX=90,AGE=20,ITEMH=52,ageRAF;
-  function hebNum(n){
-    var o=['','א','ב','ג','ד','ה','ו','ז','ח','ט'],ten=['','י','כ','ל','מ','נ','ס','ע','פ','צ'],hd=['','ק','ר','ש','ת'];
-    var s='';while(n>=400){s+='ת';n-=400;}if(n>=100){s+=hd[Math.floor(n/100)];n%=100;}
-    if(n===15){s+='טו';n=0;}else if(n===16){s+='טז';n=0;}else{s+=ten[Math.floor(n/10)];n%=10;s+=o[n];}
-    return s.length>1?(s.slice(0,-1)+'״'+s.slice(-1)):(s+'׳');
-  }
-  function buildAge(){
-    var s=document.getElementById('ageScroll');if(!s||s.dataset.built)return;
-    var h='<div class="pad"></div>';for(var i=AGE_MIN;i<=AGE_MAX;i++)h+='<div class="num" data-age="'+i+'">'+i+'</div>';h+='<div class="pad"></div>';
-    s.innerHTML=h;s.dataset.built='1';
-    s.addEventListener('scroll',function(){if(ageRAF)cancelAnimationFrame(ageRAF);ageRAF=requestAnimationFrame(function(){var idx=Math.round(s.scrollTop/ITEMH);idx=Math.max(0,Math.min(AGE_MAX-AGE_MIN,idx));if(AGE!==AGE_MIN+idx){AGE=AGE_MIN+idx;markAge();updateAge();}});});
-    s.querySelectorAll('.num').forEach(function(n){n.addEventListener('click',function(){s.scrollTo({top:(+n.getAttribute('data-age')-AGE_MIN)*ITEMH,behavior:'smooth'});});});
-  }
-  function markAge(){var s=document.getElementById('ageScroll');if(!s)return;s.querySelectorAll('.num').forEach(function(n){n.classList.toggle('sel',+n.getAttribute('data-age')===AGE);});}
-  function updateAge(){var p=AGE+1;var el=document.getElementById('ageHint');if(el)el.textContent=(LANG==='he')?('גיל '+AGE+' — פרק התהילים היומי שלך הוא '+hebNum(p)):('Age '+AGE+' — your daily psalm is '+p);var c=document.getElementById('psalmCardT');if(c)c.textContent=(LANG==='he')?('תהילים יומי · '+hebNum(p)):('Daily Psalm · '+p);}
-  function initAgeScroll(){buildAge();var s=document.getElementById('ageScroll');if(!s)return;s.scrollTop=(AGE-AGE_MIN)*ITEMH;markAge();updateAge();}
-
-  function t(k){var e=I18N[k];return e?(e[LANG]!=null?e[LANG]:e.en):k;}
-
-  function applyLang(l){
-    LANG=l;
-    document.documentElement.lang=l;
-    document.documentElement.dir=(l==='he')?'rtl':'ltr';
-    document.body.classList.toggle('he',l==='he');
-    document.querySelectorAll('[data-i18n]').forEach(function(e){var k=e.getAttribute('data-i18n');if(I18N[k])e.textContent=t(k);});
-    document.querySelectorAll('[data-i18n-html]').forEach(function(e){var k=e.getAttribute('data-i18n-html');if(I18N[k])e.innerHTML=t(k);});
-    document.querySelectorAll('[data-i18n-ph]').forEach(function(e){var k=e.getAttribute('data-i18n-ph');if(I18N[k])e.placeholder=t(k);});
-    var lv=document.getElementById('setLangVal'); if(lv)lv.textContent=t('lang_val');
-    document.querySelectorAll('.topbar .back').forEach(function(b){b.textContent=(l==='he')?'›':'‹';});
-    syncName(); renderTef(); markAge(); updateAge();
-  }
-
+  // ---- navigation with directional slide ----
   function show(id,dir){
     dir=dir||0;
-    var cur=document.querySelector('.screen.on');
-    if(cur&&cur.id===id)return;
+    var cur=document.querySelector('.screen.on'); if(cur&&cur.id===id)return;
     var next=document.getElementById(id); if(!next)return;
-    var rtl=document.documentElement.dir==='rtl'; var s=rtl?-1:1; var off=34*dir*s;
+    var rtl=document.documentElement.dir==='rtl', sgn=rtl?-1:1, off=36*dir*sgn;
     next.style.transition='none'; next.style.transform='translateX('+off+'px)'; next.style.opacity='0';
     next.classList.add('on'); void next.offsetWidth;
     next.style.transition=''; next.style.transform=''; next.style.opacity='';
-    if(cur){ cur.style.transform='translateX('+(-off)+'px)'; cur.style.opacity='0'; cur.classList.remove('on');
-      (function(c){setTimeout(function(){c.style.transform='';c.style.opacity='';c.style.transition='';},480);})(cur); }
-    var sc=next.querySelector('.scroll,.tefbody'); if(sc)sc.scrollTop=0;
-    hideSel();
-    if(id==='ob-build')setTimeout(function(){show('ob-value',1);},2000);
-    if(id==='ob-value')syncName();
-    if(id==='ob-age')requestAnimationFrame(initAgeScroll);
+    if(cur){cur.style.transform='translateX('+(-off)+'px)';cur.style.opacity='0';cur.classList.remove('on');
+      (function(c){setTimeout(function(){c.style.transform='';c.style.opacity='';c.style.transition='';},500);})(cur);}
+    var sc=next.querySelector('.scroll,.tefbody,.obsheet'); if(sc)sc.scrollTop=0;
+    hideSel(); stopAudio();
+    if(id==='ob-build')setTimeout(function(){show('paywall',1);},2000);
+    if(id==='ob-age')requestAnimationFrame(initAge);
     if(id==='tefillin'){tefI=0;renderTef();}
   }
-
   device.addEventListener('click',function(e){
     var g=e.target.closest('[data-goto]');
-    if(g&&!g.classList.contains('disabled')){var back=g.classList.contains('back');show(g.getAttribute('data-goto'),back?-1:1);return;}
-    var tk=e.target.closest('[data-toast-k]');
-    if(tk){toast(t(tk.getAttribute('data-toast-k')));}
+    if(g&&!g.classList.contains('disabled')){show(g.getAttribute('data-goto'),+(g.getAttribute('data-dir')||1));return;}
+    var tt=e.target.closest('[data-toast]'); if(tt&&tt.getAttribute('data-toast'))toast(tt.getAttribute('data-toast'));
   });
   document.querySelectorAll('[data-tabs] [data-tab]').forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-tab'),0);});});
-  document.querySelectorAll('.opt,.plan').forEach(function(o){
+  document.querySelectorAll('[data-pick]').forEach(function(o){
     o.addEventListener('click',function(){
-      var mode=o.getAttribute('data-pick');var scope=o.closest('.scroll')||o.parentElement;
+      var mode=o.getAttribute('data-pick'),scope=o.closest('.obsheet')||o.parentElement;
       if(mode==='single'){scope.querySelectorAll('[data-pick]').forEach(function(x){x.classList.remove('sel');});o.classList.add('sel');}
       else o.classList.toggle('sel');
-      var scr=o.closest('.screen');var cta=scr.querySelector('.cta');
+      var scr=o.closest('.screen'),cta=scr.querySelector('.cta');
       if(cta&&scr.querySelector('[data-pick].sel'))cta.classList.remove('disabled');
     });
   });
 
-  // language buttons
-  document.getElementById('btnHe').addEventListener('click',function(){applyLang('he');show('ob1',1);});
-  document.getElementById('btnEn').addEventListener('click',function(){applyLang('en');show('ob1',1);});
-  // settings language toggle
-  document.querySelectorAll('[data-act="lang"]').forEach(function(r){r.addEventListener('click',function(){applyLang(LANG==='he'?'en':'he');toast(LANG==='he'?'השפה שונתה לעברית':'Language set to English');});});
-
-  // reader selection toolbar
+  // ---- reader selection ----
   var sel=document.getElementById('seltool');
   document.querySelectorAll('.verse').forEach(function(v){
-    if(v.closest('#splash'))return;
     v.addEventListener('click',function(e){
       document.querySelectorAll('.verse').forEach(function(x){x.classList.remove('hl');});
-      v.classList.add('hl');
-      var r=v.getBoundingClientRect();
-      sel.style.left=(r.left+r.width/2)+'px';sel.style.top=r.top+'px';sel.classList.add('on');
-      e.stopPropagation();
+      v.classList.add('hl');var r=v.getBoundingClientRect();
+      sel.style.left=(r.left+r.width/2)+'px';sel.style.top=r.top+'px';sel.classList.add('on');e.stopPropagation();
     });
   });
-  function hideSel(){if(sel)sel.classList.remove('on');}
+  function hideSel(){sel.classList.remove('on');}
   document.addEventListener('click',function(e){if(!e.target.closest('.verse')&&!e.target.closest('#seltool'))hideSel();},true);
 
-  // name
+  // ---- name + hint ----
   var nameInput=document.getElementById('nameInput'),nameHint=document.getElementById('nameHint');
-  nameInput&&nameInput.addEventListener('input',function(){nameHint.textContent=nameInput.value.trim()?t('name_hint'):'';});
-  function syncName(){
-    var n=(nameInput&&nameInput.value.trim())||'';
-    var el=document.getElementById('valueName'); if(!el)return;
-    el.textContent=n?t('value_made_n').replace('{n}',n):t('value_made');
-    if(nameHint)nameHint.textContent=(nameInput&&nameInput.value.trim())?t('name_hint'):'';
-  }
+  nameInput.addEventListener('input',function(){nameHint.textContent=nameInput.value.trim()?'אותיות שמך מובילות לפסוקים בפרק קי״ט — נשמור אותם עבורך':'';});
 
-  // tefillin
-  function renderTef(){
-    if(!document.getElementById('tefillin'))return;
-    var st=TEF[tefI];
+  // ---- age picker ----
+  var AGE_MIN=12,AGE_MAX=90,AGE=20,ITEMH=52,ageRAF;
+  function hebNum(n){var o=['','א','ב','ג','ד','ה','ו','ז','ח','ט'],ten=['','י','כ','ל','מ','נ','ס','ע','פ','צ'],hd=['','ק','ר','ש','ת'],s='';
+    while(n>=400){s+='ת';n-=400;}if(n>=100){s+=hd[Math.floor(n/100)];n%=100;}
+    if(n===15){s+='טו';n=0;}else if(n===16){s+='טז';n=0;}else{s+=ten[Math.floor(n/10)];n%=10;s+=o[n];}
+    return s.length>1?(s.slice(0,-1)+'״'+s.slice(-1)):(s+'׳');}
+  function buildAge(){var s=document.getElementById('ageScroll');if(!s||s.dataset.built)return;
+    var h='<div class="pad"></div>';for(var i=AGE_MIN;i<=AGE_MAX;i++)h+='<div class="num" data-age="'+i+'">'+i+'</div>';h+='<div class="pad"></div>';
+    s.innerHTML=h;s.dataset.built='1';
+    s.addEventListener('scroll',function(){if(ageRAF)cancelAnimationFrame(ageRAF);ageRAF=requestAnimationFrame(function(){var idx=Math.max(0,Math.min(AGE_MAX-AGE_MIN,Math.round(s.scrollTop/ITEMH)));if(AGE!==AGE_MIN+idx){AGE=AGE_MIN+idx;markAge();updateAge();}});});
+    s.querySelectorAll('.num').forEach(function(n){n.addEventListener('click',function(){s.scrollTo({top:(+n.getAttribute('data-age')-AGE_MIN)*ITEMH,behavior:'smooth'});});});}
+  function markAge(){var s=document.getElementById('ageScroll');if(!s)return;s.querySelectorAll('.num').forEach(function(n){n.classList.toggle('sel',+n.getAttribute('data-age')===AGE);});}
+  function updateAge(){var p=AGE+1,el=document.getElementById('ageHint');if(el)el.textContent='גיל '+AGE+' — פרק התהילים היומי שלך הוא '+hebNum(p);var c=document.getElementById('psalmCardT');if(c)c.textContent='תהילים יומי · '+hebNum(p);}
+  function initAge(){buildAge();var s=document.getElementById('ageScroll');if(!s)return;s.scrollTop=(AGE-AGE_MIN)*ITEMH;markAge();updateAge();}
+
+  // ---- tefillin ----
+  var TEF=[
+    {ill:"s-tefillin",t:"לפני שמתחילים",b:"עמוד/עמדי, והכן/הכיני את תפילין של יד. מניחים תחילה של יד ואחר כך של ראש.",hand:true},
+    {ill:"s-tefillin-arm",t:"של יד",br:"בָּרוּךְ אַתָּה ה׳ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֺתָיו וְצִוָּנוּ לְהָנִיחַ תְּפִלִּין",b:"הנח/י את הבית על שריר הזרוע, מול הלב, והדק/י את הרצועה."},
+    {ill:"s-hand-wrap",t:"שבע כריכות",b:"כרוך/כרכי את הרצועה שבע פעמים סביב האמה."},
+    {ill:"s-tefillin-head",t:"של ראש",br:"בָּרוּךְ אַתָּה ה׳ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֺתָיו וְצִוָּנוּ עַל מִצְוַת תְּפִלִּין",note:true,b:"הנח/י את תפילין של ראש מעל קו השיער, במרכז בין העיניים."},
+    {ill:"s-hand-wrap",t:"על היד",b:"כרוך/כרכי את שארית הרצועה סביב היד והאצבעות, ליצירת האותיות שד״י."},
+    {ill:"s-star",t:"מוכן/ה",b:"מוכן/ה. שיהיה יום של חיבור."}
+  ];
+  var tefI=0;
+  function renderTef(){var st=TEF[tefI];
     document.getElementById('tefUse').firstElementChild.setAttribute('href','#'+st.ill);
-    document.getElementById('tefStep').textContent=t('tef_step').replace('{i}',tefI+1).replace('{n}',TEF.length);
-    document.getElementById('tefTitle').textContent=st.t[LANG]||st.t.en;
-    document.getElementById('tefBody').textContent=st.b[LANG]||st.b.en;
+    document.getElementById('tefStep').textContent='שלב '+(tefI+1)+' מתוך '+TEF.length;
+    document.getElementById('tefTitle').textContent=st.t;document.getElementById('tefBody').textContent=st.b;
     var box=document.getElementById('tefBrachaBox');
-    if(st.br){box.style.display='';document.getElementById('tefBracha').textContent=st.br;document.getElementById('tefBrachaLabel').textContent=t('tef_bracha');document.getElementById('tefCustom').textContent=st.note?t('tef_custom'):'';}
-    else box.style.display='none';
-    document.getElementById('tefHandNote').textContent=st.hand?t('tef_hand'):'';
+    if(st.br){box.style.display='';document.getElementById('tefBracha').textContent=st.br;document.getElementById('tefCustom').textContent=st.note?'נהג/י כמנהג הקהילה שלך.':'';}else box.style.display='none';
+    document.getElementById('tefHandNote').textContent=st.hand?'ימני? מניחים על יד שמאל.':'';
     var d=document.getElementById('tefDots');d.innerHTML='';for(var i=0;i<TEF.length;i++){var s=document.createElement('i');if(i===tefI)s.className='on';d.appendChild(s);}
-    document.getElementById('tefNext').textContent=(tefI===TEF.length-1)?t('tef_finish'):t('tef_next');
-    document.getElementById('tefBack').textContent=t('tef_back');
-    document.getElementById('tefBack').style.visibility=(tefI===0)?'hidden':'visible';
-  }
-  document.getElementById('tefNext').addEventListener('click',function(){
-    if(tefI===TEF.length-1){var n=document.getElementById('streakNum');if(n)n.textContent='2';show('today',-1);toast(t('toast_tef_done'));}
-    else{tefI++;renderTef();}
-  });
+    document.getElementById('tefNext').textContent=(tefI===TEF.length-1)?'סיימתי להיום':'הבא';
+    document.getElementById('tefBack').style.visibility=tefI===0?'hidden':'visible';}
+  document.getElementById('tefNext').addEventListener('click',function(){if(tefI===TEF.length-1){document.getElementById('streakNum').textContent='2';show('today',-1);toast('תפילין סומנו כבוצע להיום 🔥');}else{tefI++;renderTef();}});
   document.getElementById('tefBack').addEventListener('click',function(){if(tefI>0){tefI--;renderTef();}});
 
-  // chat
-  var input=document.getElementById('chatInput'),list=document.getElementById('chatList'),scr=document.getElementById('chatScroll');
-  function add(who,html){var dv=document.createElement('div');dv.className='bub '+who;dv.innerHTML=html;list.appendChild(dv);scr.scrollTop=scr.scrollHeight;}
+  // ---- audio (real TTS) ----
+  var speaking=false;
+  function stripNikud(s){return s.replace(/[֑-ׇ]/g,'').replace(/׃/g,'.');}
+  function stopAudio(){try{window.speechSynthesis&&window.speechSynthesis.cancel();}catch(e){}speaking=false;setListen(false);}
+  function setListen(on){var t=document.getElementById('listenThumb'),l=document.getElementById('listenLbl');if(!t)return;
+    if(on){t.innerHTML='<span class="eq" style="color:var(--navy-700)"><i></i><i></i><i></i></span>';l.textContent='מנגן… (הקש/י לעצירה)';}
+    else{t.innerHTML='<svg><use href="#i-listen"/></svg>';l.textContent='האזנה בקול';}}
+  var listenCard=document.getElementById('listenCard');
+  if(listenCard)listenCard.addEventListener('click',function(){
+    if(!('speechSynthesis' in window)){toast('הקראה קולית אינה נתמכת בדפדפן זה');return;}
+    if(speaking){stopAudio();return;}
+    var txt=stripNikud(document.getElementById('modehText').textContent);
+    var u=new SpeechSynthesisUtterance(txt);u.lang='he-IL';u.rate=.9;
+    var vs=window.speechSynthesis.getVoices();var hv=vs.filter(function(v){return /he|iw/i.test(v.lang);})[0];if(hv)u.voice=hv;
+    u.onend=function(){speaking=false;setListen(false);};u.onerror=function(){speaking=false;setListen(false);};
+    speaking=true;setListen(true);window.speechSynthesis.speak(u);
+  });
+  if('speechSynthesis' in window){window.speechSynthesis.onvoiceschanged=function(){};}
+
+  // ---- chat (coherent, canned) ----
+  var input=document.getElementById('chatInput'),list=document.getElementById('chatList'),cscr=document.getElementById('chatScroll');
+  function add(who,html){var d=document.createElement('div');d.className='bub '+who;d.innerHTML=html;list.appendChild(d);cscr.scrollTop=cscr.scrollHeight;}
   function reply(q){
-    q=q.toLowerCase();var he=LANG==='he';
-    if(/anx|afraid|fear|worry|stress|scared|חרד|פחד|דאג/.test(q))return he?'כשהימים כבדים, <a class="qv">תהילים כ״ג</a> — ״ה׳ רֹעִי לֹא אֶחְסָר״ — מרגיע לבבות מאז ומעולם. לפחד עמוק יותר רבים פונים אל <a class="qv">תהילים צ״א</a>. לפתוח אחד יחד?':'When the days feel heavy, <a class="qv">תהילים כ״ג</a> — <i>"The Lord is my shepherd, I shall not want"</i> — has quieted hearts for generations. For deeper fear, many turn to <a class="qv">תהילים צ״א</a>. Shall we open one together?';
-    if(/thank|grateful|gratitude|happy|joy|תוד|הוד|שמח/.test(q))return he?'יפה. <a>מודה אני</a> בבוקר ו<a class="qv">תהילים ק״ז</a> הם פתח עדין לתודה. גם שורה אחת, נאמרת לאט, משנה את היום.':'Beautiful. <a>Modeh Ani</a> in the morning and <a class="qv">תהילים ק״ז</a> are gentle doorways into gratitude. Even a single line, said slowly, changes the day.';
-    if(/pray|shacharit|mincha|maariv|siddur|amidah|תפיל|שחרית|מנחה|ערבית/.test(q))return he?'הסידור שלך בנוסח אשכנז מוכן. לפתוח <a>שחרית</a>? אפשר להוסיף ביאור בעברית פשוטה לצד כל שורה.':'Your siddur is set to Ashkenaz. Shall I open <a>Shacharit</a>? I can add a plain-language explanation beside each line.';
-    return he?'שאלה יפה 🌿 אפשר לפתוח יחד פרק מתאים ב<a>תהילים</a>, או שאסביר כל פסוק בעברית פשוטה. במה תרצה להעמיק?':'A good question 🌿 We can open a fitting chapter in <a>Psalms</a> together, or I can explain any verse in plain words. Where would you like to begin?';
+    q=(q||'').toLowerCase();
+    if(/חרד|פחד|דאג|לחץ|מתח/.test(q))return 'כשהלב כבד, <a class="qv">תהילים כ״ג</a> — ״ה׳ רֹעִי לֹא אֶחְסָר״ — מרגיע מאז ומעולם. לפחד עמוק יותר רבים אומרים <a class="qv">תהילים צ״א</a>. לפתוח אחד יחד?';
+    if(/מודה אני/.test(q))return '״מודה אני״ היא המילה הראשונה של היום: הודיה על שהנשמה חזרה אליך. אין בה שמות קדושים, ולכן אומרים אותה מיד עם היקיצה, עוד לפני נטילת ידיים. רוצה לפתוח אותה ב<a>סידור</a>?';
+    if(/תוד|הוד|שמח/.test(q))return 'להודיה יש בית חם: <a class="qv">תהילים ק׳</a> (מזמור לתודה) ו<a class="qv">תהילים ק״ז</a>. אפילו שורה אחת, נאמרת לאט, פותחת את הלב.';
+    if(/פרש|פינחס/.test(q))return 'פרשת השבוע היא <b>פינחס</b> — על הברית של שלום, על בנות צלפחד שביקשו נחלה, ועל סדר הקרבנות. רוצה סיכום קצר או פתיחה ב<a>תנ״ך</a>?';
+    if(/תפיל|שחרית|מנחה|ערבית|עמידה/.test(q))return 'הסידור שלך בנוסח אשכנז מוכן. לפתוח <a>שחרית</a>? אפשר להוסיף ביאור בעברית פשוטה לצד כל שורה, וגם הקראה בקול.';
+    if(/תפילין/.test(q))return 'יש לנו <a>מדריך תפילין</a> צעד‑אחר‑צעד — הנחת יד, שבע כריכות, של ראש והברכות. לפתוח עכשיו?';
+    return 'שאלה יפה 🌿 אני יכול/ה להסביר כל פסוק בעברית פשוטה, להמליץ על פרק תהילים לפי מצב הרוח, או לפתוח תפילה. אפשר גם לבחור אחת מההצעות שמעל תיבת הכתיבה.';
   }
-  function send(){var v=(input.value||'').trim();if(!v)return;add('me',v);input.value='';
-    var ty=document.createElement('div');ty.className='typing';ty.innerHTML='<i></i><i></i><i></i>';list.appendChild(ty);scr.scrollTop=scr.scrollHeight;
-    setTimeout(function(){ty.remove();add('ai',reply(v));},1100);}
-  document.getElementById('chatSend').addEventListener('click',send);
-  input.addEventListener('keydown',function(e){if(e.key==='Enter')send();});
+  function sendQ(v){v=(v||'').trim();if(!v)return;add('me',v);input.value='';
+    var ty=document.createElement('div');ty.className='typing';ty.innerHTML='<i></i><i></i><i></i>';list.appendChild(ty);cscr.scrollTop=cscr.scrollHeight;
+    setTimeout(function(){ty.remove();add('ai',reply(v));},900);}
+  document.getElementById('chatSend').addEventListener('click',function(){sendQ(input.value);});
+  input.addEventListener('keydown',function(e){if(e.key==='Enter')sendQ(input.value);});
+  document.querySelectorAll('#chatChips .chip2').forEach(function(c){c.addEventListener('click',function(){sendQ(c.getAttribute('data-q'));});});
 
-  // toggles
+  // ---- settings ----
   document.querySelectorAll('[data-toggle]').forEach(function(x){x.addEventListener('click',function(){x.classList.toggle('off');});});
+  document.querySelectorAll('[data-act="lang"]').forEach(function(r){r.addEventListener('click',function(){
+    LANG=(LANG==='he')?'en':'he';
+    document.getElementById('setLangVal').textContent=(LANG==='he')?'עברית ›':'English ›';
+    toast(LANG==='he'?'השפה הוגדרה לעברית':'Language set to English (demo stays in Hebrew)');
+  });});
 
-  // toast
+  // ---- toast ----
   var toastEl=document.getElementById('toast'),tt;
   function toast(m){toastEl.textContent=m;toastEl.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){toastEl.classList.remove('on');},1700);}
 
-  renderTef(); buildAge(); updateAge();
-  // deep-link a screen via #hash (used by the gallery; also shareable)
-  function fromHash(){var h=(location.hash||'').slice(1);if(h){var m=h.split('/');if(m[1]==='he')applyLang('he');if(document.getElementById(m[0]))show(m[0],0);}}
+  buildAge();updateAge();renderTef();
+  // deep-link
+  function fromHash(){var h=(location.hash||'').slice(1);if(h&&document.getElementById(h.split('/')[0]))show(h.split('/')[0],0);}
   window.addEventListener('hashchange',fromHash);fromHash();
 })();
 </script>
