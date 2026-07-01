@@ -9,27 +9,29 @@ Tanakh · Chat). Prayer cards and readers are tappable, verses open a selection 
 (explain / highlight / copy / font-size), the chat responds to a few prompts, and Settings is
 reachable from the gear.
 
-## Open it on your phone (QR)
+## Open it on your phone
 
-Scan **`qr.png`** once GitHub Pages is live. Target URL:
+### Option A — instant, no setup (recommended for a quick look)
+Scan **`qr.png`**, or open this URL (served rendered from the public repo via githack):
 
 ```
-https://dudimaman.github.io/jewapp/prototype/
+https://raw.githack.com/DudiMaman/jewapp/claude/jewish-prayer-app-spec-2qmx9y/prototype/index.html
 ```
 
-### Enable GitHub Pages (one-time, ~1 min)
+Works because the repo is public; no configuration needed. (githack is a third-party
+convenience CDN — fine for demos.)
+
+### Option B — permanent first-party URL via GitHub Pages (~1 min, one-time)
 1. GitHub → repo **DudiMaman/jewapp** → **Settings → Pages**.
-2. **Build and deployment → Source: “Deploy from a branch.”**
-3. Choose branch **`claude/jewish-prayer-app-spec-2qmx9y`** (or `main` after you merge) and
-   folder **`/ (root)`**, then **Save**.
-4. Wait ~1 minute, then open `https://dudimaman.github.io/jewapp/prototype/` or scan the QR.
+2. **Source: “Deploy from a branch.”**
+3. Branch **`claude/jewish-prayer-app-spec-2qmx9y`** (or `main` after merge), folder
+   **`/ (root)`** → **Save**.
+4. After ~1 minute: `https://dudimaman.github.io/jewapp/prototype/`.
 
-> The repo must be **public** for the Pages URL to be reachable without login (private-repo
-> Pages requires a paid GitHub plan). If you regenerate the URL, recreate the QR for the new
-> address.
+> If you change the hosting URL, regenerate the QR for the new address.
 
 ## Run locally
-Just open `index.html` in any browser, or serve the folder:
+Open `index.html` in any browser, or:
 ```
 python3 -m http.server -d prototype 8080   # then visit http://localhost:8080/
 ```
