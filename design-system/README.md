@@ -1,8 +1,13 @@
 # נשמה · Design System
 
 A new visual language for the Neshama app: **Jewish blue & white with delicate, light gold
-accents**, replacing the legacy cream/peach + terracotta-orange theme. The calm, premium,
-watercolor feel and rounded-card layout are retained.
+accents**, replacing the legacy cream/peach + terracotta-orange theme.
+
+> **Latest direction (R3):** the most refined, up-to-date expression of the design —
+> crafted per-screen illustrations, layered depth, motion, and metallic-gold detail — lives
+> in the **interactive prototype** at [`../prototype/index.html`](../prototype/index.html)
+> (English-default UI, Hebrew sacred text). The showcase files below capture the component
+> system and palette and are being brought in line with that direction.
 
 ## Files
 - **`index.html`** — a self-contained, RTL/Hebrew visual showcase: color & type foundations

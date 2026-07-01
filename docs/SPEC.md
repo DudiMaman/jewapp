@@ -78,8 +78,10 @@ daily connection. Tehillim, Siddur, and prayer, all in one place, every day.
 ## 3. Platforms & Technical Assumptions
 
 - **Native mobile**, iOS and Android. (Recording is iOS; parity expected on Android.)
-- **Hebrew-first, full RTL** layout. English/other languages are out of scope for v1 UI,
-  though the content layer should not hard-code Hebrew-only assumptions.
+- **English is the default UI language**, with full **Hebrew (RTL)** support and a first-run
+  language-detection prompt (see §8.1). Sacred content (Tehillim, Siddur, Tanakh, prayers) is
+  always shown in **Hebrew** regardless of UI language. The UI is built localization-ready
+  (no hard-coded strings; bidi-aware layout).
 - **Offline-capable reading**: Tehillim, Siddur, and Tanakh text are bundled/cached so the
   user can read without connectivity. AI chat requires network.
 - **Push notifications** with local scheduling (prayer-time and daily reminders) plus the
@@ -126,6 +128,18 @@ chevron is available.
 ### 5.1 Splash
 - App icon (gold flame/leaf with a sparkle on a white rounded tile), wordmark **נשמה**.
 - Verse: *"ה' שְׂפָתַי תִּפְתָּח וּפִי יַגִּיד תְּהִלָּתֶךָ"* with caption *"פתיחת העמידה"*.
+
+### 5.1.1 Language detection (first run)
+Immediately after the splash, before onboarding, a **language screen** appears. The app
+defaults to **English**; on first launch it reads the device locale and, if it differs from
+English, offers to switch. Copy (English default, device set to Hebrew):
+- **Title:** "Welcome to Neshama"
+- **Body:** "Your device language is Hebrew. Would you like to continue in Hebrew, or stay in
+  English? You can change this anytime in Settings."
+- **Buttons:** primary "המשך בעברית · Continue in Hebrew" · secondary "Stay in English".
+
+The chosen language is stored and applied app-wide; it is also editable in Settings
+(§6.12). If the device locale is English (or unsupported), this screen is skipped.
 
 ### 5.2 Value carousel (4 slides)
 Watercolor illustration + headline + CTA. Slide order:
@@ -356,6 +370,13 @@ app sends **no** notifications ("בשבת אנחנו שותקים").
 
 ## 8. Personalization & Content Model
 
+### 8.1 Language & localization
+- **Default UI language: English.** Hebrew is fully supported (RTL). First-run detection
+  offers a switch to the device language (§5.1.1); language is changeable in Settings.
+- **Sacred text stays Hebrew** (with nikud) in all languages; translation/transliteration/
+  explanation layers adapt to the UI language and the user's Hebrew reading level.
+- Layout is **bidi-aware** (mirrors for RTL). All strings are externalized for translation.
+
 | Input | Source | Effect |
 |---|---|---|
 | **Nusach** | onboarding | Which Siddur text/version is loaded. |
@@ -561,9 +582,15 @@ The blue-white-gold design system and screen mockups live in `design-system/`:
 - **R2** — added full screen-mockup gallery (`screens.html`); expanded Settings, Account/
   Auth/Sync, Tefillin guide, Commitments, Halacha cards, age→psalm birthday handling,
   zmanim/location, and AI guardrails; trimmed open questions to the genuinely-undecided.
+- **R3** — interactive prototype (`prototype/index.html`) redesigned to a more refined,
+  spiritual visual language (crafted illustrations per screen, depth, motion, gold detail);
+  **default UI language set to English** with first-run language detection; **all UI copy
+  rewritten as original wording** (the reference app's strings are no longer used); onboarding
+  name field starts empty.
 
 ---
 
 *Source: this specification was reconstructed from a 32-screen product walkthrough and the
-push-notification screen of the existing build. UI strings are quoted in Hebrew as they
-appear in-product.*
+push-notification screen of the existing build. The reference app's exact wording was used
+only to understand features — **all UI copy in this spec and the prototype is original**.
+Sacred Hebrew text (verses, prayers) is quoted as-is.*
