@@ -242,6 +242,20 @@ h1{margin:0;font-weight:700;letter-spacing:.005em}
 .sheet-orn{display:block;width:34px;height:20px;margin:-2px auto 6px;color:var(--gold-500);opacity:.9}
 .brand-in{animation:brandIn 1.2s cubic-bezier(.2,.7,.2,1)}
 @keyframes brandIn{0%{opacity:0;transform:translateY(16px) scale(.94)}100%{opacity:1;transform:none}}
+/* siddur time band + holidays + shabbat */
+.timeband{position:relative;height:120px;overflow:hidden;display:grid;place-items:center;flex:none;box-shadow:inset 0 -20px 30px -20px rgba(11,31,51,.4)}
+.timeband .tsvg{width:104px;height:64px;position:relative;z-index:1}
+.timeband .thalo{position:absolute;inset:0;background:var(--glow);opacity:.55}
+.tchips{display:flex;gap:8px;justify-content:center;padding:12px 0 2px;flex:none}
+.tchip{background:#fff;border:1px solid var(--line);color:var(--ink-soft);border-radius:99px;padding:8px 18px;font-family:inherit;font-weight:600;font-size:13px;cursor:pointer}
+.tchip.on{border-color:var(--gold-400);color:var(--gold-700);background:linear-gradient(180deg,#fffdf7,#fff);box-shadow:var(--sh-sm)}
+.holidays{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:none}.holidays::-webkit-scrollbar{display:none}
+.hol{flex:none;width:90px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 6px;box-shadow:var(--sh-sm);cursor:pointer;transition:transform .16s}
+.hol:active{transform:scale(.97)}
+.hol .hi{height:36px;margin-bottom:6px;display:grid;place-items:center;color:var(--navy-700)}
+.hol .hi svg{width:40px;height:34px}
+.hol b{font-size:12px;color:var(--navy-800);font-weight:600}
+.card.shabbat{background:linear-gradient(135deg,#e9f0fa,#f7efdd)}.card.shabbat .thumb{background:#fff;box-shadow:var(--sh-sm)}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -349,6 +363,19 @@ h1{margin:0;font-weight:700;letter-spacing:.005em}
   <symbol id="s-menorah" viewBox="0 0 48 46"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M24 8v28"/><path d="M24 36h-8m8 0h8M18 40h12"/><path d="M24 12c-3 0-4.5-1.5-4.5-4.5M24 12c3 0 4.5-1.5 4.5-4.5"/><path d="M24 15c-6 0-9-3-9-8M24 15c6 0 9-3 9-8"/><path d="M24 18c-9 0-13-4-13-10M24 18c9 0 13-4 13-10"/></g><g fill="currentColor"><circle cx="11" cy="7" r="1.3"/><circle cx="15" cy="7" r="1.3"/><circle cx="19.5" cy="7" r="1.3"/><circle cx="24" cy="6" r="1.3"/><circle cx="28.5" cy="7" r="1.3"/><circle cx="33" cy="7" r="1.3"/><circle cx="37" cy="7" r="1.3"/></g></symbol>
   <symbol id="s-luchot" viewBox="0 0 40 40"><path d="M6 14a6 6 0 0 1 12 0v20a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M22 14a6 6 0 0 1 12 0v20a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8"/><g stroke="currentColor" stroke-width="1" opacity=".55"><path d="M9 21h6M9 25h6M9 29h5M25 21h6M25 25h6M25 29h5"/></g></symbol>
   <symbol id="s-rimon" viewBox="0 0 32 36"><path d="M16 34c-7 0-11-6-11-13S9 8 16 8s11 6 11 13-4 13-11 13z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 8V4M12 4c1 2 2 3 4 3s3-1 4-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <!-- time-of-day + shabbat + festival signs -->
+  <symbol id="s-sunrise" viewBox="0 0 48 32"><path d="M14 26a10 10 0 0 1 20 0z" fill="url(#gFlame)"/><line x1="3" y1="26" x2="45" y2="26" stroke="url(#gGold)" stroke-width="2" stroke-linecap="round"/><g stroke="url(#gGold)" stroke-width="1.8" stroke-linecap="round"><path d="M24 12v-5M11 20l-3-3M37 20l3-3M6 26H2M46 26h-4"/></g></symbol>
+  <symbol id="s-sunhigh" viewBox="0 0 48 40"><circle cx="24" cy="22" r="9" fill="url(#gFlame)"/><g stroke="url(#gGold)" stroke-width="1.8" stroke-linecap="round"><path d="M24 6v-4M24 42v-2M6 22H2M46 22h-4M11 9L8 6M37 9l3-3M11 35l-3 3M37 35l3 3"/></g></symbol>
+  <symbol id="s-moonstars" viewBox="0 0 48 40"><path d="M30 8a13 13 0 1 0 8 23A13 13 0 0 1 30 8z" fill="none" stroke="url(#gGold)" stroke-width="2"/><path d="M12 10l1.4 3.2L16.6 14l-3.2 1.4L12 18l-1.4-2.6L7.4 14l3.2-.8z" fill="url(#gGold)"/><circle cx="16" cy="26" r="1.4" fill="url(#gGold)"/></symbol>
+  <symbol id="s-challah" viewBox="0 0 48 32"><path d="M6 22c0-8 8-12 18-12s18 4 18 12a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4z" fill="#E7C271" stroke="#B4863A" stroke-width="1.6"/><path d="M12 16c4 3 8 3 12 0M18 12c4 3 8 3 12 0M14 20c4 3 8 3 12 0" stroke="#B4863A" stroke-width="1.2" fill="none" opacity=".7"/></symbol>
+  <symbol id="s-kiddush" viewBox="0 0 32 40"><path d="M8 6h16l-2 12a6 6 0 0 1-12 0z" fill="#7c1f2b" stroke="url(#gGold)" stroke-width="1.6"/><path d="M16 24v8M10 34h12" stroke="url(#gGold)" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="s-candlepair" viewBox="0 0 40 40"><path d="M13 7c2 3 2 5 0 7-2-2-2-4 0-7z" fill="url(#gFlame)"/><rect x="10" y="15" width="6" height="18" rx="2" fill="#F4ECDA" stroke="url(#gGold)" stroke-width="1.2"/><path d="M27 7c2 3 2 5 0 7-2-2-2-4 0-7z" fill="url(#gFlame)"/><rect x="24" y="15" width="6" height="18" rx="2" fill="#F4ECDA" stroke="url(#gGold)" stroke-width="1.2"/></symbol>
+  <symbol id="s-shofar" viewBox="0 0 44 26"><path d="M4 16c7 4 15 4 23-2 4-3 8-4 13-3-3 0-4 3-7 4 3 1 5 0 7-2-1 6-8 11-16 11-10 0-18-5-20-8z" fill="none" stroke="url(#gGold)" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="s-apple" viewBox="0 0 32 36"><path d="M16 12c-3-3-9-3-11 2s1 14 6 16c2 .8 3-.6 5-.6s3 1.4 5 .6c5-2 8-11 6-16s-8-5-11-2z" fill="#c0392b" stroke="#8a2820" stroke-width="1.2"/><path d="M16 12V7c0-2 2-3 4-3" fill="none" stroke="#6b4a2b" stroke-width="1.6" stroke-linecap="round"/><path d="M20 3l6 4-4 4" fill="none" stroke="url(#gGold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="s-lulav" viewBox="0 0 32 40"><path d="M12 38V8M12 12c-2-3-5-4-8-4M12 16c-2-3-5-4-8-4M12 12c2-3 5-4 8-4M12 16c2-3 5-4 8-4M12 8c0-4 2-6 4-6" fill="none" stroke="#4e7d3a" stroke-width="1.6" stroke-linecap="round"/><circle cx="24" cy="32" r="6" fill="#E4D24B" stroke="#B4863A" stroke-width="1.2"/><path d="M24 26v-2" stroke="#4e7d3a" stroke-width="1.4" stroke-linecap="round"/></symbol>
+  <symbol id="s-chanukiah" viewBox="0 0 48 34"><g stroke="url(#gGold)" stroke-width="1.6" fill="none" stroke-linecap="round"><path d="M5 13v13M11 13v13M17 13v13M23 13v13M25 13v13M31 13v13M37 13v13M43 13v13M24 8v18"/><path d="M4 26h40M20 30h8"/></g><g fill="url(#gFlame)"><ellipse cx="5" cy="10" rx="1.4" ry="3"/><ellipse cx="11" cy="10" rx="1.4" ry="3"/><ellipse cx="17" cy="10" rx="1.4" ry="3"/><ellipse cx="23" cy="10" rx="1.4" ry="3"/><ellipse cx="25" cy="10" rx="1.4" ry="3"/><ellipse cx="31" cy="10" rx="1.4" ry="3"/><ellipse cx="37" cy="10" rx="1.4" ry="3"/><ellipse cx="43" cy="10" rx="1.4" ry="3"/><ellipse cx="24" cy="5" rx="1.7" ry="3.4"/></g></symbol>
+  <symbol id="s-hamantash" viewBox="0 0 32 30"><path d="M16 4l12 22H4z" fill="#E7C271" stroke="#B4863A" stroke-width="1.6" stroke-linejoin="round"/><circle cx="16" cy="17" r="4" fill="#5a3b22"/></symbol>
+  <symbol id="s-matzah" viewBox="0 0 32 32"><rect x="5" y="5" width="22" height="22" rx="3" fill="#F1E2B8" stroke="#B4863A" stroke-width="1.4"/><g fill="#B4863A"><circle cx="11" cy="11" r="1"/><circle cx="16" cy="11" r="1"/><circle cx="21" cy="11" r="1"/><circle cx="11" cy="16" r="1"/><circle cx="16" cy="16" r="1"/><circle cx="21" cy="16" r="1"/><circle cx="11" cy="21" r="1"/><circle cx="16" cy="21" r="1"/><circle cx="21" cy="21" r="1"/></g></symbol>
 </defs></svg>
 
 <svg id="grain" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
@@ -510,6 +537,16 @@ h1{margin:0;font-weight:700;letter-spacing:.005em}
         <div class="card tint" data-goto="siddur"><span class="thumb"><svg><use href="#s-sun"/></svg></span><div class="body"><h4>מודה אני</h4><small>לפתוח את היום בתודה</small></div><span class="go">›</span></div>
         <div class="card hero" data-goto="tefillin"><span class="thumb"><svg><use href="#s-tefillin"/></svg></span><div class="body"><h4>תפילין</h4><small>הדרכה, צעד אחר צעד</small></div><span class="go">›</span><svg class="deco"><use href="#s-tallit"/></svg></div>
         <div class="card tint" data-goto="tehillim"><span class="thumb"><svg><use href="#s-book"/></svg></span><div class="body"><h4 id="psalmCardT">תהילים יומי · כ״א</h4><small>הפרק האישי שלך</small></div><span class="go">›</span></div>
+        <div class="card shabbat" data-toast="לכבוד שבת: הדלקת נרות, קידוש על היין, ושתי חלות 🕯️"><span class="thumb"><svg><use href="#s-kiddush"/></svg></span><div class="body"><h4>לקראת שבת</h4><small>נרות · קידוש · חלות</small></div><span class="go">›</span><svg class="deco"><use href="#s-challah"/></svg></div>
+      </div>
+      <div class="grp" style="margin-top:16px">מועדי השנה · כל חג וסימניו</div>
+      <div class="holidays">
+        <div class="hol" data-toast="ראש השנה: שופר, תפוח בדבש, וסימני הברכה"><div class="hi" style="color:var(--gold-700)"><svg><use href="#s-shofar"/></svg></div><b>ראש השנה</b></div>
+        <div class="hol" data-toast="סוכות: לולב ואתרוג, ארבעת המינים, וישיבה בסוכה"><div class="hi"><svg><use href="#s-lulav"/></svg></div><b>סוכות</b></div>
+        <div class="hol" data-toast="חנוכה: הדלקת נרות החנוכייה, סביבון, וסופגניות"><div class="hi"><svg><use href="#s-chanukiah"/></svg></div><b>חנוכה</b></div>
+        <div class="hol" data-toast="פורים: מקרא מגילה, משלוח מנות, ואוזני המן"><div class="hi" style="color:var(--gold-700)"><svg><use href="#s-hamantash"/></svg></div><b>פורים</b></div>
+        <div class="hol" data-toast="פסח: מצה, ארבע כוסות, ומרור"><div class="hi"><svg><use href="#s-matzah"/></svg></div><b>פסח</b></div>
+        <div class="hol" data-toast="שבועות: מתן תורה ולוחות הברית, ומאכלי חלב"><div class="hi"><svg><use href="#s-luchot"/></svg></div><b>שבועות</b></div>
       </div>
     </div>
     <nav class="tabbar" data-tabs>
@@ -563,9 +600,14 @@ h1{margin:0;font-weight:700;letter-spacing:.005em}
   <!-- SIDDUR -->
   <section class="screen" id="siddur">
     <div class="sb"><span>8:48</span><span>5G ▮▮▮</span></div>
-    <div class="readerhead"><span class="chap">שחרית · אשכנז ▾</span><svg class="orn"><use href="#s-star"/></svg></div>
+    <div class="timeband" id="tband" style="background:linear-gradient(180deg,#12314f,#3a5f86 60%,#c9a86a)"><span class="thalo"></span><svg class="tsvg" id="tbScene"><use href="#s-sunrise"/></svg></div>
+    <div class="tchips">
+      <button class="tchip on" data-time="shacharit">שחרית</button>
+      <button class="tchip" data-time="mincha">מנחה</button>
+      <button class="tchip" data-time="arvit">ערבית</button>
+    </div>
     <div class="scroll">
-      <div class="eyebrow" style="text-align:center;margin-top:4px">מודה אני · עם היקיצה</div>
+      <div class="eyebrow" id="prayerLabel" style="text-align:center;margin-top:8px">מודה אני · עם היקיצה</div>
       <div class="paper" style="margin-top:10px">
         <p class="verse" id="modehText" style="font-size:20px">מוֹדֶ֣ה אֲנִ֣י לְפָנֶ֗יךָ מֶ֤לֶךְ חַי֙ וְקַיָּ֔ם שֶׁהֶחֱזַ֥רְתָּ בִּ֛י נִשְׁמָתִ֖י בְּחֶמְלָ֑ה רַבָּ֖ה אֱמוּנָתֶֽךָ׃</p>
       </div>
@@ -753,37 +795,69 @@ h1{margin:0;font-weight:700;letter-spacing:.005em}
   document.getElementById('tefNext').addEventListener('click',function(){if(tefI===TEF.length-1){document.getElementById('streakNum').textContent='2';show('today',-1);toast('תפילין סומנו כבוצע להיום 🔥');}else{tefI++;renderTef();}});
   document.getElementById('tefBack').addEventListener('click',function(){if(tefI>0){tefI--;renderTef();}});
 
-  // ---- audio (real TTS) ----
-  var speaking=false;
+  // ---- audio: bundled recording (best quality) + graceful TTS fallback ----
+  var CURT='shacharit',audioEl=null,playing=false;
   function stripNikud(s){return s.replace(/[֑-ׇ]/g,'').replace(/׃/g,'.');}
-  function stopAudio(){try{window.speechSynthesis&&window.speechSynthesis.cancel();}catch(e){}speaking=false;setListen(false);}
   function setListen(on){var t=document.getElementById('listenThumb'),l=document.getElementById('listenLbl');if(!t)return;
     if(on){t.innerHTML='<span class="eq" style="color:var(--navy-700)"><i></i><i></i><i></i></span>';l.textContent='מנגן… (הקש/י לעצירה)';}
     else{t.innerHTML='<svg><use href="#i-listen"/></svg>';l.textContent='האזנה בקול';}}
+  function stopAudio(){if(audioEl){try{audioEl.pause();audioEl.currentTime=0;}catch(e){}}try{window.speechSynthesis&&window.speechSynthesis.cancel();}catch(e){}playing=false;setListen(false);}
+  function pickHeVoice(){try{var vs=window.speechSynthesis.getVoices()||[],pref=['Carmit','Google עברית','Microsoft'];
+    for(var i=0;i<pref.length;i++)for(var j=0;j<vs.length;j++)if(vs[j].name&&vs[j].name.indexOf(pref[i])>-1)return vs[j];
+    for(var k=0;k<vs.length;k++)if(vs[k].lang&&vs[k].lang.replace('_','-').indexOf('he-IL')>-1)return vs[k];
+    for(var m2=0;m2<vs.length;m2++)if(/he|iw/i.test(vs[m2].lang))return vs[m2];return null;}catch(e){return null;}}
+  function speakFallback(){if(!('speechSynthesis'in window)){toast('הקראה קולית אינה נתמכת כאן');playing=false;setListen(false);return;}
+    try{window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(stripNikud(document.getElementById('modehText').textContent));
+    u.lang='he-IL';u.rate=.85;u.pitch=1;var v=pickHeVoice();if(v)u.voice=v;
+    u.onend=function(){playing=false;setListen(false);};u.onerror=function(){playing=false;setListen(false);};
+    window.speechSynthesis.speak(u);}catch(e){playing=false;setListen(false);}}
   var listenCard=document.getElementById('listenCard');
   if(listenCard)listenCard.addEventListener('click',function(){
-    if(!('speechSynthesis' in window)){toast('הקראה קולית אינה נתמכת בדפדפן זה');return;}
-    if(speaking){stopAudio();return;}
-    var txt=stripNikud(document.getElementById('modehText').textContent);
-    var u=new SpeechSynthesisUtterance(txt);u.lang='he-IL';u.rate=.9;
-    var vs=window.speechSynthesis.getVoices();var hv=vs.filter(function(v){return /he|iw/i.test(v.lang);})[0];if(hv)u.voice=hv;
-    u.onend=function(){speaking=false;setListen(false);};u.onerror=function(){speaking=false;setListen(false);};
-    speaking=true;setListen(true);window.speechSynthesis.speak(u);
+    if(playing){stopAudio();return;}
+    playing=true;setListen(true);
+    if(CURT==='shacharit'){
+      if(!audioEl){audioEl=new Audio('audio/modeh-ani.mp3');audioEl.onended=function(){playing=false;setListen(false);};audioEl.onerror=function(){audioEl=null;speakFallback();};}
+      try{audioEl.currentTime=0;}catch(e){}var p=audioEl.play();if(p&&p.catch)p.catch(function(){speakFallback();});
+    } else speakFallback();
   });
-  if('speechSynthesis' in window){window.speechSynthesis.onvoiceschanged=function(){};}
+  if('speechSynthesis'in window)window.speechSynthesis.onvoiceschanged=function(){};
+  // ---- siddur: time-of-day context (shacharit / mincha / arvit) ----
+  var PRAYERS={
+    shacharit:{sc:'#s-sunrise',g:'linear-gradient(180deg,#12314f,#3a5f86 60%,#c9a86a)',lbl:'מודה אני · עם היקיצה',txt:'מוֹדֶ֣ה אֲנִ֣י לְפָנֶ֗יךָ מֶ֤לֶךְ חַי֙ וְקַיָּ֔ם שֶׁהֶחֱזַ֥רְתָּ בִּ֛י נִשְׁמָתִ֖י בְּחֶמְלָ֑ה רַבָּ֖ה אֱמוּנָתֶֽךָ׃'},
+    mincha:{sc:'#s-sunhigh',g:'linear-gradient(180deg,#3a6ea5,#8fb9dc 70%,#eaf3fb)',lbl:'אַשְׁרֵי · תפילת מנחה',txt:'אַשְׁרֵ֣י י֭וֹשְׁבֵי בֵיתֶ֑ךָ ע֝֗וֹד יְֽהַלְל֥וּךָ סֶּֽלָה׃ אַשְׁרֵ֣י הָ֭עָם שֶׁכָּ֣כָה לּ֑וֹ אַשְׁרֵ֥י הָ֝עָ֗ם שֶׁיֲהֹוָ֥ה אֱלֹהָֽיו׃'},
+    arvit:{sc:'#s-moonstars',g:'linear-gradient(180deg,#1a1740,#3b2b63 55%,#a56b7e)',lbl:'קריאת שמע · שעל המיטה',txt:'שְׁמַ֖ע יִשְׂרָאֵ֑ל יְהֹוָ֥ה אֱלֹהֵ֖ינוּ יְהֹוָ֥ה ׀ אֶחָֽד׃'}
+  };
+  function setPrayer(t){var p=PRAYERS[t];if(!p)return;CURT=t;stopAudio();
+    var b=document.getElementById('tband');if(b)b.style.background=p.g;
+    var sc=document.getElementById('tbScene');if(sc)sc.firstElementChild.setAttribute('href',p.sc);
+    var lb=document.getElementById('prayerLabel');if(lb)lb.textContent=p.lbl;
+    var mt=document.getElementById('modehText');if(mt)mt.textContent=p.txt;
+    document.querySelectorAll('.tchip').forEach(function(c){c.classList.toggle('on',c.getAttribute('data-time')===t);});}
+  document.querySelectorAll('.tchip').forEach(function(c){c.addEventListener('click',function(){setPrayer(c.getAttribute('data-time'));});});
 
   // ---- chat (coherent, canned) ----
   var input=document.getElementById('chatInput'),list=document.getElementById('chatList'),cscr=document.getElementById('chatScroll');
   function add(who,html){var d=document.createElement('div');d.className='bub '+who;d.innerHTML=html;list.appendChild(d);cscr.scrollTop=cscr.scrollHeight;}
   function reply(q){
-    q=(q||'').toLowerCase();
-    if(/חרד|פחד|דאג|לחץ|מתח/.test(q))return 'כשהלב כבד, <a class="qv">תהילים כ״ג</a> — ״ה׳ רֹעִי לֹא אֶחְסָר״ — מרגיע מאז ומעולם. לפחד עמוק יותר רבים אומרים <a class="qv">תהילים צ״א</a>. לפתוח אחד יחד?';
-    if(/מודה אני/.test(q))return '״מודה אני״ היא המילה הראשונה של היום: הודיה על שהנשמה חזרה אליך. אין בה שמות קדושים, ולכן אומרים אותה מיד עם היקיצה, עוד לפני נטילת ידיים. רוצה לפתוח אותה ב<a>סידור</a>?';
-    if(/תוד|הוד|שמח/.test(q))return 'להודיה יש בית חם: <a class="qv">תהילים ק׳</a> (מזמור לתודה) ו<a class="qv">תהילים ק״ז</a>. אפילו שורה אחת, נאמרת לאט, פותחת את הלב.';
-    if(/פרש|פינחס/.test(q))return 'פרשת השבוע היא <b>פינחס</b> — על הברית של שלום, על בנות צלפחד שביקשו נחלה, ועל סדר הקרבנות. רוצה סיכום קצר או פתיחה ב<a>תנ״ך</a>?';
-    if(/תפיל|שחרית|מנחה|ערבית|עמידה/.test(q))return 'הסידור שלך בנוסח אשכנז מוכן. לפתוח <a>שחרית</a>? אפשר להוסיף ביאור בעברית פשוטה לצד כל שורה, וגם הקראה בקול.';
-    if(/תפילין/.test(q))return 'יש לנו <a>מדריך תפילין</a> צעד‑אחר‑צעד — הנחת יד, שבע כריכות, של ראש והברכות. לפתוח עכשיו?';
-    return 'שאלה יפה 🌿 אני יכול/ה להסביר כל פסוק בעברית פשוטה, להמליץ על פרק תהילים לפי מצב הרוח, או לפתוח תפילה. אפשר גם לבחור אחת מההצעות שמעל תיבת הכתיבה.';
+    var s=(q||'').trim();
+    if(/תהיל|פרק|מזמור/.test(s)){var m=s.match(/(?:תהילים|פרק|מזמור)\s*([֐-׿]{1,4}|\d{1,3})/);if(m&&m[1])return 'בכיף — <a class="qv">תהילים '+m[1]+'</a>. אפתח אותו לקריאה עם ניקוד, ואפשר ביאור בעברית פשוטה לצד כל פסוק.';}
+    if(/חרד|פחד|דאג|לחץ|מתח|בהל/.test(s))return 'כשהלב כבד, <a class="qv">תהילים כ״ג</a> ("ה׳ רֹעִי לֹא אֶחְסָר") מרגיע מאז ומעולם; לפחד עמוק יותר רבים אומרים <a class="qv">תהילים צ״א</a>. לפתוח אחד יחד?';
+    if(/רפוא|בריא|חול[הים]|מחל|ניתוח|החלמ/.test(s))return 'לרפואה נהוג <a class="qv">תהילים כ׳</a> ו<a class="qv">תהילים ק״ג</a>, ולהזכיר את שם החולה ושם אמו. לפתוח פרק ולהוסיף תפילה קצרה?';
+    if(/פרנס|כסף|עבוד|מזונ|הצלח/.test(s))return 'לפרנסה מקובל <a class="qv">תהילים כ״ג</a> ו<b>פרשת המן</b>. לפתוח?';
+    if(/זוג|אהב|שלום בית|חתונ|שידוך/.test(s))return 'לזוגיות ולשלום בית רבים אומרים <a class="qv">תהילים קכ״ח</a>. הכוונה חשובה מהמילים — אפשר גם לומר משהו קצר בלשונך.';
+    if(/כעס|סליח|מחיל|תשוב|חטא/.test(s))return 'לתשובה וסליחה, <a class="qv">תהילים נ״א</a> ("לֵב טָהוֹר בְּרָא לִי") הוא הפרק הקלאסי. נתחיל?';
+    if(/אבל|נפטר|קדיש|יארצ|אזכר|עילוי|לזכר/.test(s))return 'לעילוי נשמה נהוג לומר <a>תהילים</a> ומשניות, ולכוון לזכר הנפטר. שאבחר פרק מתאים?';
+    if(/דרך|נסיע|טיס|טיול|נהיג/.test(s))return 'לפני יציאה לדרך אומרים <b>תפילת הדרך</b>. לפתוח את הנוסח?';
+    if(/שינה|לישון|לילה|נדוד|נרדם/.test(s))return 'לפני השינה אומרים <b>קריאת שמע שעל המיטה</b> — כמה מילים שמרגיעות את הלב. אפשר לפתוח ב<a>סידור</a> (מצב "ערבית").';
+    if(/מודה אני/.test(s))return '״מודה אני״ הן המילים הראשונות של היום — הודיה על שהנשמה חזרה. אין בה שמות קדושים, לכן אומרים מיד עם היקיצה. לפתוח ב<a>סידור</a> עם הקראה בקול?';
+    if(/שמע ישראל|קריאת שמע|^שמע/.test(s))return '״שמע ישראל״ הוא לב האמונה — ייחוד ה׳. אומרים בשחרית, בערבית ולפני השינה. לפתוח נוסח וביאור ב<a>סידור</a>?';
+    if(/עמיד|שמונה עשרה/.test(s))return 'העמידה (שמונה עשרה) היא עיקר התפילה — בעמידה ובלחש. הסידור שלך בנוסח אשכנז; לפתוח <a>שחרית</a>?';
+    if(/תוד|הוד|שמח|טוב לי/.test(s))return 'להודיה: <a class="qv">תהילים ק׳</a> (מזמור לתודה) ו<a class="qv">תהילים ק״ז</a>. אפילו שורה אחת, לאט, פותחת את הלב.';
+    if(/פרש|פינחס/.test(s))return 'פרשת השבוע היא <b>פינחס</b> — ברית שלום, בנות צלפחד, וסדר הקרבנות. סיכום קצר או פתיחה ב<a>תנ״ך</a>?';
+    if(/תפילין/.test(s))return 'יש <a>מדריך תפילין</a> צעד‑אחר‑צעד: יד, שבע כריכות, ראש והברכות. לפתוח?';
+    if(/שבת|קידוש|חלה|חלות/.test(s))return 'לכבוד שבת: הדלקת נרות, קידוש על היין, ושתי חלות. רוצה את נוסח הקידוש?';
+    if(/חג|חנוכ|פורים|פסח|סוכות|שבועות|ראש השנה|כיפור/.test(s))return 'לכל חג יש את סימניו — במסך "היום" יש לוח מועדים עם הסמלים. על איזה חג נדבר?';
+    return 'זו הדגמה 🌿 כאן אני עונה על מבחר שאלות לדוגמה; באפליקציה המלאה יש מלווה חכם שמבין כל שאלה. אפשר לשאול על פרק תהילים לפי מצב (חרדה · רפואה · פרנסה · הודיה), על משמעות של תפילה (מודה אני · שמע ישראל), על הפרשה, או להקיש על אחת ההצעות.';
   }
   function sendQ(v){v=(v||'').trim();if(!v)return;add('me',v);input.value='';
     var ty=document.createElement('div');ty.className='typing';ty.innerHTML='<i></i><i></i><i></i>';list.appendChild(ty);cscr.scrollTop=cscr.scrollHeight;
