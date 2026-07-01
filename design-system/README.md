@@ -5,10 +5,13 @@ accents**, replacing the legacy cream/peach + terracotta-orange theme. The calm,
 watercolor feel and rounded-card layout are retained.
 
 ## Files
-- **`index.html`** — a self-contained, RTL/Hebrew visual showcase: color & type foundations,
-  every component (buttons, option rows, day-circle journey, streak, cards, chat, reader with
-  selection toolbar, tab bar, paywall, notifications) and three full screen mockups
-  (Onboarding, Today, Chat). Open it in any browser.
+- **`index.html`** — a self-contained, RTL/Hebrew visual showcase: color & type foundations
+  and every component (buttons, option rows, day-circle journey, streak, cards, chat, reader
+  with selection toolbar, tab bar, paywall, notifications). Open it in any browser.
+- **`screens.html`** — full phone-frame mockups of every major screen in the new palette:
+  splash, onboarding steps (gender, goals, age, name, nusach, reading level), personalized
+  value + chart, streak, notification priming, paywall, Today, Tehillim, Siddur, Tanakh,
+  Chat, and Settings.
 - **`tokens.css`** — the shared design tokens (palette, gradients, elevation, radii, type) as
   CSS custom properties for implementation.
 

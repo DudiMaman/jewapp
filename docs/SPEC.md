@@ -252,6 +252,11 @@ Each card uses a calm full-bleed watercolor background tinted to its time of day
 - Tone: warm, encouraging, non-judgmental; cites sources; ends supportively.
 - Message styling: user bubble = brand navy; assistant bubble = white card; typing
   indicator while generating.
+- **Guardrails**: the assistant explains, comforts, and points to texts — it does **not
+  pasken** (rule on) contested halacha. For a practical p'sak, medical, legal, or
+  mental-health crisis question, it gives general context and **defers to a competent rav /
+  professional**, and surfaces help resources for crisis language. Responses are grounded in
+  the in-app corpus and cite chapter/verse; it avoids inventing sources.
 
 ### 6.6 Cross-cutting reader engine
 A shared reader powers Tehillim, Siddur, and Tanakh:
@@ -271,7 +276,58 @@ A shared reader powers Tehillim, Siddur, and Tanakh:
 - **Home-screen** and **Lock-screen** widgets showing the daily Tehillim chapter / next
   prayer / streak.
 
+### 6.9 Tefillin guide
+A step-by-step guide reachable from the Today "תפילין" card (weekdays only; hidden on
+Shabbat/Yom Tov and, per custom, before/around certain times).
+- **Steps**: arm (יד) placement and winding, then head (ראש), with the correct order and
+  the seven windings; each step has an illustration and the accompanying **bracha**
+  ("לְהָנִיחַ תְּפִלִּין" / "עַל מִצְוַת תְּפִלִּין" where applicable).
+- **Handedness**: left- vs right-handed users bind on the opposite arm; asked once and
+  stored in Profile.
+- **Nusach-aware** wording; optional audio read-along and a "done for today" tick that feeds
+  the daily journey.
+- Surfaced as a men's-track item (gender-aware, per §8).
+
+### 6.10 Commitments — קבלות
+Personal undertakings the user takes on, added from the Today "אני לוקח על עצמי" card.
+- **Add flow**: pick from a **preset library** (e.g. "לומר ברכות המזון מתוך סידור",
+  "לא לדבר לשון הרע עד חצות", "פרק תהילים נוסף ביום") **or** free-text.
+- Each commitment has a **cadence** (daily / several-times-a-week, seeded from onboarding)
+  and its own lightweight tracking + reminders; completions feed the streak.
+- History is viewable; a commitment can be paused or retired without penalty.
+
+### 6.11 Halacha / mitzvah cards
+A rotating **daily** card on the Today screen (e.g. "המתנה בין בשר לחלב") that opens a short,
+plain-language explainer with a "התחל/התחילי" action.
+- Backed by a curated **halacha content library** (topic, short guidance, source references),
+  gender- and nusach-aware where relevant.
+- Editorially reviewed; cards link to the AI chat for follow-up questions but the card text
+  itself is fixed content (not AI-generated).
+
 ---
+
+### 6.12 Settings
+Reachable from the gear on the Today header. Groups:
+- **Reminders (תזכורות)** — per-type toggles and editable times: daily Tehillim, prayer
+  times (zman-anchored), Kriat Shema al ha-mita, commitments; a master **"שתיקה בשבת ובחג"**
+  toggle (on by default).
+- **Personalization** — nusach, Hebrew reading level, gender, handedness (tefillin),
+  location/city for zmanim.
+- **Reading** — default font size, translation/explanation defaults.
+- **Account** — sign-in/identity, sync status.
+- **Subscription** — current plan and status, manage/upgrade, **restore purchases**.
+- **About** — privacy policy, terms, contact, rate the app, app version.
+
+### 6.13 Account, Auth & Sync
+- **Model**: lightweight account (Sign in with Apple / Google, optional email) so a user's
+  data follows them across devices; the subscription entitlement is validated via the store
+  (StoreKit/Play) and associated with the account.
+- **Synced data**: profile, plan, streak, commitments, highlights, chat history, reminder
+  settings. Reading content is bundled/cached and does not require sync.
+- **Offline-first**: writes queue locally and reconcile on reconnect; last-write-wins per
+  field is acceptable for v1 (highlights merge by ref).
+- **Privacy**: prayers and personal data are private and **never sold**; account is only for
+  sync/entitlement.
 
 ## 7. Notifications
 
@@ -314,6 +370,17 @@ app sends **no** notifications ("בשבת אנחנו שותקים").
 **Content library required:** Tehillim (all 150), Siddur in three nusachim, full Tanakh
 with nikud, prayer guides (Modeh Ani, Shacharit, Mincha, Maariv, Kriat Shema al ha-mita,
 tefillin), weekly parasha summaries, and a halacha/mitzvah card library.
+
+**Age → daily psalm (birthday handling):** the personal daily psalm follows the custom of
+reciting the chapter one number above one's age (age N → Psalm N+1). The mapping **advances
+on the user's Hebrew birthday**, so Profile stores a Hebrew birth date (or derives one from
+the age given at signup) and the daily psalm recalculates each year.
+
+**Zmanim & location:** halachic times (for prayer reminders, tefillin windows, and the
+Hebrew date/Shabbat boundaries) are computed from device **geolocation** or a
+**manually chosen city** (fallback when location is denied). Use an established zmanim/Hebrew
+calendar library (e.g. a KosherJava/Hebcal-equivalent) rather than hand-rolling calculations;
+expose only the derived times the UI needs.
 
 ---
 
@@ -377,8 +444,10 @@ Core entities (indicative, not a schema):
 
 The current cream/peach + terracotta-orange theme is **replaced** by a **Jewish
 blue-and-white palette with very delicate, light gold accents**, while keeping the calm,
-premium, watercolor feel and rounded-card layout. The full component library is delivered
-as a **Claude Design system** (claude.ai/design); see that project for living previews.
+premium, watercolor feel and rounded-card layout. The living component library and screen
+mockups are in **`design-system/`** (`index.html` = foundations + components,
+`screens.html` = full screen mockups; see Appendix D). They are authored to seed a
+**Claude Design system** (claude.ai/design) — see `design-system/README.md`.
 
 **Palette (summary)**
 - **Primary blue** (deep tekhelet / navy): `#102A43` / `#1E3A5F`; **accent blue** `#2C5F8A`;
@@ -440,8 +509,9 @@ Each entry: **purpose · key elements · states**.
     toolbar (AI-explain, color highlight, copy, font-size).
 25. **Chat (צ'אט)** — AI companion · message list, user/assistant bubbles, typing indicator,
     cited links · network required.
-26. **Settings** — manage · reminder times/toggles, nusach, reading level, subscription,
-    privacy/terms, restore. *(Inferred from "ניתן לשנות בהגדרות"; confirm details.)*
+26. **Settings** — manage (§6.12) · grouped: reminders (per-type toggles + times,
+    Shabbat-silence), personalization (nusach, reading level, handedness, city), reading
+    defaults, account & sync, subscription (+ restore), about (privacy/terms/version).
 
 ---
 
@@ -462,19 +532,35 @@ Shabbat/Yom Tov.
 
 ## Appendix C — Open Questions
 
-These were not fully visible in the recording and should be confirmed before build:
+Design decisions above are the proposed defaults; these remain genuinely open and are worth
+a product decision before build:
 
-1. **Settings** screen contents and layout (reminder editing, account, subscription mgmt).
-2. **Auth**: is there account creation/login, or is it device-local + store entitlement?
-3. **Account across devices / sync** of highlights, streak, commitments.
-4. **Tefillin guide** depth (step-by-step, audio, illustrations?).
-5. **Commitments (קבלות)** library — preset suggestions vs. free text; tracking/streaks.
-6. **Halacha card** source/breadth and whether it is a daily rotation.
-7. **Birthday handling** for the age→psalm mapping (does the daily psalm advance each Hebrew
-   birthday?).
-8. **AI guardrails** for halachic questions (when to defer to a rav).
-9. **Localization** beyond Hebrew (future).
-10. Exact **zman provider** and location/manual-city UX.
+1. **Auth requirement** — is an account **mandatory** (for sync from day one) or optional
+   (device-local until the user opts into sync)? Spec assumes optional-but-encouraged.
+2. **Content sourcing & licensing** — which siddur/Tanakh/Tehillim text editions and which
+   halacha sources are licensed; who provides editorial review.
+3. **AI provider & cost model** — model choice, rate limits per subscriber, and offline
+   fallbacks for chat.
+4. **Widgets scope** — exact widget set and sizes (daily psalm, next zman, streak) per OS.
+5. **Women's track specifics** — which prayers/mitzvot differ (e.g. tefillin hidden, other
+   cards emphasized) beyond the gender flag.
+6. **Localization** beyond Hebrew (future) and diaspora vs. Israel zmanim/holiday differences.
+7. **Shabbat mode** — should the app offer an optional pre-Shabbat "wind-down" and a limited
+   Shabbat UI, beyond silencing notifications?
+
+## Appendix D — Design Mockups
+
+The blue-white-gold design system and screen mockups live in `design-system/`:
+- **`design-system/index.html`** — foundations + component library.
+- **`design-system/screens.html`** — full phone-frame mockups of every major screen
+  (splash, the onboarding steps, value/streak/notification screens, paywall, Today,
+  Tehillim, Siddur, Tanakh, Chat, Settings).
+
+## Changelog
+- **R1** — initial spec, design system, and 3 mockups.
+- **R2** — added full screen-mockup gallery (`screens.html`); expanded Settings, Account/
+  Auth/Sync, Tefillin guide, Commitments, Halacha cards, age→psalm birthday handling,
+  zmanim/location, and AI guardrails; trimmed open questions to the genuinely-undecided.
 
 ---
 
