@@ -213,9 +213,16 @@ h1{margin:0;font-weight:600;letter-spacing:.01em}
 
 .toast{position:absolute;bottom:96px;left:24px;right:24px;background:var(--navy-800);color:#fff;padding:13px 16px;border-radius:14px;font-size:13.5px;text-align:center;box-shadow:var(--sh-lg);opacity:0;transform:translateY(10px);transition:.28s;z-index:50;pointer-events:none;border:1px solid rgba(221,190,116,.25)}
 .toast.on{opacity:1;transform:none}
-.wheel{display:flex;flex-direction:column;align-items:center;gap:2px;margin:8px 0}
-.wheel .r{color:var(--ink-mute);font-size:18px;font-family:var(--serif);opacity:.5}
-.wheel .r.on{color:var(--navy-800);font-weight:600;font-size:30px;opacity:1;background:linear-gradient(180deg,#fff,#f2f7fc);border:1px solid var(--line);border-radius:14px;padding:4px 52px;box-shadow:var(--sh-sm)}
+.picker{position:relative;height:208px;margin:6px 0 2px;touch-action:pan-y}
+.picker .band{position:absolute;left:24px;right:24px;top:50%;transform:translateY(-50%);height:52px;border-radius:14px;background:linear-gradient(180deg,#fff,#f1f6fc);border:1px solid var(--line);box-shadow:var(--sh-sm);z-index:0}
+.picker .fade{position:absolute;left:0;right:0;height:70px;z-index:2;pointer-events:none}
+.picker .fade.t{top:0;background:linear-gradient(180deg,var(--paper),transparent)}
+.picker .fade.b{bottom:0;background:linear-gradient(0deg,var(--paper),transparent)}
+.picker .scroll2{position:relative;height:100%;overflow-y:auto;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;z-index:1;scrollbar-width:none}
+.picker .scroll2::-webkit-scrollbar{display:none}
+.picker .pad{height:78px}
+.picker .num{height:52px;display:flex;align-items:center;justify-content:center;scroll-snap-align:center;font-family:var(--serif);font-size:19px;color:var(--ink-mute);opacity:.5;transition:.15s;cursor:pointer}
+.picker .num.sel{color:var(--navy-800);font-weight:600;font-size:30px;opacity:1}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -342,9 +349,9 @@ h1{margin:0;font-weight:600;letter-spacing:.01em}
       <div class="stagger">
         <h1 class="serif" style="font-size:27px;text-align:center;color:var(--navy-800)" data-i18n="age_title">How old are you?</h1>
         <p class="lead" style="text-align:center;margin:8px 0 8px" data-i18n="age_body">We'll set the psalm that walks with your years.</p>
-        <div class="art" style="height:96px"><svg width="120" height="80"><use href="#s-candle"/></svg></div>
-        <div class="wheel"><div class="r">18</div><div class="r">19</div><div class="r on">20</div><div class="r">21</div><div class="r">22</div></div>
-        <p class="hint" data-i18n="age_hint">Age 20 — your daily psalm is 21</p>
+        <div class="art" style="height:74px"><svg width="104" height="70"><use href="#s-candle"/></svg></div>
+        <div class="picker"><div class="band"></div><div class="fade t"></div><div class="fade b"></div><div class="scroll2" id="ageScroll"></div></div>
+        <p class="hint" id="ageHint">Age 20 — your daily psalm is 21</p>
       </div>
     </div>
     <button class="cta" data-goto="ob-name" data-i18n="continue">Continue</button>
@@ -469,7 +476,7 @@ h1{margin:0;font-weight:600;letter-spacing:.01em}
         <div class="card tint" data-toast-k="toast_portion"><span class="thumb"><svg><use href="#s-scroll"/></svg></span><div class="body"><h4 data-i18n="card_portion_t">This week's portion</h4><small data-i18n="card_portion_s">Pinchas</small></div><span class="go">▾</span></div>
         <div class="card tint" data-goto="siddur"><span class="thumb"><svg><use href="#s-sun"/></svg></span><div class="body"><h4 data-i18n="card_modeh_t">Modeh Ani</h4><small data-i18n="card_modeh_s">Open the day in gratitude</small></div><span class="go">›</span></div>
         <div class="card hero" data-goto="tefillin"><span class="thumb"><svg><use href="#s-tefillin"/></svg></span><div class="body"><h4 data-i18n="card_tef_t">Tefillin</h4><small data-i18n="card_tef_s">Guided, step by step</small></div><span class="go">›</span><svg class="deco"><use href="#s-tallit"/></svg></div>
-        <div class="card tint" data-goto="tehillim"><span class="thumb"><svg><use href="#s-book"/></svg></span><div class="body"><h4 data-i18n="card_psalm_t">Daily Psalm · 21</h4><small data-i18n="card_psalm_s">Your personal chapter</small></div><span class="go">›</span></div>
+        <div class="card tint" data-goto="tehillim"><span class="thumb"><svg><use href="#s-book"/></svg></span><div class="body"><h4 id="psalmCardT">Daily Psalm · 21</h4><small data-i18n="card_psalm_s">Your personal chapter</small></div><span class="go">›</span></div>
       </div>
     </div>
     <nav class="tabbar" data-tabs>
@@ -734,6 +741,25 @@ h1{margin:0;font-weight:600;letter-spacing:.01em}
   ];
   var tefI=0;
 
+  // ---- age picker ----
+  var AGE_MIN=12,AGE_MAX=90,AGE=20,ITEMH=52,ageRAF;
+  function hebNum(n){
+    var o=['','א','ב','ג','ד','ה','ו','ז','ח','ט'],ten=['','י','כ','ל','מ','נ','ס','ע','פ','צ'],hd=['','ק','ר','ש','ת'];
+    var s='';while(n>=400){s+='ת';n-=400;}if(n>=100){s+=hd[Math.floor(n/100)];n%=100;}
+    if(n===15){s+='טו';n=0;}else if(n===16){s+='טז';n=0;}else{s+=ten[Math.floor(n/10)];n%=10;s+=o[n];}
+    return s.length>1?(s.slice(0,-1)+'״'+s.slice(-1)):(s+'׳');
+  }
+  function buildAge(){
+    var s=document.getElementById('ageScroll');if(!s||s.dataset.built)return;
+    var h='<div class="pad"></div>';for(var i=AGE_MIN;i<=AGE_MAX;i++)h+='<div class="num" data-age="'+i+'">'+i+'</div>';h+='<div class="pad"></div>';
+    s.innerHTML=h;s.dataset.built='1';
+    s.addEventListener('scroll',function(){if(ageRAF)cancelAnimationFrame(ageRAF);ageRAF=requestAnimationFrame(function(){var idx=Math.round(s.scrollTop/ITEMH);idx=Math.max(0,Math.min(AGE_MAX-AGE_MIN,idx));if(AGE!==AGE_MIN+idx){AGE=AGE_MIN+idx;markAge();updateAge();}});});
+    s.querySelectorAll('.num').forEach(function(n){n.addEventListener('click',function(){s.scrollTo({top:(+n.getAttribute('data-age')-AGE_MIN)*ITEMH,behavior:'smooth'});});});
+  }
+  function markAge(){var s=document.getElementById('ageScroll');if(!s)return;s.querySelectorAll('.num').forEach(function(n){n.classList.toggle('sel',+n.getAttribute('data-age')===AGE);});}
+  function updateAge(){var p=AGE+1;var el=document.getElementById('ageHint');if(el)el.textContent=(LANG==='he')?('גיל '+AGE+' — פרק התהילים היומי שלך הוא '+hebNum(p)):('Age '+AGE+' — your daily psalm is '+p);var c=document.getElementById('psalmCardT');if(c)c.textContent=(LANG==='he')?('תהילים יומי · '+hebNum(p)):('Daily Psalm · '+p);}
+  function initAgeScroll(){buildAge();var s=document.getElementById('ageScroll');if(!s)return;s.scrollTop=(AGE-AGE_MIN)*ITEMH;markAge();updateAge();}
+
   function t(k){var e=I18N[k];return e?(e[LANG]!=null?e[LANG]:e.en):k;}
 
   function applyLang(l){
@@ -746,7 +772,7 @@ h1{margin:0;font-weight:600;letter-spacing:.01em}
     document.querySelectorAll('[data-i18n-ph]').forEach(function(e){var k=e.getAttribute('data-i18n-ph');if(I18N[k])e.placeholder=t(k);});
     var lv=document.getElementById('setLangVal'); if(lv)lv.textContent=t('lang_val');
     document.querySelectorAll('.topbar .back').forEach(function(b){b.textContent=(l==='he')?'›':'‹';});
-    syncName(); renderTef();
+    syncName(); renderTef(); markAge(); updateAge();
   }
 
   function show(id,dir){
@@ -764,6 +790,7 @@ h1{margin:0;font-weight:600;letter-spacing:.01em}
     hideSel();
     if(id==='ob-build')setTimeout(function(){show('ob-value',1);},2000);
     if(id==='ob-value')syncName();
+    if(id==='ob-age')requestAnimationFrame(initAgeScroll);
     if(id==='tefillin'){tefI=0;renderTef();}
   }
 
@@ -861,7 +888,7 @@ h1{margin:0;font-weight:600;letter-spacing:.01em}
   var toastEl=document.getElementById('toast'),tt;
   function toast(m){toastEl.textContent=m;toastEl.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){toastEl.classList.remove('on');},1700);}
 
-  renderTef();
+  renderTef(); buildAge(); updateAge();
   // deep-link a screen via #hash (used by the gallery; also shareable)
   function fromHash(){var h=(location.hash||'').slice(1);if(h){var m=h.split('/');if(m[1]==='he')applyLang('he');if(document.getElementById(m[0]))show(m[0],0);}}
   window.addEventListener('hashchange',fromHash);fromHash();
