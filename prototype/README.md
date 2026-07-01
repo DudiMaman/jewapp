@@ -12,14 +12,19 @@ reachable from the gear.
 ## Open it on your phone
 
 ### Option A — instant, no setup (recommended for a quick look)
-Scan **`qr.png`**, or open this URL (served rendered from the public repo via githack):
+Scan **`qr.png`**. It is pinned to the **exact current commit** so it always shows the
+freshest build (a branch URL gets cached by githack and can serve a stale copy). Regenerate
+the QR after each change to point at the new commit — e.g.:
 
 ```
-https://raw.githack.com/DudiMaman/jewapp/claude/jewish-prayer-app-spec-2qmx9y/prototype/index.html
+# QR target = the current commit, immutable & un-cached:
+https://raw.githack.com/DudiMaman/jewapp/<commit-sha>/prototype/index.html
 ```
 
 Works because the repo is public; no configuration needed. (githack is a third-party
-convenience CDN — fine for demos.)
+convenience CDN — fine for demos. The un-pinned branch URL —
+`.../DudiMaman/jewapp/claude/jewish-prayer-app-spec-2qmx9y/prototype/index.html` — is
+convenient but may lag a few minutes behind the latest push.)
 
 ### Option B — permanent first-party URL via GitHub Pages (~1 min, one-time)
 1. GitHub → repo **DudiMaman/jewapp** → **Settings → Pages**.
