@@ -256,6 +256,31 @@ h1{margin:0;font-weight:700;letter-spacing:.005em}
 .hol .hi svg{width:40px;height:34px}
 .hol b{font-size:12px;color:var(--navy-800);font-weight:600}
 .card.shabbat{background:linear-gradient(135deg,#e9f0fa,#f7efdd)}.card.shabbat .thumb{background:#fff;box-shadow:var(--sh-sm)}
+/* premium onboarding v2 */
+@keyframes blobm{0%,100%{border-radius:46% 54% 57% 43%/54% 46% 60% 40%}50%{border-radius:56% 44% 47% 53%/44% 56% 50% 50%}}
+.obhero::before{content:"";position:absolute;z-index:0;inset:4% 14% 16%;background:radial-gradient(120% 120% at 50% 32%,rgba(221,190,116,.30),rgba(159,195,224,.30) 55%,transparent 76%);border-radius:46% 54% 57% 43%/54% 46% 60% 40%;filter:blur(2px);animation:blobm 15s ease-in-out infinite}
+.obhero .scene{z-index:1}
+.obsheet h1{font-size:29px!important;font-weight:800;letter-spacing:-.01em}
+/* value carousel */
+.vscreen{background:linear-gradient(180deg,#ffffff,#f2f7fc 68%,#eaf2fb)}
+.vhero{position:relative;flex:0 0 48%;display:grid;place-items:center;overflow:hidden}
+.vbody{flex:1;display:flex;flex-direction:column;justify-content:center}
+.vhero .blob{position:absolute;width:80%;aspect-ratio:1;border-radius:46% 54% 57% 43%/54% 46% 60% 40%;background:radial-gradient(120% 120% at 50% 35%,rgba(221,190,116,.36),rgba(120,170,214,.34) 54%,transparent 76%);animation:blobm 13s ease-in-out infinite}
+.vhero .glowdot{position:absolute;inset:0;background:var(--glow);opacity:.4}
+.vhero .art{position:relative;z-index:1;width:76%;max-width:290px;height:auto;filter:drop-shadow(0 18px 30px rgba(11,31,51,.14))}
+.vbody{padding:8px 28px 0;text-align:center;flex:none}
+.vbody h1{font-size:31px;font-weight:800;color:var(--navy-800);line-height:1.22;letter-spacing:-.01em}
+.vbody .em{color:var(--gold-600)}
+.vbody p{color:var(--ink-soft);font-size:15.5px;line-height:1.72;margin:12px 8px 0}
+.vfoot{display:flex;align-items:center;justify-content:space-between;padding:20px 28px calc(env(safe-area-inset-bottom,0px) + 24px);flex:none}
+.pdots{display:flex;gap:8px}
+.pdots i{width:7px;height:7px;border-radius:99px;background:var(--blue-200);transition:.3s}
+.pdots i.on{width:26px;background:linear-gradient(90deg,var(--gold-400),var(--gold-600))}
+.next-fab{width:62px;height:62px;border-radius:50%;background:var(--grad-navy);color:#fff;border:0;display:grid;place-items:center;cursor:pointer;box-shadow:var(--sh-md),inset 0 0 0 1px rgba(221,190,116,.45);position:relative}
+.next-fab:active{transform:scale(.96)}
+.next-fab svg{width:26px;height:26px}
+.next-fab::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1.5px solid rgba(203,162,78,.4)}
+.skip{position:absolute;top:calc(env(safe-area-inset-top,0px) + 18px);inset-inline-start:24px;z-index:5;color:var(--ink-mute);font-weight:600;font-size:14px;background:none;border:0;cursor:pointer;font-family:inherit}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -356,6 +381,7 @@ h1{margin:0;font-weight:700;letter-spacing:.005em}
   <symbol id="i-strength" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
   <symbol id="i-heartline" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14a8 8 0 0 1-10-10 8 8 0 1 0 10 10z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M14 6l-6 6 6 6M8 12h9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <!-- Jewish motifs for welcome animation -->
   <symbol id="s-sparkle" viewBox="0 0 24 24"><path d="M12 1.5l2.4 7.1L21.5 11l-7.1 2.4L12 20.5l-2.4-7.1L2.5 11l7.1-2.4z" fill="currentColor"/></symbol>
   <symbol id="s-magen" viewBox="0 0 24 24"><path d="M12 3l7 12H5zM12 21L5 9h14z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
@@ -400,7 +426,27 @@ h1{margin:0;font-weight:700;letter-spacing:.005em}
       <p class="serif-he" style="font-size:19px;color:#F3E9D0;margin:2px 0 0;line-height:1.9">וְאָהַבְתָּ֗ אֵ֚ת ה׳ אֱלֹהֶ֔יךָ<br>בְּכׇל־לְבָבְךָ֥ וּבְכׇל־נַפְשְׁךָ֖</p>
       <div class="eyebrow dim" style="margin-top:6px">מִתּוֹךְ קְרִיאַת שְׁמַע</div>
     </div>
-    <button class="cta gold" data-goto="ob-gender" data-dir="1">שנתחיל?</button>
+    <button class="cta gold" data-goto="val1" data-dir="1">שנתחיל?</button>
+  </section>
+
+  <!-- VALUE CAROUSEL -->
+  <section class="screen vscreen" id="val1">
+    <button class="skip" data-goto="ob-gender" data-dir="1">דלג</button>
+    <div class="vhero"><span class="blob"></span><span class="glowdot"></span><svg class="art float" viewBox="0 0 400 300"><use href="#scene-city"/></svg></div>
+    <div class="vbody stagger"><h1>רגע אחד ביום,<br><span class="em">וכל היום משתנה</span></h1><p>תהילים, תפילה ומעשה טוב קטן — מותאמים אליך, בזמן שנוח לך.</p></div>
+    <div class="vfoot"><div class="pdots"><i class="on"></i><i></i><i></i></div><button class="next-fab" data-goto="val2" data-dir="1"><svg><use href="#i-arrow"/></svg></button></div>
+  </section>
+  <section class="screen vscreen" id="val2">
+    <button class="skip" data-goto="ob-gender" data-dir="1">דלג</button>
+    <div class="vhero"><span class="blob" style="background:radial-gradient(120% 120% at 50% 35%,rgba(120,170,214,.4),rgba(221,190,116,.30) 55%,transparent 76%)"></span><span class="glowdot"></span><svg class="art float" viewBox="0 0 120 120"><use href="#s-book"/></svg></div>
+    <div class="vbody stagger"><h1>כל התפילות<br><span class="em">בכיס שלך</span></h1><p>סידור, תהילים ותנ״ך בנוסח שלך — עם ניקוד, הקראה בקול, וביאור בעברית פשוטה.</p></div>
+    <div class="vfoot"><div class="pdots"><i></i><i class="on"></i><i></i></div><button class="next-fab" data-goto="val3" data-dir="1"><svg><use href="#i-arrow"/></svg></button></div>
+  </section>
+  <section class="screen vscreen" id="val3">
+    <button class="skip" data-goto="ob-gender" data-dir="1">דלג</button>
+    <div class="vhero"><span class="blob"></span><span class="glowdot"></span><svg class="art float" viewBox="0 0 400 300"><use href="#scene-heart"/></svg></div>
+    <div class="vbody stagger"><h1>אף פעם<br><span class="em">לא לבד בתפילה</span></h1><p>מלווה אישי שמסביר כל מילה, וממליץ פרק לכל רגע — לשמחה, לדאגה או לתודה.</p></div>
+    <div class="vfoot"><div class="pdots"><i></i><i></i><i class="on"></i></div><button class="next-fab" data-goto="ob-gender" data-dir="1"><svg><use href="#i-arrow"/></svg></button></div>
   </section>
 
   <!-- GENDER -->

@@ -584,6 +584,11 @@ The blue-white-gold design system and screen mockups live in `design-system/`:
 - **R2** — added full screen-mockup gallery (`screens.html`); expanded Settings, Account/
   Auth/Sync, Tefillin guide, Commitments, Halacha cards, age→psalm birthday handling,
   zmanim/location, and AI guardrails; trimmed open questions to the genuinely-undecided.
+- **R5** — premium onboarding overhaul inspired by best-in-class app onboarding: an
+  emotional 3-slide **value carousel** (big blob-integrated hero + bold headline + benefit
+  copy + page dots + circular next + Skip) before personalization; bolder type scale;
+  blob-backed, more integrated hero art on the question screens; neural preference-based
+  reading audio (male/female) wired to the nusach×voice selector. Functionality unchanged.
 - **R4** — **renamed the app to וְאָהַבְתָּ (Ve'ahavta)**; set the product to **Hebrew-only by
   default** with the language switch moved to the personal area (removed the standalone
   language-picker onboarding screen); removed the vague first welcome slide and the
