@@ -281,6 +281,22 @@ h1{margin:0;font-weight:700;letter-spacing:.005em}
 .next-fab svg{width:26px;height:26px}
 .next-fab::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1.5px solid rgba(203,162,78,.4)}
 .skip{position:absolute;top:calc(env(safe-area-inset-top,0px) + 18px);inset-inline-start:24px;z-index:5;color:var(--ink-mute);font-weight:600;font-size:14px;background:none;border:0;cursor:pointer;font-family:inherit}
+/* immersive value slides (reference-grade) */
+.vfull{overflow:hidden}
+.vfull .bg{position:absolute;inset:0;z-index:0}
+.vfull .art{position:absolute;left:0;right:0;top:0;height:66%;width:100%;z-index:1}
+.vfull .art.float{animation:artFloat 7s ease-in-out infinite}
+@keyframes artFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.vfull .scrim{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,transparent 42%,rgba(7,17,30,.35) 58%,rgba(7,17,30,.82) 82%,rgba(7,17,30,.95) 100%)}
+.vfull .vwrap{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:flex-end;padding:0 30px calc(env(safe-area-inset-bottom,0px) + 26px)}
+.vfull h1{color:#fff;font-size:33px;font-weight:800;line-height:1.2;letter-spacing:-.01em;text-shadow:0 2px 20px rgba(0,0,0,.4)}
+.vfull h1 .em{color:var(--gold-300)}
+.vfull p{color:rgba(255,255,255,.88);font-size:16px;line-height:1.7;margin:12px 0 24px;text-shadow:0 1px 10px rgba(0,0,0,.3)}
+.vfull .vfoot2{display:flex;align-items:center;justify-content:space-between}
+.vfull .skip{inset-inline-start:auto;inset-inline-end:24px;color:rgba(255,255,255,.82)}
+.pdots.light i{background:rgba(255,255,255,.35)}.pdots.light i.on{background:linear-gradient(90deg,var(--gold-300),var(--gold-500))}
+.next-fab.light{background:#fff;color:var(--navy-800);box-shadow:0 10px 26px rgba(0,0,0,.28)}
+.next-fab.light::after{border-color:rgba(255,255,255,.55)}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -402,6 +418,15 @@ h1{margin:0;font-weight:700;letter-spacing:.005em}
   <symbol id="s-chanukiah" viewBox="0 0 48 34"><g stroke="url(#gGold)" stroke-width="1.6" fill="none" stroke-linecap="round"><path d="M5 13v13M11 13v13M17 13v13M23 13v13M25 13v13M31 13v13M37 13v13M43 13v13M24 8v18"/><path d="M4 26h40M20 30h8"/></g><g fill="url(#gFlame)"><ellipse cx="5" cy="10" rx="1.4" ry="3"/><ellipse cx="11" cy="10" rx="1.4" ry="3"/><ellipse cx="17" cy="10" rx="1.4" ry="3"/><ellipse cx="23" cy="10" rx="1.4" ry="3"/><ellipse cx="25" cy="10" rx="1.4" ry="3"/><ellipse cx="31" cy="10" rx="1.4" ry="3"/><ellipse cx="37" cy="10" rx="1.4" ry="3"/><ellipse cx="43" cy="10" rx="1.4" ry="3"/><ellipse cx="24" cy="5" rx="1.7" ry="3.4"/></g></symbol>
   <symbol id="s-hamantash" viewBox="0 0 32 30"><path d="M16 4l12 22H4z" fill="#E7C271" stroke="#B4863A" stroke-width="1.6" stroke-linejoin="round"/><circle cx="16" cy="17" r="4" fill="#5a3b22"/></symbol>
   <symbol id="s-matzah" viewBox="0 0 32 32"><rect x="5" y="5" width="22" height="22" rx="3" fill="#F1E2B8" stroke="#B4863A" stroke-width="1.4"/><g fill="#B4863A"><circle cx="11" cy="11" r="1"/><circle cx="16" cy="11" r="1"/><circle cx="21" cy="11" r="1"/><circle cx="11" cy="16" r="1"/><circle cx="16" cy="16" r="1"/><circle cx="21" cy="16" r="1"/><circle cx="11" cy="21" r="1"/><circle cx="16" cy="21" r="1"/><circle cx="21" cy="21" r="1"/></g></symbol>
+  <radialGradient id="gSunBig" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FBE6B0" stop-opacity=".95"/><stop offset="55%" stop-color="#F4CE7A" stop-opacity=".5"/><stop offset="100%" stop-color="#F4CE7A" stop-opacity="0"/></radialGradient>
+  <radialGradient id="gSunDisc" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#FFF2CC"/><stop offset="100%" stop-color="#F1C25E"/></radialGradient>
+  <linearGradient id="gDome" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6DFA0"/><stop offset="1" stop-color="#C79A3E"/></linearGradient>
+  <linearGradient id="gStone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3EEE2"/><stop offset="1" stop-color="#C9BEA6"/></linearGradient>
+  <radialGradient id="gHalo" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#F6E4B0" stop-opacity=".6"/><stop offset="100%" stop-color="#F6E4B0" stop-opacity="0"/></radialGradient>
+  <linearGradient id="gPageL" x1="1" y1="0" x2="0" y2="0.4"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#ecdfbf"/></linearGradient>
+  <linearGradient id="gPageR" x1="0" y1="0" x2="1" y2="0.4"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#ecdfbf"/></linearGradient>
+  <linearGradient id="gGlass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBEFC9" stop-opacity=".92"/><stop offset="1" stop-color="#E9B95E" stop-opacity=".7"/></linearGradient>
+  <radialGradient id="gFlameBig" cx="50%" cy="42%" r="60%"><stop offset="0" stop-color="#FFF3D0"/><stop offset="60%" stop-color="#F3C25C"/><stop offset="100%" stop-color="#D98A2B"/></radialGradient>
 </defs></svg>
 
 <svg id="grain" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
@@ -429,24 +454,77 @@ h1{margin:0;font-weight:700;letter-spacing:.005em}
     <button class="cta gold" data-goto="val1" data-dir="1">שנתחיל?</button>
   </section>
 
-  <!-- VALUE CAROUSEL -->
-  <section class="screen vscreen" id="val1">
+  <!-- VALUE CAROUSEL (immersive) -->
+  <section class="screen vfull" id="val1">
+    <div class="bg" style="background:linear-gradient(180deg,#081a2e 0%,#12365a 40%,#3d6a92 64%,#c9a566 100%)"></div>
+    <svg class="art" viewBox="0 0 400 460" preserveAspectRatio="xMidYMax slice">
+      <ellipse cx="205" cy="330" rx="230" ry="185" fill="url(#gSunBig)"/>
+      <circle cx="205" cy="322" r="54" fill="url(#gSunDisc)"/>
+      <g fill="#dfeaf4" opacity=".38"><ellipse cx="92" cy="150" rx="64" ry="17"/><ellipse cx="128" cy="140" rx="40" ry="13"/><ellipse cx="322" cy="118" rx="58" ry="15"/></g>
+      <g stroke="#f2e4bc" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".85"><path d="M118 104q10-8 20 0q10-8 20 0"/><path d="M276 86q7-6 14 0q7-6 14 0"/></g>
+      <g fill="#2b5c88"><path d="M0 372h400v90H0z"/><rect x="38" y="330" width="30" height="42"/><path d="M118 336a26 26 0 0 1 52 0v36h-52z"/><rect x="250" y="322" width="26" height="50"/><rect x="300" y="338" width="38" height="34"/></g>
+      <g fill="#0d233b">
+        <path d="M0 396h400v66H0z"/>
+        <rect x="58" y="336" width="36" height="60"/><path d="M58 336h36v-9h-6v4h-4v-4h-5v4h-4v-4h-5v4h-4v-4h-3z"/><rect x="69" y="306" width="14" height="30"/>
+        <path d="M150 396v-32a40 40 0 0 1 80 0v32z"/><path d="M150 364a40 40 0 0 1 80 0z" fill="url(#gStone)"/><rect x="187" y="306" width="6" height="22" fill="url(#gGold)"/><path d="M190 296l2.4 4.6 5-.8-3.6 3.6 1 5-4.8-2.4-4.8 2.4 1-5-3.6-3.6 5 .8z" fill="url(#gGold)"/>
+        <rect x="250" y="352" width="42" height="44"/><path d="M250 352h42l-21-15z"/><rect x="300" y="360" width="30" height="36"/><rect x="336" y="346" width="26" height="50"/><rect x="18" y="360" width="32" height="36"/>
+      </g>
+      <g stroke="url(#gGold)" stroke-width="2" opacity=".7" fill="none"><path d="M150 364a40 40 0 0 1 80 0"/><path d="M58 336h36"/><path d="M250 352h42"/></g>
+      <g fill="#f4d488"><rect x="65" y="352" width="5" height="8"/><rect x="80" y="352" width="5" height="8"/><rect x="308" y="368" width="5" height="7"/><rect x="344" y="356" width="5" height="8"/><rect x="26" y="368" width="5" height="7"/></g>
+    </svg>
+    <div class="scrim"></div>
     <button class="skip" data-goto="ob-gender" data-dir="1">דלג</button>
-    <div class="vhero"><span class="blob"></span><span class="glowdot"></span><svg class="art float" viewBox="0 0 400 300"><use href="#scene-city"/></svg></div>
-    <div class="vbody stagger"><h1>רגע אחד ביום,<br><span class="em">וכל היום משתנה</span></h1><p>תהילים, תפילה ומעשה טוב קטן — מותאמים אליך, בזמן שנוח לך.</p></div>
-    <div class="vfoot"><div class="pdots"><i class="on"></i><i></i><i></i></div><button class="next-fab" data-goto="val2" data-dir="1"><svg><use href="#i-arrow"/></svg></button></div>
+    <div class="vwrap">
+      <div class="stagger"><h1>רגע אחד ביום,<br><span class="em">וכל היום משתנה</span></h1><p>תהילים, תפילה ומעשה טוב קטן — מותאמים אליך, בזמן שנוח לך.</p></div>
+      <div class="vfoot2"><div class="pdots light"><i class="on"></i><i></i><i></i></div><button class="next-fab light" data-goto="val2" data-dir="1"><svg><use href="#i-arrow"/></svg></button></div>
+    </div>
   </section>
-  <section class="screen vscreen" id="val2">
+
+  <section class="screen vfull" id="val2">
+    <div class="bg" style="background:linear-gradient(160deg,#221947 0%,#3a2d6b 52%,#5f4384 100%)"></div>
+    <svg class="art float" viewBox="0 0 400 440" preserveAspectRatio="xMidYMid meet">
+      <ellipse cx="200" cy="220" rx="185" ry="150" fill="url(#gHalo)"/>
+      <path d="M200 150 C150 128 96 126 60 138 V300 C96 288 150 290 200 312 Z" fill="url(#gPageL)" stroke="#e6d6a8" stroke-width="1.5"/>
+      <path d="M200 150 C250 128 304 126 340 138 V300 C304 288 250 290 200 312 Z" fill="url(#gPageR)" stroke="#e6d6a8" stroke-width="1.5"/>
+      <path d="M200 150 V312" stroke="#c3b183" stroke-width="3" opacity=".5"/>
+      <path d="M60 300 C96 288 150 290 200 312" stroke="url(#gGold)" stroke-width="4.5" fill="none"/>
+      <path d="M340 300 C304 288 250 290 200 312" stroke="url(#gGold)" stroke-width="4.5" fill="none"/>
+      <g stroke="#7a6a45" stroke-width="2.4" opacity=".4" stroke-linecap="round"><path d="M84 166h96M84 186h96M100 206h80M84 226h96M112 246h68"/><path d="M220 166h96M220 186h96M220 206h80M236 226h80M228 246h68"/></g>
+      <path d="M196 150 v122 l6 -8 l6 8 v-122z" fill="#a3243a"/>
+      <g font-family="Frank Ruhl Libre, serif" fill="url(#gGold)"><text x="74" y="112" font-size="46">א</text><text x="300" y="128" font-size="36" opacity=".9">שׁ</text></g>
+      <g fill="url(#gGold)"><path d="M334 208l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/><path d="M60 250l2.5 6.5 6.5 2.5-6.5 2.5-2.5 6.5-2.5-6.5-6.5-2.5 6.5-2.5z" opacity=".85"/><circle cx="120" cy="96" r="3"/><circle cx="286" cy="300" r="3" opacity=".7"/></g>
+    </svg>
+    <div class="scrim"></div>
     <button class="skip" data-goto="ob-gender" data-dir="1">דלג</button>
-    <div class="vhero"><span class="blob" style="background:radial-gradient(120% 120% at 50% 35%,rgba(120,170,214,.4),rgba(221,190,116,.30) 55%,transparent 76%)"></span><span class="glowdot"></span><svg class="art float" viewBox="0 0 120 120"><use href="#s-book"/></svg></div>
-    <div class="vbody stagger"><h1>כל התפילות<br><span class="em">בכיס שלך</span></h1><p>סידור, תהילים ותנ״ך בנוסח שלך — עם ניקוד, הקראה בקול, וביאור בעברית פשוטה.</p></div>
-    <div class="vfoot"><div class="pdots"><i></i><i class="on"></i><i></i></div><button class="next-fab" data-goto="val3" data-dir="1"><svg><use href="#i-arrow"/></svg></button></div>
+    <div class="vwrap">
+      <div class="stagger"><h1>כל התפילות<br><span class="em">בכיס שלך</span></h1><p>סידור, תהילים ותנ״ך בנוסח שלך — עם ניקוד, הקראה בקול, וביאור בעברית פשוטה.</p></div>
+      <div class="vfoot2"><div class="pdots light"><i></i><i class="on"></i><i></i></div><button class="next-fab light" data-goto="val3" data-dir="1"><svg><use href="#i-arrow"/></svg></button></div>
+    </div>
   </section>
-  <section class="screen vscreen" id="val3">
+
+  <section class="screen vfull" id="val3">
+    <div class="bg" style="background:linear-gradient(180deg,#081627 0%,#1b2c50 44%,#5c3f36 78%,#8a5a34 100%)"></div>
+    <svg class="art float" viewBox="0 0 400 460" preserveAspectRatio="xMidYMid meet">
+      <g stroke="url(#gGold)" stroke-width="2" opacity=".22" stroke-linecap="round"><path d="M200 235V95M200 235l125-72M200 235l-125-72M200 235l150 34M200 235l-150 34M200 235l92 132M200 235l-92 132"/></g>
+      <ellipse cx="200" cy="235" rx="155" ry="150" fill="url(#gHalo)"/>
+      <path d="M200 112V94" stroke="url(#gGold)" stroke-width="3.4" stroke-linecap="round" fill="none"/>
+      <circle cx="200" cy="86" r="8" fill="none" stroke="url(#gGold)" stroke-width="3.4"/>
+      <path d="M170 112h60l10 20v118a8 8 0 0 1-8 8h-64a8 8 0 0 1-8-8V132z" fill="url(#gGlass)" stroke="url(#gGold)" stroke-width="3.4"/>
+      <path d="M170 112h60l10 20h-80z" fill="#123049" stroke="url(#gGold)" stroke-width="2"/>
+      <rect x="164" y="256" width="72" height="14" rx="4" fill="#123049" stroke="url(#gGold)" stroke-width="2"/>
+      <path d="M200 152 C215 176 215 200 200 214 C185 200 185 176 200 152Z" fill="url(#gFlameBig)"/>
+      <path d="M200 166 C209 184 209 200 200 208 C191 200 191 184 200 166Z" fill="#FFF7E0"/>
+      <path d="M200 132v122M176 152v100M224 152v100" stroke="url(#gGold)" stroke-width="1.3" opacity=".45"/>
+      <g fill="url(#gGold)"><circle cx="150" cy="120" r="2.4"/><circle cx="256" cy="150" r="2.6"/><circle cx="272" cy="232" r="2.2"/><circle cx="132" cy="222" r="2.4"/></g>
+      <path d="M330 78a20 20 0 1 0 10 34 16 16 0 0 1-10-34z" fill="#f0e2b8" opacity=".65"/>
+      <g fill="#f0e2b8" opacity=".6"><circle cx="72" cy="70" r="2"/><circle cx="112" cy="52" r="1.6"/></g>
+    </svg>
+    <div class="scrim"></div>
     <button class="skip" data-goto="ob-gender" data-dir="1">דלג</button>
-    <div class="vhero"><span class="blob"></span><span class="glowdot"></span><svg class="art float" viewBox="0 0 400 300"><use href="#scene-heart"/></svg></div>
-    <div class="vbody stagger"><h1>אף פעם<br><span class="em">לא לבד בתפילה</span></h1><p>מלווה אישי שמסביר כל מילה, וממליץ פרק לכל רגע — לשמחה, לדאגה או לתודה.</p></div>
-    <div class="vfoot"><div class="pdots"><i></i><i></i><i class="on"></i></div><button class="next-fab" data-goto="ob-gender" data-dir="1"><svg><use href="#i-arrow"/></svg></button></div>
+    <div class="vwrap">
+      <div class="stagger"><h1>אף פעם<br><span class="em">לא לבד בתפילה</span></h1><p>מלווה אישי שמסביר כל מילה, וממליץ פרק לכל רגע — לשמחה, לדאגה או לתודה.</p></div>
+      <div class="vfoot2"><div class="pdots light"><i></i><i></i><i class="on"></i></div><button class="next-fab light" data-goto="ob-gender" data-dir="1"><svg><use href="#i-arrow"/></svg></button></div>
+    </div>
   </section>
 
   <!-- GENDER -->
